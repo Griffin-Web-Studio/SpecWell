@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <!-- https://xd.adobe.com/view/55cb7516-a6a9-4174-a075-2462feb53ea6-0098/specs/ -->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+        <!-- SET SECURITY POLICY BELOW -->
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' files.gwssecureserver.co.uk; connect-src 'self'; style-src 'self' fonts.googleapis.com 'unsafe-inline' files.gwssecureserver.co.uk; img-src 'self' data: https://*; object-src data: 'unsafe-eval'; child-src; font-src 'self' fonts.gstatic.com"> -->
+        <!-- SET SECURITY POLICY ABOVE 
+            @see https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP for more details
+        -->
+        <!-- NO CSS OR JS ABOVE THIS LINE !!! -->
+
+        <title>Spec Testing Utility</title>
+        <!-- <meta name="application-name" content="Application Name"> --><!-- Name of web application (only should be used if the website is used as an app) -->
+        <!-- <meta name="theme-color" content="#4285f4"> --><!-- Theme Color for Chrome, Firefox OS and Opera -->
+        <meta name="description" content="GWS Development team use only" />
+        <!-- <meta name="robots" content="index,follow">--><!--All Search Engines -->
+        <!-- <meta name="googlebot" content="index,follow"> --><!--Google Specific -->
+
+        <meta name="apple-mobile-web-app-title" content="Griffin Web Studio">
+        <meta name="application-name" content="Griffin Web Studio">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/site_icons/mstile-144x144.png">
+        <meta name="msapplication-config" content="/site_icons/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+
+        <!--
+            for comprehencive list of meta names
+            @see https://gist.github.com/lancejpollard/1978404
+            @see https://github.com/joshbuchea/HEAD
+
+            Remove this and other comments in head
+        -->
+
+        <link rel="shortcut icon" href="/site_icons/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="/site_icons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/site_icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/site_icons/favicon-16x16.png">
+        <link rel="manifest" href="/site_icons/site.webmanifest">
+        <link rel="mask-icon" href="/site_icons/safari-pinned-tab.svg" color="#ff0000">
+
+
+        <style>
+            .gws-spec-container {
+  font-size: calc((16vw / 1920) * 100);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9999999999;
+  padding: 10px;
+  background-color: white;
+  font-family: "Courier New", Courier, monospace;
+  box-shadow: 0 0 1.25em rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+.gws-spec-container.hide {
+    transform: translateY(-100%);
+}
+.gws-spec-container .gws-spec-toggle {
+  position: absolute;
+  top: 100%;
+  right: 1.25em; /*20px*/
+  padding: 0 1em 0.5em 1em;
+  background-color: black;
+  color: white;
+  border-radius: 0 0 0.5em 0.5em;
+  box-shadow: 0 10px 1.25em rgba(0, 0, 0, 0.2);
+}
+.gws-spec-container .gws-spec-form {}
+.gws-flex {
+  display: flex;
+  flex-flow: row;
+  align-items: stretch;
+  justify-content: center;
+  margin-bottom: 1.25em; /*20px*/
+}
+.gws-spec-container .gws-spec-form .gws-spec-label {
+  width: auto;
+  margin: auto;
+  margin-right: 1.25em; /*20px*/
+  margin-left: 1.25em; /*20px*/
+}
+.gws-spec-container .gws-spec-form .gws-spec-input {
+  width: 30%;
+  font-size: 1em; /*20px*/
+  line-height: 1.5625em; /*25px*/
+  padding: 0 0.625em; /*10px*/
+  color: black;
+  opacity: 0.2;
+  border: solid 0.0625em black; /*1px*/
+  border-radius: 0.3125em; /*5px*/
+  margin: 0;
+  outline: none;
+  -webkit-appearance: none;
+  color: black;
+  background-color: #fff;
+  opacity: 1;
+}
+.gws-spec-container .gws-spec-form .gws-spec-input.production-site-url,
+.gws-spec-container .gws-spec-form .gws-spec-input.gws-spec-img-url {
+  border-radius: 0.3125em 0 0 0.3125em; /*5px*/
+}
+.gws-spec-container .gws-spec-form .gws-spec-input.spec-y-adjust,
+.gws-spec-container .gws-spec-form .gws-spec-input.spec-x-adjust {
+    width: 100%;
+    max-width: 5em;
+}
+.gws-spec-container .gws-spec-form .gws-spec-input::-webkit-input-placeholder {
+  font-size: 1em; /*20px*/
+  line-height: 1.5625em; /*25px*/
+  padding: 0 0.625em; /*10px*/
+  color: black;
+  opacity: 0.2;
+}
+.gws-spec-container .gws-spec-form .gws-spec-input::-moz-placeholder {
+  font-size: 1em; /*20px*/
+  line-height: 1.5625em; /*25px*/
+  padding: 0 0.625em; /*10px*/
+  color: black;
+  opacity: 0.2;
+}
+.gws-spec-container .gws-spec-form .gws-spec-input::-moz-placeholder {
+  font-size: 1em; /*20px*/
+  line-height: 1.5625em; /*25px*/
+  padding: 0 0.625em; /*10px*/
+  color: black;
+  opacity: 0.2;
+}
+.gws-spec-container .gws-spec-form .gws-spec-input::-ms-input-placeholder {
+  font-size: 1em; /*20px*/
+  line-height: 1.5625em; /*25px*/
+  padding: 0 0.625em; /*10px*/
+  color: black;
+  opacity: 0.2;
+}
+.gws-spec-container .gws-spec-form a.gws-button,
+.gws-spec-container .gws-spec-form button.gws-button {
+  width: auto;
+  padding: 0 0.625em; /*10px*/
+  border: solid 0.0625em black; /*1px*/
+  border-radius: 0;
+  border-left: none;
+  outline: 0;
+  cursor: pointer;
+  font-size: 1em; /*20px*/
+  font-family: "Courier New", Courier, monospace;
+  line-height: 1.5625em; /*25px*/
+  text-transform: capitalize;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  transition: all 0.3s ease-in-out;
+}
+.gws-spec-container .gws-spec-form a.gws-button.gws-unload-website,
+.gws-spec-container .gws-spec-form a.gws-button.unload-spec-image {
+  background-color: #3b0000;
+  border-left: solid 0.0625em white; /*1px*/
+  border-radius: 0 0.625em 0.625em 0; /*10px*/
+}
+
+.gws-spec-container .gws-spec-form a.gws-button:hover,
+.gws-spec-container .gws-spec-form button.gws-button:hover {
+  background-color: white;
+  color: black;
+}
+
+.gws-spec-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999999999;
+  opacity: 0.2;
+  display: flex;
+  align-items: flex-end;
+  pointer-events: none;
+}
+.gws-spec-image .image {
+  width: 100%;
+}
+.website-frame {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+iframe {
+    border: none;
+}
+        </style>
+
+        <script>
+            // I wrote this in 4 hours, no comments, no logic, just pain...
+
+function setCookie(cname, cvalue, exdays) {
+
+const d = new Date();
+
+d.setTime(d.getTime() + (exdays*24*60*60*1000));
+
+let expires = "expires="+ d.toUTCString();
+
+document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+
+}
+
+
+
+function getCookie(cname) {
+
+let name = cname + "=";
+
+let decodedCookie = decodeURIComponent(document.cookie);
+
+let ca = decodedCookie.split(';');
+
+for(let i = 0; i <ca.length; i++) {
+
+    let c = ca[i];
+
+    while (c.charAt(0) == ' ') {
+
+        c = c.substring(1);
+
+    }
+
+    if (c.indexOf(name) == 0) {
+
+        return c.substring(name.length, c.length);
+
+    }
+
+}
+
+return "";
+
+}
+
+        
+
+function setURLSearchParam(key, value) {
+
+const url = new URL(window.location.href);
+
+url.searchParams.set(key, value);
+
+window.history.pushState({ path: url.href }, '', url.href);
+
+}
+
+
+
+document.addEventListener('DOMContentLoaded', gws_frontend_validator_widget, false);
+
+
+
+function gws_frontend_validator_widget() {
+
+let gws_spec_widget =
+    '<div class="gws-spec-container hide">'+
+        '<a href="#" class="gws-spec-toggle">Toggle Spec</a>'+
+        '<form method="get" class="gws-spec-form">'+
+            
+            '<div class="gws-flex">'+
+            
+                '<label for="production-site" class="gws-spec-label">Production Site URL</label>'+
+                '<input type="url" name="production-site" id="production-site" class="gws-spec-input production-site-url" placeholder="https://path.to-website.com">'+
+                
+                '<a class="gws-button gws-load-website">Load Website Frame</a>'+
+                
+                '<a class="gws-button gws-unload-website">Unload Website Frame</a>'+
+                
+            '</div>'+
+            
+            '<div class="gws-flex">'+
+            
+                '<label for="spec-img" class="gws-spec-label">Spec Image URL</label>'+
+                '<input type="url" name="spec-img" id="spec-img" class="gws-spec-input gws-spec-img-url" placeholder="https://path.to.spec/image.url">'+
+                
+                '<a class="gws-button load-spec-image">Load Spec Image</a>'+
+                
+                '<a class="gws-button unload-spec-image">Unload Spec Image</a>'+
+                
+            '</div>'+
+            
+            '<div class="gws-flex">'+
+            
+                '<label for="spec-opacity" class="gws-spec-label">Opacity</label>'+
+                '<input type="range" id="spec_opacity" class="spec-opacity" name="spec-opacity" value="0.3" min="0.1" max="1" step="0.1">'+
+                
+                '<label for="spec-x-adjust" class="gws-spec-label">X Axis Adjust</label>'+
+                '<input type="number" id="spec-x-adjust" class="gws-spec-input spec-x-adjust" name="spec-x-adjust" value="0">'+
+                
+                '<label for="spec-y-adjust" class="gws-spec-label">Y Axis Adjust</label>'+
+                '<input type="number" id="spec-y-adjust" class="gws-spec-input spec-y-adjust" name="spec-y-adjust" value="0">'+
+                
+            '</div>'+
+            
+        '</form>'+
+    '</div>',
+    gws_spec_image  = '<div class="gws-spec-image"><img src="" alt="Spec Image Overlay" class="image"/></div>';
+
+document.body.insertAdjacentHTML('beforeend', gws_spec_widget);
+
+var gws_spec_container = document.body.querySelector('.gws-spec-container'),
+    gws_spec_toggle    = gws_spec_container.querySelector('.gws-spec-toggle'),
+    gws_spec_form      = gws_spec_container.querySelector('.gws-spec-form'),
+    //=>
+    gws_spec_img_url       = gws_spec_form.querySelector('.gws-spec-img-url'),
+    gws_spec_load_image    = gws_spec_form.querySelector('.load-spec-image'),
+    gws_spec_unload_image  = gws_spec_form.querySelector('.unload-spec-image'),
+    //==>
+    gws_spec_prod_site_url = gws_spec_form.querySelector('.production-site-url'),
+    gws_spec_load_site     = gws_spec_form.querySelector('.gws-load-website'),
+    gws_spec_unload_site   = gws_spec_form.querySelector('.gws-unload-website'),
+    //===>
+    gws_spec_img_o_adjust  = gws_spec_form.querySelector('.spec-opacity')
+    gws_spec_img_x_adjust  = gws_spec_form.querySelector('.spec-x-adjust'),
+    gws_spec_img_y_adjust  = gws_spec_form.querySelector('.spec-y-adjust');
+
+gws_spec_toggle.onclick = function(e) {
+    e.preventDefault();
+    gws_spec_container.classList.toggle('hide');
+}
+
+gws_spec_load_site.onclick = function(e) {
+    e.preventDefault();
+    document.querySelector('.website-frame').src = gws_spec_prod_site_url.value;
+}
+gws_spec_unload_site.onclick = function(e) {
+    e.preventDefault();
+    document.querySelector('.website-frame').src = '';
+}
+
+gws_spec_unload_image.onclick = function(e) {
+    e.preventDefault();
+    var x = document.body.querySelector('.gws-spec-image').remove();
+}
+
+gws_spec_img_o_adjust.onchange = function() {
+    document.body.querySelector('.gws-spec-image').style["opacity"] = document.body.querySelector('.spec-opacity').value;
+}
+
+gws_spec_img_x_adjust.onchange = function(e) {
+    var gws_spec_image_overlay = document.body.querySelector('.gws-spec-image .image');
+    
+    if(typeof(gws_spec_image_overlay) != 'undefined' && gws_spec_image_overlay !== null) {
+
+        document.body.querySelector('.gws-spec-image').style["transform"] = 'translate(' + gws_spec_img_x_adjust.value + 'px, ' + gws_spec_img_y_adjust.value + 'px)';
+        
+        console.log("transform:" + 'translate(' + gws_spec_img_x_adjust + 'px, ' + gws_spec_img_y_adjust + 'px)');
+
+    }
+}
+
+gws_spec_img_y_adjust.onchange = function(e) {
+    var gws_spec_image_overlay = document.body.querySelector('.gws-spec-image .image');
+    
+    if(typeof(gws_spec_image_overlay) != 'undefined' && gws_spec_image_overlay !== null) {
+
+        document.body.querySelector('.gws-spec-image').style["transform"] = 'translate(' + gws_spec_img_x_adjust.value + 'px, ' + gws_spec_img_y_adjust.value + 'px)';
+        
+        console.log("transform:" + 'translate(' + gws_spec_img_x_adjust + 'px, ' + gws_spec_img_y_adjust + 'px)');
+
+    }
+}
+
+if (getCookie("gws_fun_value") === 0 || getCookie("gws_fun_value") === '' ) {
+
+    setCookie("gws_fun_value", 0, 1);
+
+}
+
+gws_spec_load_image.onclick = function(e) {
+    e.preventDefault();
+
+    if (gws_spec_img_url.value === "" && getCookie("gws_fun_value") === "0") {
+
+        alert('Erm, need speck URL? Ok how about we add something to the input field, lets say something like "farts"');
+
+        gws_spec_img_url.value = 'https://farts.com';
+
+
+
+    } else if (gws_spec_img_url.value === "https://farts.com" && getCookie("gws_fun_value") === "0") {
+
+        alert('Ok, very mature. How about you enter something a little more creative, like a link to spec?');
+
+        gws_spec_img_url.value = '';
+
+        setCookie("gws_fun_value", 1, 1);
+
+
+
+    } else if (gws_spec_img_url.value === "" && getCookie("gws_fun_value") === "1") {
+
+        alert('Please Enter, Spec URL');
+
+
+
+    } else if (gws_spec_img_url.value !== "") {
+
+        var gws_spec_image_overlay = document.body.querySelector('.gws-spec-image .image');
+
+
+
+        if(typeof(gws_spec_image_overlay) != 'undefined' && gws_spec_image_overlay !== null) {
+
+            gws_spec_image_overlay.src = gws_spec_img_url.value;
+
+            document.body.querySelector('.gws-spec-image').style["opacity"] = document.body.querySelector('.spec-opacity').value;
+
+        } else{
+
+            document.body.insertAdjacentHTML('beforeend', gws_spec_image);
+
+            var gws_spec_image_overlay = document.body.querySelector('.gws-spec-image .image');
+
+            gws_spec_image_overlay.src = gws_spec_img_url.value;
+            
+            document.body.querySelector('.gws-spec-image').style["opacity"] = document.body.querySelector('.spec-opacity').value;
+
+        }
+
+
+
+    } else {
+
+        alert('What the hec happened? This is wrong!');
+
+    }
+
+}
+
+}
+        </script>
+        
+        <!-- <script src="https://files.gwssecureserver.co.uk/files/spec/script.js"></script>
+        <link rel="stylesheet" href="https://files.gwssecureserver.co.uk/files/spec/style.css" /> -->
+
+    </head>
+
+    <body class="">
+
+        <iframe src="" class="website-frame"></iframe>
+       
+        <script>
+          
+            // JavaScript code to change the
+            // height to 100% of <iframe>
+            /*function changeHeight() {
+                var x = document.querySelector('.website-frame');
+                x.style.height = x.contentWindow.document.body.offsetHeight + 'px';
+                console.log(x.contentWindow.document.body.offsetHeight)
+            }*/
+            var iframe_loaded = 0;
+            document.querySelector('.website-frame').onload = function() {
+                /*if (iframe_loaded !== 1) {*/
+                    setTimeout(iResize, 50);
+                    // Safari and Opera need a kick-start.
+                    /*var iSource = document.querySelector('.website-frame').src;
+                    document.querySelector('.website-frame').src = '';
+                    document.querySelector('.website-frame').src = iSource;*/
+                    /*iframe_loaded = 1;
+                }*/
+            }
+
+            function iResize() {
+                document.querySelector('.website-frame').style.height = 
+                document.querySelector('.website-frame').contentWindow.document.body.offsetHeight + 'px';
+            }
+        </script>
+
+    </body>
+</html>
