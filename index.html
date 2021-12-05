@@ -343,15 +343,9 @@ let gws_spec_widget =
                     '<pre class="gws-spec-code-child">'+
                     '&lt;script&gt;&#10;'+
                     '    window.addEventListener(\'message\', event => {&#10;'+
-                    '        // IMPORTANT: check the origin of the data!&#10;'+
-                    '        if (event.origin.startsWith(\'http://192.168.1.134\') || event.origin.startsWith(\'https://https://gws-internal.griffin-studio.co.uk/\')) {&#10;'+
-                    '            // The data was sent from your site.&#10;'+
-                    '            // Data sent with postMessage is stored in event.data:&#10;'+
-                    '            console.log(event);&#10;'+
+                    '        if (event.origin.startsWith(\'http://192.168\') || event.origin.startsWith(\'https://gws-internal.griffin-studio.co.uk/\')) {&#10;'+
                     '            if (event.data === \'can I get your height?\') {&#10;'+
-                    '                console.log(\'Sure friend, Catch my data, btw it\'t json!\');&#10;'+
                     '&#10;'+
-                    '                // Called from the iframe&#10;'+
                     '                const spec_response_data = JSON.stringify({&#10;'+
                     '                    my_height: document.body.offsetHeight,&#10;'+
                     '                });&#10;'+
