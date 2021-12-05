@@ -1,0 +1,15 @@
+{
+    "name": "griffin-studio-internal",
+    "version": "3.0.1",
+    "author": "Rihards Simanovics",
+    "description": "Generic package by Griffin Web Studio, used to create an HTML and WordPress template.",
+    "private": true,
+    "license": "proprietary",
+    "scripts": {
+        "browsersync": "browser-sync start --server --files './*.html,./*.css' --port 3000 -w",
+        "frontend": "npm run browsersync"
+    },
+    "devDependencies": {
+        "browser-sync": ">=2.26.12"
+    }
+}

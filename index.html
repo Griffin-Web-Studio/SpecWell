@@ -108,6 +108,11 @@
     width: 100%;
     max-width: 5em;
 }
+.gws-spec-container .gws-spec-form .gws-spec-input.spec-media-width,
+.gws-spec-container .gws-spec-form .gws-spec-input.spec-media-zoom {
+    width: 100%;
+    max-width: 6em;
+}
 .gws-spec-container .gws-spec-form .gws-spec-input::-webkit-input-placeholder {
   font-size: 1em; /*20px*/
   line-height: 1.5625em; /*25px*/
@@ -188,6 +193,16 @@
     height: 100%;
 }
 
+.website-frame-container {
+    width: 100%;
+    margin: 0 auto;
+    transform-origin: top;
+}
+
+.gws-spec-code-child.hide {
+    display: none;
+}
+
 
 
 
@@ -225,9 +240,9 @@ function getCookie(cname) {
 
 let name = cname + "=";
 
-let decodedCookie = decodeURIComponent(document.cookie);
+let child_frame_responsezCookie = decodeURIComponent(document.cookie);
 
-let ca = decodedCookie.split(';');
+let ca = child_frame_responsezCookie.split(';');
 
 for(let i = 0; i <ca.length; i++) {
 
@@ -301,13 +316,54 @@ let gws_spec_widget =
             '<div class="gws-flex">'+
             
                 '<label for="spec-opacity" class="gws-spec-label">Opacity</label>'+
-                '<input type="range" id="spec_opacity" class="spec-opacity" name="spec-opacity" value="0.3" min="0.1" max="1" step="0.1">'+
+                '<input type="range" id="spec_opacity" class="spec-opacity" name="spec-opacity" value="0.3" min="0" max="1" step="0.1">'+
                 
                 '<label for="spec-x-adjust" class="gws-spec-label">X Axis Adjust</label>'+
                 '<input type="number" id="spec-x-adjust" class="gws-spec-input spec-x-adjust" name="spec-x-adjust" value="0">'+
                 
                 '<label for="spec-y-adjust" class="gws-spec-label">Y Axis Adjust</label>'+
                 '<input type="number" id="spec-y-adjust" class="gws-spec-input spec-y-adjust" name="spec-y-adjust" value="0">'+
+                
+                '<label for="spec-media-width" class="gws-spec-label">Media Width</label>'+
+                '<input type="number" id="spec-media-width" class="gws-spec-input spec-media-width" name="spec-media-width" value="800">'+
+                
+                '<label for="spec-media-zoom" class="gws-spec-label">Media Zoom</label>'+
+                '<input type="number" id="spec-media-zoom" class="gws-spec-input spec-media-zoom" name="spec-media-zoom" value="100">'+
+                
+            '</div>'+
+            
+            '<div class="gws-flex">'+
+
+                '<div>'+
+                    
+                    '<a href="#" class="gws-button gws-spec-hide-code-snippet">Hide Code Snippet</a>'+
+            
+                    '<p style="color: red; font-weight: bold;">For this spec checker to automatically correct frame height, you need to add this script anywhere before the end of the body. Do it on the page you about to spec check</p>'+
+
+                    '<pre class="gws-spec-code-child">'+
+                    '&lt;script&gt;&#10;'+
+                    '    window.addEventListener(\'message\', event => {&#10;'+
+                    '        // IMPORTANT: check the origin of the data!&#10;'+
+                    '        if (event.origin.startsWith(\'http://192.168.1.134\') || event.origin.startsWith(\'https://https://gws-internal.griffin-studio.co.uk/\')) {&#10;'+
+                    '            // The data was sent from your site.&#10;'+
+                    '            // Data sent with postMessage is stored in event.data:&#10;'+
+                    '            console.log(event);&#10;'+
+                    '            if (event.data === \'can I get your height?\') {&#10;'+
+                    '                console.log(\'Sure friend, Catch my data, btw it\'t json!\');&#10;'+
+                    '&#10;'+
+                    '                // Called from the iframe&#10;'+
+                    '                const spec_response_data = JSON.stringify({&#10;'+
+                    '                    my_height: document.body.offsetHeight,&#10;'+
+                    '                });&#10;'+
+                    '                window.parent.postMessage(spec_response_data, \'*\');&#10;'+
+                    '            }&#10;'+
+                    '        }&#10;'+
+                    '&#10;'+
+                    '    });&#10;'+
+                    '&lt;/script&gt;&#10;'+
+                    '</pre>'+
+
+                '</div>'+
                 
             '</div>'+
             
@@ -329,53 +385,70 @@ var gws_spec_container = document.body.querySelector('.gws-spec-container'),
     gws_spec_load_site     = gws_spec_form.querySelector('.gws-load-website'),
     gws_spec_unload_site   = gws_spec_form.querySelector('.gws-unload-website'),
     //===>
-    gws_spec_img_o_adjust  = gws_spec_form.querySelector('.spec-opacity')
+    gws_spec_img_o_adjust  = gws_spec_form.querySelector('.spec-opacity'),
     gws_spec_img_x_adjust  = gws_spec_form.querySelector('.spec-x-adjust'),
-    gws_spec_img_y_adjust  = gws_spec_form.querySelector('.spec-y-adjust');
+    gws_spec_img_y_adjust  = gws_spec_form.querySelector('.spec-y-adjust'),
+    spec_media_width       = gws_spec_form.querySelector('.spec-media-width'),
+    spec_media_zoom        = gws_spec_form.querySelector('.spec-media-zoom'),
+    //====>
+    gws_spec_code_child    = gws_spec_form.querySelector('.gws-spec-code-child'),
+    gws_spec_hide_code     = gws_spec_form.querySelector('.gws-spec-hide-code-snippet');
+
+
 
 gws_spec_toggle.onclick = function(e) {
     e.preventDefault();
     gws_spec_container.classList.toggle('hide');
 }
-
 gws_spec_load_site.onclick = function(e) {
     e.preventDefault();
-    document.querySelector('.website-frame').src = gws_spec_prod_site_url.value;
+    frame_site.src = gws_spec_prod_site_url.value;
 }
 gws_spec_unload_site.onclick = function(e) {
     e.preventDefault();
-    document.querySelector('.website-frame').src = '';
+    frame_site.src = '';
 }
-
 gws_spec_unload_image.onclick = function(e) {
     e.preventDefault();
     var x = document.body.querySelector('.gws-spec-image').remove();
 }
+gws_spec_hide_code.onclick = function(e) {
+    e.preventDefault();
+    gws_spec_code_child.classList.toggle('hide');
+}
+
+
 
 gws_spec_img_o_adjust.onchange = function() {
-    document.body.querySelector('.gws-spec-image').style["opacity"] = document.body.querySelector('.spec-opacity').value;
+    on_spec_option_change()
 }
-
 gws_spec_img_x_adjust.onchange = function(e) {
-    var gws_spec_image_overlay = document.body.querySelector('.gws-spec-image .image');
-    
-    if(typeof(gws_spec_image_overlay) != 'undefined' && gws_spec_image_overlay !== null) {
-
-        document.body.querySelector('.gws-spec-image').style["transform"] = 'translate(' + gws_spec_img_x_adjust.value + 'px, ' + gws_spec_img_y_adjust.value + 'px)';
-        
-        console.log("transform:" + 'translate(' + gws_spec_img_x_adjust + 'px, ' + gws_spec_img_y_adjust + 'px)');
-
-    }
+    on_spec_option_change()
+}
+gws_spec_img_y_adjust.onchange = function(e) {
+    on_spec_option_change()
+}
+spec_media_width.onchange = function(e) {
+    on_spec_option_change()
+}
+spec_media_zoom.onchange = function(e) {
+    on_spec_option_change()
 }
 
-gws_spec_img_y_adjust.onchange = function(e) {
-    var gws_spec_image_overlay = document.body.querySelector('.gws-spec-image .image');
+function on_spec_option_change() {
+    var gws_spec_image_overlay = document.body.querySelector('.gws-spec-image .image'),
+        gws_spec_frame         = document.body.querySelector('.website-frame');
     
-    if(typeof(gws_spec_image_overlay) != 'undefined' && gws_spec_image_overlay !== null) {
+    if(typeof(gws_spec_image_overlay) != 'undefined' && gws_spec_image_overlay !== null && gws_spec_frame.src !== null) {
+
+        document.body.querySelector('.gws-spec-image').style["opacity"] = document.body.querySelector('.spec-opacity').value;
 
         document.body.querySelector('.gws-spec-image').style["transform"] = 'translate(' + gws_spec_img_x_adjust.value + 'px, ' + gws_spec_img_y_adjust.value + 'px)';
+
+        document.body.querySelector('.website-frame-container').style["width"] = spec_media_width.value + 'px';
+        document.body.querySelector('.website-frame-container').style["transform"] = 'scale(' + (spec_media_zoom.value / 100) + ')';
         
-        console.log("transform:" + 'translate(' + gws_spec_img_x_adjust + 'px, ' + gws_spec_img_y_adjust + 'px)');
+        console.log("transform:" + 'translate(' + gws_spec_img_x_adjust.value + 'px, ' + gws_spec_img_y_adjust.value + 'px)');
 
     }
 }
@@ -456,33 +529,37 @@ gws_spec_load_image.onclick = function(e) {
     </head>
 
     <body class="">
-
-        <iframe src="" class="website-frame"></iframe>
+        <div class="website-frame-container">
+            <iframe src="" class="website-frame"></iframe>
+        </div>
        
         <script>
-          
-            // JavaScript code to change the
-            // height to 100% of <iframe>
-            /*function changeHeight() {
-                var x = document.querySelector('.website-frame');
-                x.style.height = x.contentWindow.document.body.offsetHeight + 'px';
-                console.log(x.contentWindow.document.body.offsetHeight)
-            }*/
+            const frame_container = document.querySelector('.website-frame-container'),
+                  frame_site = document.querySelector('.website-frame');
             var iframe_loaded = 0;
-            document.querySelector('.website-frame').onload = function() {
+            frame_site.onload = function() {
                 /*if (iframe_loaded !== 1) {*/
                     setTimeout(iResize, 50);
                     // Safari and Opera need a kick-start.
-                    /*var iSource = document.querySelector('.website-frame').src;
-                    document.querySelector('.website-frame').src = '';
-                    document.querySelector('.website-frame').src = iSource;*/
+                    /*var iSource = frame_site.src;
+                    frame_site.src = '';
+                    frame_site.src = iSource;*/
                     /*iframe_loaded = 1;
                 }*/
             }
 
             function iResize() {
-                document.querySelector('.website-frame').style.height = 
-                document.querySelector('.website-frame').contentWindow.document.body.offsetHeight + 'px';
+                if (frame_site.src !== window.location.href) {
+                    frame_site.contentWindow.postMessage('can I get your height?', '*');
+                    
+                    window.addEventListener('message', function (e) {
+                        const data = e.data;
+
+                        const child_frame_response = JSON.parse(data);
+                        console.log(child_frame_response.my_height);
+                        frame_container.style.height = child_frame_response.my_height + 'px';
+                    });
+                }
             }
         </script>
 
