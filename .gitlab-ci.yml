@@ -3,8 +3,10 @@ image: node:14.16.1
 pages:
   stage: deploy
   script:
+  - npm run deploy
   - mkdir .public
-  - cp -r *.html .public
+  - cp -r site_icons *.html .public
+  - cp -r assets/ .public/assets/
   - mv .public public
   artifacts:
     paths:
