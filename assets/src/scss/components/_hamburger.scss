@@ -1,0 +1,63 @@
+.hamburger-bars {
+    width: var(--hamburger-width);
+    height: var(--hamburger-height);
+    position: absolute;
+    right: px-rem(26);
+    top: 50%;
+    z-index: 200;
+    transform: translateY(-50%);
+    display: block;
+
+
+    @include at-least($l-tablet) {
+        display: none;
+    }
+
+    
+    &.is-active {
+        .line-1 {
+            transform: translateY(calc(1 * var(--hamburger-translateY))) translateX(0) rotate(45deg);
+        }
+        .line-2 {
+            opacity: 0;
+        }
+        .line-3 {
+            transform: translateY(calc(-1 * var(--hamburger-translateY))) translateX(0) rotate(-45deg);
+        }
+    }
+
+    [class^=line-] {
+        display: block;
+        background-color: var(--pref-color-RV);
+        width: var(--hamburger-width);
+        height: var(--hamburger-line-height);
+        position: absolute;
+        left: 0;
+        border-radius: px-em(2, 16);
+        transition: all 300ms, opacity 100ms;
+        outline: px-rem(1) solid transparent;
+
+        .is-open-menu & {
+            background-color: var(--brand-color);
+        }
+
+        &.line-1 {
+            top: 0;
+        }
+
+        &.line-2 {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &.line-2 {
+            width: 70%;
+            right: 0;
+            left: unset;
+        }
+
+        &.line-3 {
+            bottom: 0;
+        }
+    }
+}

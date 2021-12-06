@@ -1,0 +1,194 @@
+nav ul,
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.main-nav {
+    position: fixed;
+    @include props-val((top, right, bottom, left), 0);
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+    padding: #{var(--header-height)} 0;
+    background: #fff;
+    color: var(--text-color);
+    transition: opacity 350ms ease, visibility 350ms ease;
+    -webkit-overflow-scrolling: touch;
+    visibility: hidden;
+    overflow-y: auto;
+    opacity: 0;
+
+    @include at-least($l-tablet) {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0;
+        position: static;
+        visibility: visible;
+        overflow-y: visible;
+        opacity: 1;
+    }
+
+    .is-open-menu & {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &.is-active {
+        height: 100%;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: center;
+        flex-flow: column;
+        text-align: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        min-height: 100%;
+
+        @include at-least($l-tablet) {
+            flex-flow: row wrap;
+            text-align: left;
+            justify-content: flex-end;
+
+            > .menu-item {
+                &:first-child {
+                    margin-left: 0;
+                }
+    
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        .menu-item {
+            position: relative;
+            font-size: px-rem(18);
+            margin: px-em(20, 18) px-em(18, 18);
+            text-transform: uppercase;
+            letter-spacing: px-em(1.8, 18);
+            font-family: var(--font-family-alt);
+
+            @include at-least($l-tablet) {
+                margin: 0 px-em(18, 18);
+            }
+
+            a {
+                position: relative;
+                font-weight: 400;
+                color: var(--color-7);
+
+                &:before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: calc(100% + px-rem(8.5));
+                    left: 0;
+                    width: 0%;
+                    border-bottom: px-rem(1) solid var(--color-6);
+                    transition: all 0.3s ease-in-out;
+                }
+            }
+
+            &.special {
+                letter-spacing: 0;
+                
+                a {
+                    padding: px-em(24, 18) px-em(27, 18);
+                    border-radius: px-em(5, 18);
+                    background-color: var(--brand-color);
+                    color: #fff;
+                    transition: all 0.3s ease-in-out;
+                    font-weight: 600;
+
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
+
+            &:hover,
+            &.is-active,
+            &.current-menu-item,
+            &.current-menu-parent,
+            &.current-menu-ancestor,
+            &.current_page_item,
+            &.current_page_parent,
+            &.current-page-ancestor {
+                > a {
+                    &:before {
+                        width: 100%;
+                    }
+                }
+
+                &.special {
+                    > a {
+                        background-color: var(--brand-color-alt);
+                    }
+                }
+            }
+        }
+    }
+
+    // Use this to style sub-menu
+    .sub-menu {
+        padding: px-rem(20);
+        background-color: white;
+        box-shadow: 0 px-rem(3) px-rem(6) rgb(0 0 0 / 16%), 0 px-rem(3) px-rem(6) rgb(0 0 0 / 23%);
+
+        > .menu-item {
+            a {
+                display: block;
+                font-weight: 400;
+                margin-bottom: px-rem(10);
+            }
+        }
+    }
+}
+
+// Use this only for 'show'/'hide' functionality
+.sub-menu {
+    position: absolute;
+    top: calc(100% + px-rem(10));
+    left: 50%;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, px-rem(10));
+    transition: all 0.3s ease-in-out;
+    min-width: px-rem(300);
+    width: 100%;
+
+    a {
+        color: transparent !important;
+        transition:  color 0.3s ease-in-out 1s;
+    }
+
+    .is-active > & {
+        transform: translate(-50%, 0);
+        opacity: 1;
+        pointer-events: all;
+        display: block;
+    
+        &:hover,
+        &.current-menu-item,
+        &.current-menu-parent,
+        &.current-menu-ancestor,
+        &.current_page_item,
+        &.current_page_parent,
+        &.current-page-ancestor {
+            > a {
+                color: var(--pref--color-11) !important;
+            }
+        }
+
+        a {
+            color: var(--pref-color-RV) !important;
+            transition: color 0.3s ease-in-out 0.3s;
+        }
+    }
+}

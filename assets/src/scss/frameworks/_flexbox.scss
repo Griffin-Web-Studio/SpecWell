@@ -1,0 +1,127 @@
+%flexbox-position {
+    list-style: none;
+    padding-left: 0;
+
+    &.flush-outline {
+        padding: calc(-1 * var(--flex-gutter));
+    }
+
+    &.flow-column { flex-flow: column; }
+    &.flow-row {  flex-flow: row; }
+
+    &.align-start { align-items: flex-start; }
+    &.align-center { align-items: center; }
+    &.align-stretch { align-items: stretch; }
+    &.align-end { align-items: flex-end; }
+
+    &.justify-start { justify-content: flex-start; }
+    &.justify-center { justify-content: center; }
+    &.justify-stretch { justify-content: stretch; }
+    &.justify-end { justify-content: flex-end; }
+    &.justify-space-around { justify-content: space-around; }
+    &.justify-space-between { justify-content: space-between; }
+    &.justify-space-evenly { justify-content: space-evenly; }
+}
+
+[class^="flex-"],
+[class*=" flex-"] {
+    padding: var(--flex-gutter);
+}
+
+.flex {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0;
+
+    @extend %flexbox-position;
+
+    > [class^="flex-"],
+    > [class*=" flex-"] {
+        padding: 0;
+    }
+
+    @for $size from 1 to 51 {
+        &.gap-#{$size} {
+            @include props-val((margin-left, margin-right), px-rem(math.div($size, 2) * -1));
+
+            > [class^="flex-"],
+            > [class*=" flex-"] {
+                padding: px-rem(math.div($size, 2));
+            }
+        }
+    }
+}
+
+.flexbox {
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 calc(-1 * var(--flex-gutter));
+
+    @extend %flexbox-position;
+}
+
+// Removed flexbox on mobile
+// Useful when need to make slideshow on mobile/desktop
+.flexbox-desktop {
+    @include at-least($l-tablet) {
+        position: relative;
+        display: flex;
+        flex-flow: row wrap;
+        margin: 0 calc(-1 * var(--flex-gutter));
+    }
+
+    @extend %flexbox-position;
+}
+
+.woocommerce-product-gallery {
+    [class^="flex-"],
+    [class*=" flex-"] {
+        padding: initial;
+    }
+}
+
+$screen-sizes: (
+    "": 0px,
+    "sm-": $s-mobile,
+    "mm-": $m-mobile,
+    "lm-": $l-mobile,
+    "st-": $s-tablet,
+    "mt-": $m-tablet,
+    "lt-": $l-tablet,
+    "sl-": $m-laptop,
+    "ml-": $l-laptop,
+    "ll-": $m-laptop,
+    "sd-": $l-desktop,
+    "md-": $m-desktop,
+    "ld-": $l-desktop
+);
+
+@each $flex in $screen-sizes {
+    $key: nth($flex, 1);
+    $value: nth($flex, 2);
+
+    @if($key != 0) {
+        @include at-least($value) {
+            @for $i from 1 through $flex-columns {
+                .flex-#{$key}#{$i} {
+                    width: calc(100% / (#{$flex-columns} / #{$i}));
+                }
+            
+                .offset-#{$key}#{$i} {
+                    margin-left: calc(100% / (#{$flex-columns} / #{$i}));
+                }
+            }
+        }
+    } @else {
+        @for $i from 1 through $flex-columns {
+            .flex-#{$key}#{$i} {
+                width: calc(100% / (#{$flex-columns} / #{$i}));
+            }
+        
+            .offset-#{$key}#{$i} {
+                margin-left: calc(100% / (#{$flex-columns} / #{$i}));
+            }
+        }
+    }
+}

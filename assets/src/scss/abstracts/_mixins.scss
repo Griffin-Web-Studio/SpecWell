@@ -1,0 +1,75 @@
+@mixin at-least($device-width) {
+    @media screen and (min-width: $device-width) {
+        @content;
+    }
+}
+
+@mixin until($device-width) {
+    @media screen and (max-width: ($device-width - 1)) {
+        @content;
+    }
+}
+
+@mixin between($device-width-1, $device-width-2) {
+    @media screen and (min-width: $device-width-1) and (max-width: $device-width-2 - 1) {
+        @content;
+    }
+}
+
+@mixin font-icon {
+    line-height: 1;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-family-icons);
+}
+
+@mixin placeholder {
+    @content;
+
+    &::-webkit-input-placeholder {
+        @content;
+    }
+    &::-moz-placeholder {
+        @content;
+    }
+    &::-moz-placeholder {
+        @content;
+    }
+    &::-ms-input-placeholder {
+        @content;
+    }
+}
+
+@mixin props-val($props, $val) {
+    @each $prop in $props {
+        #{$prop}: #{$val};
+    }
+}
+
+%clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+%cover-bg {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+%contain-bg {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@mixin font-size($font-size) {
+    font-size: #{math.div($font-size, $d-design-fs) + 'rem'}; // = 16px for design width of
+}

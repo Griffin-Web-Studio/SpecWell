@@ -1,0 +1,17 @@
+{
+    "recommendations": [
+        "streetsidesoftware.code-spell-checker",
+        "eamodio.gitlens",
+        "ikappas.phpcs",
+        "syler.sass-indented",
+        "felixfbecker.php-intellisense",
+        "bmewburn.vscode-intelephense-client",
+        "firefox-devtools.vscode-firefox-debug",
+        "msjsdiag.debugger-for-edge",
+        "ms-edgedevtools.vscode-edge-devtools",
+        "natizyskunk.sftp",
+        "jock.svg",
+        "celianriboulet.webvalidator",
+        "hookyqr.beautify"
+    ]
+}

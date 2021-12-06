@@ -6,10 +6,44 @@
     "private": true,
     "license": "proprietary",
     "scripts": {
+        "migrate-backend": "node dev/gws-build.js -t wp",
+        "init-frontend": "npm run npm:rm; npm run npm:i; npm run frontend",
         "browsersync": "browser-sync start --server --files './*.html,./*.css' --port 3000 -w",
-        "frontend": "npm run browsersync"
+        "autoprefixer": "postcss assets/build/css/style.css --no-map --replace --use autoprefixer -b \"'> 0.1%', 'last 2 versions', 'Opera 12.1', 'Firefox ESR', 'ie >= 10'\"",
+        "icons": "fantasticon",
+        "watch:browsersync": "npm run browsersync",
+        "watch:scss": "npm run scss:dev",
+        "watch:js": "nodemon --watch assets/src/scripts/ --verbose -x \"npm run js:beautify\"",
+        "scss:dev": "sass ./assets/src/scss/:./assets/build/css/ -c -w         --embed-source-map --no-stop-on-error",
+        "scss:bld": "sass ./assets/src/scss/:./assets/build/css/ -c -s compressed --no-source-map --no-stop-on-error",
+        "js:beautify": "merger build && uglifyjs assets/build/js/script.min.js --beautify          -o assets/build/js/script.min.js",
+        "js:uglify": "merger build && uglifyjs assets/build/js/script.min.js --compress --mangle -o assets/build/js/script.min.js",
+        "frontend": "npm run build && npm-run-all --parallel watch:*",
+        "backend": "cd wp-content/themes/gwschild/ && npm run development",
+        "development": "npm-run-all --parallel watch:scss watch:js",
+        "deploy": "npm i && npm run scss:bld && npm run autoprefixer && npm run js:uglify",
+        "build": "npm run scss:bld && npm run autoprefixer && npm run js:uglify",
+        "npm:i": "npm i && npm audit fix",
+        "npm:rm": "rm -rf node_modules/ package-lock.json",
+        "npm:kill": "taskkill /f /im node.exe; pkill -f node",
+        "git-reset": "git fetch --all && git reset --hard",
+        "git-hard-reset": "git fetch --all && git reset --hard && git clean -fdx"
     },
     "devDependencies": {
-        "browser-sync": ">=2.26.12"
+        "autoprefixer": ">=9.8.6",
+        "browser-sync": ">=2.26.12",
+        "chokidar-cli": ">=2.1.0",
+        "fantasticon": ">=1.0.30",
+        "fs-extra": ">=10.0.0",
+        "inquirer": ">=8.0.0",
+        "merger-js": ">=3.10.3",
+        "node-notifier": ">=9.0.1",
+        "nodemon": ">=2.0.4",
+        "npm-run-all": ">=4.1.5",
+        "postcss": ">=8.2.8",
+        "postcss-cli": ">=7.1.2",
+        "sass": ">=1.43.2",
+        "shelljs": ">=0.8.4",
+        "uglify-js": ">=3.10.4"
     }
 }

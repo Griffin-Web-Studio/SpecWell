@@ -1,0 +1,30 @@
+@function px-rem($px, $media: d) {
+    $target: 16px;
+    
+    @if $media == d {
+        $target: $d-design-fs;
+    }
+    @else if $media == t {
+        $target: $t-design-fs;
+    }
+    @else if $media == m {
+        $target: $m-design-fs;
+    }
+    @return #{math.div($px, $target) + 'rem'};
+}
+
+@function px-em($px, $em) {
+    @return #{math.div($px, $em) + 'em'};
+}
+
+@function px-vw($px) {
+    @return #{math.div(math.div($px, $d-design-vw) * 100) + 'vw'};
+}
+
+@function px-ratio($px) {
+    @return math.div($px, $d-design-fs);
+}
+
+@function ratio-calc($side1, $side2) {
+    @return #{math.div($side1, $side2) * 100};
+}

@@ -1,0 +1,104 @@
+@mixin button {
+    display: inline-block;
+    padding: 0 px-em(85, 27);
+    border: none;
+    border-radius: px-em(10, 27);
+
+    outline: 0;
+    cursor: pointer;
+
+    font-size: px-rem(27);
+    line-height: px-em(68, 27);
+    text-transform: capitalize;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+
+    color: var(--button-text-color);
+    background-color: var(--button-color);
+
+    transition: all 0.3s ease-in-out;
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: no-drop;
+    }
+}
+
+@mixin button-hover {
+    background-color: var(--brand-color-alt);
+    color: #fff;
+}
+
+@mixin button-alt-hover {
+    background-color: #fff !important;
+    color: var(--brand-color-alt) !important;
+    border-color: var(--brand-color-alt) !important;
+
+}
+
+@mixin button-secondary-hover {
+    background-color: var(--brand-color-alt);
+    border-color: var(--brand-color-alt);
+    color: #fff;
+}
+
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+button,
+.button {
+    @include button;
+
+    &:hover {
+        @include button-hover;
+    }
+}
+
+.button-alt {
+    @include button;
+    background-color: var(--brand-color-alt);
+    border-color: var(--brand-color-alt);
+    
+    &:hover {
+        @include button-alt-hover;
+    }
+}
+
+.button-secondary {
+    @include button;
+    background-color: #fff;
+    border-color: var(--brand-color-alt);
+    color: var(--brand-color-alt);
+    
+    &:hover {
+        @include button-secondary-hover;
+    }
+}
+
+a.next-section {
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: px-rem(2);
+    color: #fff;
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        width: 150%;
+        padding-top: 150%;
+        background-color: var(--brand-color);
+        z-index: -1;
+        border-radius: 100% 0.2rem 0.2rem 0.2rem;
+        transition: all 0.5s ease-in-out;
+    }
+
+    &:hover {
+        &:before {
+            border-radius: 100% 100% 0.2rem 100%;
+        }
+    }
+}

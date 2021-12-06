@@ -1,0 +1,29 @@
+{
+    "cSpell.words": [
+        "Flickity",
+        "Gtheme",
+        "bloginfo",
+        "customizer",
+        "initialise",
+        "initialiser",
+        "postid",
+        "simultaniusly",
+        "smallscreen",
+        "woocommerce"
+    ],
+    "workbench.colorTheme": "Monokai",
+    "php.executablePath": "C:\\PHP8\\php8.exe",
+    "editor.minimap.enabled": true,
+    "intelephense.diagnostics.undefinedClassConstants": false,
+    "intelephense.diagnostics.undefinedConstants": false,
+    "intelephense.diagnostics.undefinedFunctions": false,
+    "intelephense.diagnostics.undefinedMethods": false,
+    "intelephense.diagnostics.undefinedTypes": false,
+    "phpcs.standard": "GWS",
+    "terminal.integrated.profiles.osx": {
+        "Ubuntu": {
+            "path": "C:\\windows\\System32\\wsl.exe",
+            "args": ["-d Ubuntu"]
+        }
+    }
+}

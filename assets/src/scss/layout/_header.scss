@@ -1,0 +1,73 @@
+.is-noscroll {
+    pointer-events: none;
+    height: 100%;
+    overflow: hidden;
+
+    .header,
+    .main-nav,
+    .top {
+        pointer-events: auto;
+    }
+}
+
+.site-header {
+    z-index: 200;
+    position: sticky;
+    @include props-val((top, right, left), 0);
+    transition: all 0.3s ease-in-out;
+
+    &.hide-navbar {
+        transform: translateY(-100%);
+    }
+
+    &.small {
+        .header {
+            .header-inner {
+                min-height: var(--header-small-height);
+
+                .site-logo {
+                    width: px-rem(90);
+                }
+            }
+        }
+    }
+
+    // START: Remove if not used
+    .top-bar {
+        background-color: var(--brand-color);
+        font-family: var(--font-family-alt);
+        color: #fff;
+
+        .inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+    // END: Remove if not used
+
+    .header {
+        background-color: var(--main-bg-color-alt);
+        border: px-rem(1) solid var(--pref-color-2);
+        color: var(--brand-color-alt);
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: var(--header-height);
+            transition: all 0.3s ease-in-out;
+
+            .site-logo {
+                margin: 0;
+                width: px-rem(184);
+                transition: all 0.3s ease-in-out;
+    
+                img {
+                    width: 100%;
+                    display: block;
+                }
+            }
+        }
+    }
+}
