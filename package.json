@@ -8,7 +8,7 @@
     "scripts": {
         "migrate-backend": "node dev/gws-build.js -t wp",
         "init-frontend": "npm run npm:rm; npm run npm:i; npm run frontend",
-        "browsersync": "browser-sync start --server --files './*.html,./*.css' --port 3000 -w",
+        "browsersync": "browser-sync start --server --files './*.html,./*.css' -w",
         "autoprefixer": "postcss assets/build/css/style.css --no-map --replace --use autoprefixer -b \"'> 0.1%', 'last 2 versions', 'Opera 12.1', 'Firefox ESR', 'ie >= 10'\"",
         "icons": "fantasticon",
         "watch:browsersync": "npm run browsersync",
@@ -31,7 +31,7 @@
     },
     "devDependencies": {
         "autoprefixer": ">=9.8.6",
-        "browser-sync": ">=2.26.12",
+        "browser-sync": "^2.27.7",
         "chokidar-cli": ">=2.1.0",
         "fantasticon": ">=1.0.30",
         "fs-extra": ">=10.0.0",

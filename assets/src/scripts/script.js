@@ -567,43 +567,32 @@ function gws_frontend_validator_widget() {
                 '</div>'+
                 
                 '<div class="gws-flex">'+
+
+                    '<select name="site-width-preset" id="site-width-preset" class="site-width-preset">'+
+                        '<option selected disabled>Select Media Preset</option>'+
+                        // Mobile
+                        '<option value="320">s-mobile  320)</option>'+
+                        '<option value="375">m-mobile  375)</option>'+
+                        '<option value="425">l-mobile  425)</option>'+
+                        // Tablet
+                        '<option value="540">s-tablet  540)</option>'+
+                        '<option value="655">m-tablet  655)</option>'+
+                        '<option value="768">l-tablet  768)</option>'+
+                        // Laptop
+                        '<option value="854">s-laptop  854)</option>'+
+                        '<option value="940">m-laptop  940)</option>'+
+                        '<option value="1024">l-laptop  1024)</option>'+
+                        // Desktop
+                        '<option value="1440">s-desktop 1440)</option>'+
+                        '<option value="1920">m-desktop 1920)</option>'+
+                        '<option value="2560">l-desktop 2560)</option>'+
+                    '</select>'+
                     
                     '<label for="spec-media-width" class="gws-spec-label">Media Width</label>'+
                     '<input type="number" id="spec-media-width" class="gws-spec-input spec-media-width" name="spec-media-width" value="800">'+
                     
                     '<label for="spec-media-zoom" class="gws-spec-label">Media Zoom</label>'+
                     '<input type="number" id="spec-media-zoom" class="gws-spec-input spec-media-zoom" name="spec-media-zoom" value="100">'+
-                    
-                '</div>'+
-                
-                '<div class="gws-flex">'+
-                    '<div>'+
-                        // Mobile
-                        '<a href="#" class="gws-button site-width-preset" data-width-preset="320">Preset s-mobile  320)</a>'+
-                        '<a href="#" class="gws-button site-width-preset" data-width-preset="375">Preset m-mobile  375)</a>'+
-                        '<a href="#" class="gws-button site-width-preset" data-width-preset="425">Preset l-mobile  425)</a>'+
-                    '</div>'+
-
-                    '<div>'+
-                        // Tablet
-                        '<a href="#" class="gws-button site-width-preset" data-width-preset="540">Preset s-tablet  540)</a>'+
-                        '<a href="#" class="gws-button site-width-preset" data-width-preset="655">Preset m-tablet  655)</a>'+
-                        '<a href="#" class="gws-button site-width-preset" data-width-preset="768">Preset l-tablet  768)</a>'+
-                    '</div>'+
-
-                    '<div>'+
-                        // Laptop
-                        '<a href="#" class="gws-button site-width-preset" data-width-preset="854">Preset s-laptop  854)</a>'+
-                        '<a href="#" class="gws-button site-width-preset" data-width-preset="940">Preset m-laptop  940)</a>'+
-                        '<a href="#" class="gws-button site-width-preset" data-width-preset="1024">Preset l-laptop  1024)</a>'+
-                    '</div>'+
-
-                    '<div>'+
-                        // Desktop
-                        '<a href="#" class="gws-button site-width-preset" data-width-preset="1440">Preset s-desktop 1440)</a>'+
-                        '<a href="#" class="gws-button site-width-preset" data-width-preset="1920">Preset m-desktop 1920)</a>'+
-                        '<a href="#" class="gws-button site-width-preset" data-width-preset="2560">Preset l-desktop 2560)</a>'+
-                    '</div>'+
                     
                 '</div>'+
                 
@@ -659,7 +648,7 @@ function gws_frontend_validator_widget() {
         gws_spec_img_y_adjust = gws_spec_form.querySelector('.spec-y-adjust'),
         spec_media_width      = gws_spec_form.querySelector('.spec-media-width'),
         spec_media_zoom       = gws_spec_form.querySelector('.spec-media-zoom'),
-        site_width_preset     = gws_spec_form.querySelectorAll('.site-width-preset'),
+        site_width_preset     = gws_spec_form.querySelector('.site-width-preset'),
         //====>
         gws_spec_code_child = gws_spec_form.querySelector('.gws-spec-code-child'),
         gws_spec_hide_code = gws_spec_form.querySelector('.gws-spec-hide-code-snippet'),
@@ -671,13 +660,11 @@ function gws_frontend_validator_widget() {
 
     spec_media_width.value = vw;
 
-    for (var i = 0; i < site_width_preset.length; i++) {
-        site_width_preset[i].onclick = function (e) {
-            e.preventDefault();
-            console.log(this.dataset.widthPreset);
-            spec_media_width.value = this.dataset.widthPreset;
-            on_spec_option_change()
-        }
+    site_width_preset.onchange = function (e) {
+        e.preventDefault();
+        console.log(this.dataset.widthPreset);
+        spec_media_width.value = this.value;
+        on_spec_option_change()
     }
     gws_spec_toggle.onclick = function (e) {
         e.preventDefault();

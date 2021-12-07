@@ -1,14 +1,14 @@
-// @use "sass:math";
-// /**
-//  * ========== ABSTRACTS
-//  *
-//  * all Sass tools and helpers used across the project.
-//  * Every global variable, function, mixin and placeholder should be put in here.
-//  */
-// @import "abstracts/+abstracts";
-// /**
-//  * ============================================================
-//  */
+@use "sass:math";
+/**
+ * ========== ABSTRACTS
+ *
+ * all Sass tools and helpers used across the project.
+ * Every global variable, function, mixin and placeholder should be put in here.
+ */
+@import "abstracts/+abstracts";
+/**
+ * ============================================================
+ */
 
 
 
@@ -157,64 +157,74 @@ img {
     font-family: "Courier New", Courier, monospace;
     box-shadow: 0 0 1.25em rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease-in-out;
+
+    &.hide {
+        transform: translateY(-100%);
+    }
+
+    .gws-flex {
+        display: flex;
+        flex-flow: row;
+        align-items: stretch;
+        justify-content: center;
+        margin-bottom: 1.25em; /*20px*/
+    }
+
+    .gws-spec-toggle {
+        position: absolute;
+        top: 100%;
+        right: 1.25em; /*20px*/
+        padding: 0 1em 0.5em 1em;
+        background-color: black;
+        color: white;
+        border-radius: 0 0 0.5em 0.5em;
+        box-shadow: 0 10px 1.25em rgba(0, 0, 0, 0.2);
+    }
+
+    .gws-spec-form {
+        .gws-spec-label {
+            width: auto;
+            margin: auto;
+            margin-right: 1.25em; /*20px*/
+            margin-left: 1.25em; /*20px*/
+        }
+
+        .gws-spec-input {
+            width: 30%;
+            font-size: 1em; /*20px*/
+            line-height: 1.5625em; /*25px*/
+            padding: 0 0.625em; /*10px*/
+            color: black;
+            opacity: 0.2;
+            border: solid 0.0625em black; /*1px*/
+            border-radius: 0.3125em; /*5px*/
+            margin: 0;
+            outline: none;
+            -webkit-appearance: none;
+            color: black;
+            background-color: #fff;
+            opacity: 1;
+
+            &.gws-spec-img-url,
+            &.production-site-url {
+                border-radius: 0.3125em 0 0 0.3125em; /*5px*/
+            }
+
+            &.spec-y-adjust,
+            &.spec-x-adjust {
+                width: 100%;
+                max-width: 5em;
+            }
+
+            &.spec-media-width,
+            &.spec-media-zoom {
+                width: 100%;
+                max-width: 6em;
+            }
+        }
+    }
 }
-.gws-spec-container.hide {
-    transform: translateY(-100%);
-}
-.gws-spec-container .gws-spec-toggle {
-    position: absolute;
-    top: 100%;
-    right: 1.25em; /*20px*/
-    padding: 0 1em 0.5em 1em;
-    background-color: black;
-    color: white;
-    border-radius: 0 0 0.5em 0.5em;
-    box-shadow: 0 10px 1.25em rgba(0, 0, 0, 0.2);
-}
-.gws-spec-container .gws-spec-form {}
-.gws-flex {
-    display: flex;
-    flex-flow: row;
-    align-items: stretch;
-    justify-content: center;
-    margin-bottom: 1.25em; /*20px*/
-}
-.gws-spec-container .gws-spec-form .gws-spec-label {
-    width: auto;
-    margin: auto;
-    margin-right: 1.25em; /*20px*/
-    margin-left: 1.25em; /*20px*/
-}
-.gws-spec-container .gws-spec-form .gws-spec-input {
-    width: 30%;
-    font-size: 1em; /*20px*/
-    line-height: 1.5625em; /*25px*/
-    padding: 0 0.625em; /*10px*/
-    color: black;
-    opacity: 0.2;
-    border: solid 0.0625em black; /*1px*/
-    border-radius: 0.3125em; /*5px*/
-    margin: 0;
-    outline: none;
-    -webkit-appearance: none;
-    color: black;
-    background-color: #fff;
-    opacity: 1;
-}
-.gws-spec-container .gws-spec-form .gws-spec-input.production-site-url,
-.gws-spec-container .gws-spec-form .gws-spec-input.gws-spec-img-url {
-    border-radius: 0.3125em 0 0 0.3125em; /*5px*/
-}
-.gws-spec-container .gws-spec-form .gws-spec-input.spec-y-adjust,
-.gws-spec-container .gws-spec-form .gws-spec-input.spec-x-adjust {
-    width: 100%;
-    max-width: 5em;
-}
-.gws-spec-container .gws-spec-form .gws-spec-input.spec-media-width,
-.gws-spec-container .gws-spec-form .gws-spec-input.spec-media-zoom {
-    width: 100%;
-    max-width: 6em;
-}
+
 .gws-spec-container .gws-spec-form .gws-spec-input::-webkit-input-placeholder {
     font-size: 1em; /*20px*/
     line-height: 1.5625em; /*25px*/
