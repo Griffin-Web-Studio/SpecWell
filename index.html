@@ -74,14 +74,15 @@
                 if (frame_site.src !== window.location.href) {
                     frame_site.contentWindow.postMessage('can I get your height?', '*');
                     
-                    window.addEventListener('message', function (e) {
-                        var data = e.data;
-                        console.log(data);
+                    // window.addEventListener('message', function (e) {
+                    //     var data = e.data;
+                    //     console.log(data);
 
-                        var child_frame_response = JSON.parse(data);
-                        console.log(child_frame_response.my_height);
-                        frame_container.style.height = child_frame_response.my_height + (child_frame_response.my_height / 5) + 'px';
-                    });
+                    //     var child_frame_response = JSON.parse(data);
+                    //     console.log(child_frame_response.my_height);
+                    //     frame_container.style.height = child_frame_response.my_height + (child_frame_response.my_height / 5) + 'px';
+                    // });
+                    frame_container.style.height = 99999 'vh';
                 }
             }
         </script>
