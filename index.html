@@ -76,6 +76,7 @@
                     
                     window.addEventListener('message', function (e) {
                         var data = e.data;
+                        console.log(data);
 
                         var child_frame_response = JSON.parse(data);
                         console.log(child_frame_response.my_height);
