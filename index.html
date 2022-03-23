@@ -52,38 +52,6 @@
         <div class="website-frame-container">
             <iframe src="" class="website-frame"></iframe>
         </div>
-       
-        <script>
-            const frame_container = document.querySelector('.website-frame-container'),
-                  frame_site = document.querySelector('.website-frame');
-            var iframe_loaded = 0;
-            frame_site.onload = function() {
-                /*if (iframe_loaded !== 1) {*/
-                    setTimeout(iResize, 50);
-                    // Safari and Opera need a kick-start.
-                    /*var iSource = frame_site.src;
-                    frame_site.src = '';
-                    frame_site.src = iSource;*/
-                    /*iframe_loaded = 1;
-                }*/
-            }
-
-            function iResize() {
-                if (frame_site.src !== window.location.href) {
-                    frame_site.contentWindow.postMessage('can I get your height?', '*');
-                    
-                    window.addEventListener('message', function (e) {
-                        var data = e.data;
-                        console.log(data);
-
-                        var child_frame_response = JSON.parse(data);
-                        console.log(child_frame_response.my_height);
-                        frame_container.style.height = child_frame_response.my_height + (child_frame_response.my_height / 5) + 'px';
-                    });
-                    // frame_container.style.height = 99999 'vh';
-                }
-            }
-        </script>
 
         <script src="./assets/build/js/script.min.js"></script>
 

@@ -607,14 +607,32 @@ function gws_frontend_validator_widget() {
                         '<pre class="gws-spec-code-child">'+
                         '&lt;script&gt;&#10;'+
                         '    window.addEventListener(\'message\', event => {&#10;'+
-                        '        if (event.origin.startsWith(\'http://192.168\') || event.origin.startsWith(\'https://gws-internal.griffin-studio.co.uk/\')) {&#10;'+
+                        '        console.log(\'CLIENT: I received some message\');&#10;'+
+                        '        console.log(\'CLIENT: It originated from here: \' + event.origin);&#10;'+
+                        '&#10;'+
+                        '        if (event.origin.startsWith(\'http://192.168\') || event.origin.startsWith(\'http://localhost\') || event.origin.startsWith(\'https://gws-internal.griffin-studio.co.uk/\')) {&#10;'+
+                        '            console.log(\'CLIENT: It came from good source\');&#10;'+
+                        '&#10;'+
                         '            if (event.data === \'can I get your height?\') {&#10;'+
+                        '                console.log(\'CLIENT: It contains hello message: \' + event.data);&#10;'+
+                        '                var i_height = document.body.offsetHeight;&#10;'+
                         '&#10;'+
                         '                const spec_response_data = JSON.stringify({&#10;'+
-                        '                    my_height: document.body.offsetHeight,&#10;'+
+                        '                    my_height: i_height,&#10;'+
                         '                });&#10;'+
-                        '                window.parent.postMessage(spec_response_data, \'*\');&#10;'+
+                        '&#10;'+
+                        '                console.log(\'CLIENT: Sending my hight, which is: \' + i_height);&#10;'+
+                        '                console.log(\'CLIENT: Debug json: \');&#10;'+
+                        '                console.log(spec_response_data);&#10;'+
+                        '&#10;'+
+                        '                window.parent.postMessage(spec_response_data, event.origin);&#10;'+
+                        '            } else {&#10;'+
+                        '                console.log(\'CLIENT: Oi, blimey that\\\'s was SPAM!!!\\nhad to contain hello: "can I get your height?"/\\nInstead I got: \');&#10;'+
+                        '                console.log(event.data);&#10;'+
                         '            }&#10;'+
+                        '        } else {&#10;'+
+                        '            console.log(\'CLIENT: Oi, blimey that\\\'s was SPAM!!!\\nOrigin start must match: http://192.168, http://localhost, or https://gws-internal.griffin-studio.co.uk/\\nInstead I got: \');&#10;'+
+                        '            console.log(event);&#10;'+
                         '        }&#10;'+
                         '&#10;'+
                         '    });&#10;'+
@@ -662,7 +680,6 @@ function gws_frontend_validator_widget() {
 
     site_width_preset.onchange = function (e) {
         e.preventDefault();
-        console.log(this.dataset.widthPreset);
         spec_media_width.value = this.value;
         on_spec_option_change()
     }
@@ -714,6 +731,7 @@ function gws_frontend_validator_widget() {
     }
 
     function on_spec_option_change() {
+        console.log('HOST: Changing Spec');
 
         var gws_spec_image_overlay = document.body.querySelector('.gws-spec-image .image'),
             gws_spec_frame = document.body.querySelector('.website-frame');
@@ -732,6 +750,14 @@ function gws_frontend_validator_widget() {
 
             console.log("transform:" + 'translate(' + gws_spec_img_x_adjust.value + 'px, ' + gws_spec_img_y_adjust.value + 'px)');
 
+        } else if (typeof (gws_spec_prod_site_url) != 'undefined' && gws_spec_prod_site_url !== null && gws_spec_frame.src !== null) {
+            document.body.querySelector('.website-frame-container').style["width"] = spec_media_width.value + 'px';
+            document.body.querySelector('.website-frame-container').style["transform"] = 'scale(' + (spec_media_zoom.value / 100) + ')';
+
+            document.body.querySelector('.gws-spec-image .image').style["width"] = spec_media_width.value + 'px';
+            document.body.querySelector('.gws-spec-image .image').style["transform"] = 'scale(' + (spec_media_zoom.value / 100) + ')';
+        } else {
+            alert('You do realise that in order to make changes to the spec or client you need to first load one?');
         }
 
     }
@@ -796,5 +822,51 @@ function gws_frontend_validator_widget() {
             alert('What the hec happened? This is wrong!');
         }
         on_spec_option_change()
+    }
+
+
+    const frame_container = document.querySelector('.website-frame-container'),
+          frame_site = document.querySelector('.website-frame');
+    var iframe_loaded = 0;
+    frame_site.onload = function() {
+        /*if (iframe_loaded !== 1) {*/
+            setTimeout(iResize, 50);
+            // Safari and Opera need a kick-start.
+            /*var iSource = frame_site.src;
+            frame_site.src = '';
+            frame_site.src = iSource;*/
+            /*iframe_loaded = 1;
+        }*/
+    }
+
+    function iResize() {
+        console.log('HOST: Need to resize iframe');
+
+        if (frame_site.src !== window.location.href) {
+            console.log('HOST: Sending request to iframe with Hello\nSending to: ' + gws_spec_prod_site_url.value);
+            frame_site.contentWindow.postMessage('can I get your height?', gws_spec_prod_site_url.value);
+            
+            window.addEventListener('message', function (e) {
+                console.log('HOST: I received some message');
+                console.log("HOST: It originated from here: " + e.origin);
+                // console.log(event);
+
+                if (gws_spec_prod_site_url.value === e.origin) {
+                    console.log("HOST: Origin of the message matches client");
+                    console.log("HOST: received this data: ");
+                    var data = e.data;
+                    console.log(data);
+    
+                    console.log("HOST: Unpacking JSON data");
+                    var child_frame_response = JSON.parse(data),
+                        client_height = child_frame_response.my_height;
+                    
+                    console.log("HOST: Client claims their height is: " + client_height);
+                    frame_container.style.height = client_height + (client_height / 5) + 'px';
+                } else {
+                    console.log('CLIENT: Oi, blimey that\'s was SPAM!!!\nExpected: ' + gws_spec_prod_site_url.value + '\ngot: ' + e.origin);
+                }
+            });
+        }
     }
 }
