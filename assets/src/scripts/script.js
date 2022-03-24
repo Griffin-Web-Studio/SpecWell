@@ -851,7 +851,7 @@ function gws_frontend_validator_widget() {
                 console.log("HOST: It originated from here: " + e.origin);
                 // console.log(event);
 
-                if (gws_spec_prod_site_url.value === e.origin) {
+                if (gws_spec_prod_site_url.value.startsWith(e.origin)) {
                     console.log("HOST: Origin of the message matches client");
                     console.log("HOST: received this data: ");
                     var data = e.data;
