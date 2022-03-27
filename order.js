@@ -1,5 +1,5 @@
-// @import<<dir './src/scripts/vendor/'
-// @import<<dir './src/scripts/plugins/'
+// <<dir './src/scripts/vendor/'
+// <dir './src/scripts/plugins/'
 // @import './src/scripts/script'
 // @import<<dir './src/scripts/components/'
 
