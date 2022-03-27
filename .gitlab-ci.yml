@@ -3,6 +3,7 @@ image: node:16.14
 pages:
   stage: deploy
   script:
+  - npm run deploy
   - mkdir .public
   - cp -r site_icons dist/* .public
   - mv .public public

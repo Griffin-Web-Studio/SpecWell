@@ -6,6 +6,7 @@ package-lock.json
 
 # Ignore Mac DS_Store files if they so happen to exist
 .DS_Store
+dist/
 
 # Ignore node modules (These are not requierd in "production run" stage)
 node_modules
