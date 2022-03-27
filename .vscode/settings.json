@@ -20,7 +20,9 @@
     "intelephense.diagnostics.undefinedMethods": false,
     "intelephense.diagnostics.undefinedTypes": false,
     "phpcs.standard": "GWS",
-    "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
     "webvalidator.showPopup": false,
-    "webvalidator.validateOnSave": true
+    "webvalidator.validateOnSave": true,
+    "editor.fontSize": 12,
+    "debug.console.fontSize": 12,
+    "terminal.integrated.fontSize": 12
 }

@@ -1,0 +1,63 @@
+$build-select: dev;
+$debug: false;
+
+@if $build-select == dev {
+    $debug: true;
+    //@debug "Debug: #{$debug}";
+} @else if $build-select == build {
+    $debug: false;
+    //@debug "Debug: #{$debug}";
+}
+
+//// CONSTANT VIEWPORT SIZES
+// Mobile
+$s-mobile:  320px; // Desktop
+$m-mobile:  375px; // Tablet
+$l-mobile:  425px; // Mobile
+// Tablet
+$s-tablet:  540px;
+$m-tablet:  655px;
+$l-tablet:  768px;
+// Laptop
+$s-laptop:  854px;
+$m-laptop:  940px;
+$l-laptop:  1024px;
+// Desktop
+$s-desktop: 1440px;
+$m-desktop: 1920px;
+$l-desktop: 2560px;
+
+//// CONSTANT DESIGN SIZES
+/**
+ * d - Desktop
+ * t - Tablet
+ * m - Mobile
+ */
+// Design Viewport Width
+$d-design-vw: 2500;
+$t-design-vw: 1851;
+$m-design-vw: 375;
+// Design Font Size (base font size)
+$d-design-fs: 16;
+$t-design-fs: 30;
+$m-design-fs: 18;
+// Design Line Height
+$d-design-lh: 36;
+$t-design-lh: 36;
+$m-design-lh: 23;
+
+// Get mobile 
+$mobile:    $l-tablet;
+
+// CONSTANT DESIGN COLUMN SETTINGS
+$flex-columns: 24;
+$flex-gutter: math.div(20, $d-design-fs);
+
+// CONSTANT CENTRE VIEWS
+$centre-view-width:       #{math.div(1585, $d-design-vw) * 100 + 'vw'}; // centre-view-width = width + 80 (gutter width)
+$centre-view-width-small: #{math.div(600, $d-design-vw) * 100 + 'vw'};  // centre-view-width = width + 80 (gutter width)
+
+
+// CONSTANT COLOURS
+$full-dark: rgb(18, 18, 18);
+$full-light: rgb(255, 255, 255);

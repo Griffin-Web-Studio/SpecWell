@@ -1,13 +1,13 @@
 {
-    "inputDir": "./assets/images/icons",
-    "outputDir": "./assets/fonts",
+    "inputDir": "./src/images/icons",
+    "outputDir": "./src/fonts",
     "fontTypes": ["ttf", "woff", "woff2"],
     "assetTypes": ["json", "scss"],
-    "fontsUrl": "../../fonts",
+    "fontsUrl": "../fonts",
     "formatOptions": {
       "svg": {
         "metadata": {
-          "Company": "Griffin Web Studio"
+          "Company": "Griffin Web Studio Limited"
         }
       },
       "json": {
@@ -15,9 +15,9 @@
       }
     },
     "pathOptions": {
-      "json": "./assets/fonts/icon.json",
-      "svg": "./assets/fonts/icon.svg",
-      "scss": "./assets/src/scss/base/_icons.scss"
+      "json": "./src/fonts/icon.json",
+      "svg": "./src/fonts/icon.svg",
+      "scss": "./src/scss/base/_icons.scss"
     },
     "descent": 40,
     "normalize": true,

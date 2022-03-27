@@ -13,9 +13,9 @@
 	"nodeModulesPath": "./node_modules/",
 	"sourceFiles": [
 		{
-			"source": "./assets/src/scripts/order.js",
+			"source": "./order.js",
 			"output": {
-				"path": "./assets/build/js/",
+				"path": "./dist/js/",
 				"name": "script.min.js"
 			},
 			"config": {

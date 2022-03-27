@@ -1,0 +1,19 @@
+.slideshow {
+    &.flickity-resize {
+        .slideshow-slide {
+            min-height: 100%;
+            padding: 1rem;
+        }
+    }
+
+    &.carousel {
+        .slideshow-slide {
+            width: 33.33%;
+            padding: 1rem;
+        }
+    }
+
+    .slideshow-slide {
+        width: 100%;
+    }
+}

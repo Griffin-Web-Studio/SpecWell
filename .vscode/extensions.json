@@ -4,14 +4,17 @@
         "eamodio.gitlens",
         "ikappas.phpcs",
         "syler.sass-indented",
-        "felixfbecker.php-intellisense",
-        "bmewburn.vscode-intelephense-client",
         "firefox-devtools.vscode-firefox-debug",
-        "msjsdiag.debugger-for-edge",
         "ms-edgedevtools.vscode-edge-devtools",
         "natizyskunk.sftp",
         "jock.svg",
         "celianriboulet.webvalidator",
-        "hookyqr.beautify"
+        "hookyqr.beautify",
+        "gitlab.gitlab-workflow",
+        "octref.vetur",
+        "prisma.prisma",
+        "amiralizadeh9480.laravel-extra-intellisense",
+        "onecentlin.laravel-blade",
+        "EditorConfig.EditorConfig"
     ]
 }
