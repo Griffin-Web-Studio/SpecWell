@@ -699,8 +699,8 @@ function gws_frontend_validator_widget() {
     }
 
     window.onresize = function (e) {
-        var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0),
-            vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        var vw = Math.max(document.body.scrollWidth || 0, window.innerWidth || 0),
+            vh = Math.max(document.body.scrollHeight || 0, window.innerHeight || 0);
 
         gws_spec_media_width.value = vw;
     }
@@ -746,8 +746,8 @@ function gws_frontend_validator_widget() {
 
     gws_spec_load_image.onclick = function (e) {
         
-        var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0),
-            vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        var vw = Math.max(document.body.scrollWidth || 0, window.innerWidth || 0),
+            vh = Math.max(document.body.scrollHeight || 0, window.innerHeight || 0);
 
         gws_spec_media_width.value = vw;
         
