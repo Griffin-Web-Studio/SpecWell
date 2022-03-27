@@ -1,14 +1,17 @@
 function create_speck_check_tool() {
-    if ( !window.location.href.startsWith('http://192.168') && !window.location.href.startsWith('http://localhost') ) {
-        alert('The Spec-Check Tool was loaded externally. Therefore it must enqueue a CSS script to render correctly.');
-        var css_link = document.createElement( "link" );
-        css_link.href = ".css";
+    var css_link = document.createElement( "link" );
         css_link.type = "text/css";
         css_link.rel = "stylesheet";
         css_link.media = "screen,print";
 
-        document.getElementsByTagName( "head" )[0].appendChild( css_link );
+    if ( !window.location.href.startsWith('http://192.168') && !window.location.href.startsWith('http://localhost') ) {
+        alert('The Spec-Check Tool was loaded externally. Therefore it must enqueue a CSS script to render correctly.');
+        css_link.href = "https://gws-internal.griffin-studio.co.uk/spec-check/css/style.css";
+    } else {
+        css_link.href = "./css/style.css";
     }
+
+    document.getElementsByTagName( "head" )[0].appendChild( css_link );
     
     const gws_spec_widget =
         '<div class="gws-sc-container">'+
