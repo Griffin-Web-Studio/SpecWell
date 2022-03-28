@@ -810,17 +810,14 @@ function gws_frontend_validator_widget() {
 
     const frame_container = document.querySelector('.website-frame-container'),
           frame_site = document.querySelector('.website-frame'),
-         iSource = 'https://files.gwssecureserver.co.uk/files/gws/logo.svg';
+          iSource = 'https://files.gwssecureserver.co.uk/files/gws/logo.svg';
     var iframe_loaded = 0;
+    frame_site.src = iSource;
+    iframe_loaded = 1;
     frame_site.onload = function() {
-        if (iframe_loaded !== 1) {
-            // Safari and Opera need a kick-start.
-            frame_site.src = '';
-            frame_site.src = iSource;
-            iframe_loaded = 1;
-        }
         setTimeout(iResize, 50);
     }
+      
 
     function iResize() {
         console.log('HOST: Need to resize iframe');
