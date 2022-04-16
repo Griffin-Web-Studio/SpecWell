@@ -526,7 +526,7 @@ document.addEventListener('DOMContentLoaded', gws_frontend_validator_widget, fal
 
 function gws_frontend_validator_widget() {
     create_speck_check_tool();
-        gws_spec_image  = '<div class="gws-sc-image"><img src="" alt="Spec Image Overlay" class="image"/></div>';
+        gws_spec_image  = '<div class="gws-sc-image invert"><img src="" alt="Spec Image Overlay" class="image"/></div>';
     
     
 
