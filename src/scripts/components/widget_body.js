@@ -13,10 +13,13 @@ function create_speck_check_tool() {
             '   Note there might be a bug where some elements may no longer align when they should, if it happens just unload and reload the website frame.\n\n'+
             '4) Adjust you Spec Image X and Y coordiantes if curtain elements don\'t seem to line up too well, remember as mentioned before you may want to try to unload and reload the website if this happens first.\n\n'+
             '   Note there might be a bug where some elements may no longer align when they should, if it happens just unload and reload the website frame.\n\n'+
-            '4) Done! Feel free to explore the rest of the software as you go along.\n\n'+
+            '5) Done! Feel free to explore the rest of the software as you go along.\n\n'
         );
         var terms_of_use_dlg = confirm('Terms of Use\nAll Code developed for this project (spec-check tool) is the sole property of Rihards Simanovics (the author).\nIf the current user of this software wishes to acquire a full license for personal or commercial use, they must get in touch with the software\'s author Rihards Simanovics <rihards.s@griffin.studio>.\n\n');
         if( terms_of_use_dlg == true ) {
+            window.onbeforeunload = function(e) {
+                return 'WAIT! are you sure you want to refresh this page (the Spec-Checker Tool)?\n\n If so all entered data will be lost and you will have to repopulate all fields again!';
+            };
         } else {
             close();
         }
