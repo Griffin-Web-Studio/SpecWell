@@ -401,6 +401,10 @@ img {
     align-items: flex-end;
     pointer-events: none;
     transform-origin: top;
+
+    &.invert {
+        filter: invert(1);
+    }
     
     .image {
         width: 100%;
