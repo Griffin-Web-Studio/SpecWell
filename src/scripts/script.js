@@ -820,31 +820,31 @@ function gws_frontend_validator_widget() {
       
 
     function iResize() {
-        console.log('HOST: Need to resize iframe');
+        // console.log('HOST: Need to resize iframe');
 
         if (frame_site.src !== window.location.href && frame_site.src !== iSource) {
-            console.log('HOST: Sending request to iframe with Hello\nSending to: ' + gws_spec_prod_site_url.value);
+            // console.log('HOST: Sending request to iframe with Hello\nSending to: ' + gws_spec_prod_site_url.value);
             frame_site.contentWindow.postMessage('can I get your height?', gws_spec_prod_site_url.value);
             
             window.addEventListener('message', function (e) {
-                console.log('HOST: I received some message');
-                console.log("HOST: It originated from here: " + e.origin);
+                // console.log('HOST: I received some message');
+                // console.log("HOST: It originated from here: " + e.origin);
                 // console.log(event);
 
                 if (gws_spec_prod_site_url.value.startsWith(e.origin)) {
-                    console.log("HOST: Origin of the message matches client");
-                    console.log("HOST: received this data: ");
+                    // console.log("HOST: Origin of the message matches client");
+                    // console.log("HOST: received this data: ");
                     var data = e.data;
-                    console.log(data);
+                    // console.log(data);
     
-                    console.log("HOST: Unpacking JSON data");
+                    // console.log("HOST: Unpacking JSON data");
                     var child_frame_response = JSON.parse(data),
                         client_height = child_frame_response.my_height;
                     
                     console.log("HOST: Client claims their height is: " + client_height);
                     frame_container.style.height = client_height + (client_height / 5) + 'px';
                 } else {
-                    console.log('CLIENT: Oi, blimey that\'s was SPAM!!!\nExpected: ' + gws_spec_prod_site_url.value + '\ngot: ' + e.origin);
+                    // console.log('CLIENT: Oi, blimey that\'s was SPAM!!!\nExpected: ' + gws_spec_prod_site_url.value + '\ngot: ' + e.origin);
                 }
             });
         }
