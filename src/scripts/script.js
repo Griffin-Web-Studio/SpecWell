@@ -815,7 +815,7 @@ function gws_frontend_validator_widget() {
     frame_site.src = iSource;
     iframe_loaded = 1;
     frame_site.onload = function() {
-        setTimeout(iResize, 50);
+        setInterval(iResize, 3000);
     }
       
 
