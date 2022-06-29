@@ -815,7 +815,8 @@ function gws_frontend_validator_widget() {
     frame_site.src = iSource;
     iframe_loaded = 1;
     frame_site.onload = function() {
-        setInterval(iResize, 3000);
+        setTimeout(iResize, 50);
+        setInterval(iResize, 20000);
     }
       
 
@@ -841,8 +842,9 @@ function gws_frontend_validator_widget() {
                     var child_frame_response = JSON.parse(data),
                         client_height = child_frame_response.my_height;
                     
-                    console.log("HOST: Client claims their height is: " + client_height);
+                    // console.log("HOST: Client claims their height is: " + client_height);
                     frame_container.style.height = client_height + (client_height / 5) + 'px';
+                    frame_site.style.height = client_height + (client_height / 5) + 'px';
                 } else {
                     // console.log('CLIENT: Oi, blimey that\'s was SPAM!!!\nExpected: ' + gws_spec_prod_site_url.value + '\ngot: ' + e.origin);
                 }
