@@ -1,20 +1,3 @@
 {
-    "recommendations": [
-        "streetsidesoftware.code-spell-checker",
-        "eamodio.gitlens",
-        "ikappas.phpcs",
-        "syler.sass-indented",
-        "firefox-devtools.vscode-firefox-debug",
-        "ms-edgedevtools.vscode-edge-devtools",
-        "natizyskunk.sftp",
-        "jock.svg",
-        "celianriboulet.webvalidator",
-        "hookyqr.beautify",
-        "gitlab.gitlab-workflow",
-        "octref.vetur",
-        "prisma.prisma",
-        "amiralizadeh9480.laravel-extra-intellisense",
-        "onecentlin.laravel-blade",
-        "EditorConfig.EditorConfig"
-    ]
+    "recommendations": []
 }
