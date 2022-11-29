@@ -23,12 +23,12 @@
     &.justify-space-evenly { justify-content: space-evenly; }
 }
 
-[class^="gws-sc-flex-"],
-[class*=" gws-sc-flex-"] {
+[class^="gwssc-flex-"],
+[class*=" gwssc-flex-"] {
     padding: var(--flex-gutter);
 }
 
-.gws-sc-flex {
+.gwssc-flex {
     display: flex;
     flex-flow: row wrap;
     width: 100%;
@@ -36,24 +36,24 @@
 
     @extend %flexbox-position;
 
-    > [class^="gws-sc-flex-"],
-    > [class*=" gws-sc-flex-"] {
+    > [class^="gwssc-flex-"],
+    > [class*=" gwssc-flex-"] {
         padding: 0;
     }
 
     @for $size from 1 to 51 {
-        &.gws-sc-gap-#{$size} {
+        &.gwssc-gap-#{$size} {
             @include props-val((margin-left, margin-right), px-rem(math.div($size, 2) * -1));
 
-            > [class^="gws-sc-flex-"],
-            > [class*=" gws-sc-flex-"] {
+            > [class^="gwssc-flex-"],
+            > [class*=" gwssc-flex-"] {
                 padding: px-rem(math.div($size, 2));
             }
         }
     }
 }
 
-.gws-sc-flexbox {
+.gwssc-flexbox {
     position: relative;
     display: flex;
     flex-flow: row wrap;
@@ -64,7 +64,7 @@
 
 // Removed flexbox on mobile
 // Useful when need to make slideshow on mobile/desktop
-.gws-sc-flexbox-desktop {
+.gwssc-flexbox-desktop {
     @include at-least($l-tablet) {
         position: relative;
         display: flex;
@@ -76,8 +76,8 @@
 }
 
 .woocommerce-product-gallery {
-    [class^="gws-sc-flex-"],
-    [class*=" gws-sc-flex-"] {
+    [class^="gwssc-flex-"],
+    [class*=" gwssc-flex-"] {
         padding: initial;
     }
 }
@@ -105,22 +105,22 @@ $screen-sizes: (
     @if($key != 0) {
         @include at-least($value) {
             @for $i from 1 through $flex-columns {
-                .gws-sc-flex-#{$key}#{$i} {
+                .gwssc-flex-#{$key}#{$i} {
                     width: calc(100% / (#{$flex-columns} / #{$i}));
                 }
             
-                .gws-sc-offset-#{$key}#{$i} {
+                .gwssc-offset-#{$key}#{$i} {
                     margin-left: calc(100% / (#{$flex-columns} / #{$i}));
                 }
             }
         }
     } @else {
         @for $i from 1 through $flex-columns {
-            .gws-sc-flex-#{$key}#{$i} {
+            .gwssc-flex-#{$key}#{$i} {
                 width: calc(100% / (#{$flex-columns} / #{$i}));
             }
         
-            .gws-sc-offset-#{$key}#{$i} {
+            .gwssc-offset-#{$key}#{$i} {
                 margin-left: calc(100% / (#{$flex-columns} / #{$i}));
             }
         }

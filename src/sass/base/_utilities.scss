@@ -43,7 +43,7 @@
     height: 15px;
 }
 
-.gws-sc-container-inner::-webkit-scrollbar {
+.gwssc-container-inner::-webkit-scrollbar {
     width: 10px;
     height: 10px;
 }
@@ -54,7 +54,7 @@
     border-radius: 20px;
 }
 
-.gws-sc-container-inner::-webkit-scrollbar-track {
+.gwssc-container-inner::-webkit-scrollbar-track {
     background-color: #000;
     border-radius: 20px;
 }
@@ -73,7 +73,7 @@ body::-webkit-scrollbar-track {
     transition: all 0.3s ease-in-out;
 }
 
-.gws-sc-container-inner::-webkit-scrollbar-thumb {
+.gwssc-container-inner::-webkit-scrollbar-thumb {
     background-color: #3b0000; 
     border: 2px solid #000;
     border-radius: 20px;

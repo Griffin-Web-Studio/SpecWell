@@ -146,7 +146,7 @@ img {
     font-weight: 100
 }
 
-.gws-sc-container {
+.gwssc-container {
     font-size: calc((16vw / 1920) * 100);
     position: fixed;
     top: 0;
@@ -165,12 +165,12 @@ img {
         transform: translateX(100%);
     }
 
-    .gws-sc-container-inner {
+    .gwssc-container-inner {
         padding: px-rem(20) px-rem(40);
         max-height: 100vh;
         overflow: scroll;
 
-        .gws-sc-logo {
+        .gwssc-logo {
             display: block;
             font-weight: 700;
             text-align: right;
@@ -178,7 +178,7 @@ img {
         }
     }
 
-    .gws-sc-toggle {
+    .gwssc-toggle {
         font-size: px-rem(16);
         position: absolute;
         top: 10%;
@@ -203,10 +203,10 @@ img {
         }
     }
 
-    .gws-sc-form {
+    .gwssc-form {
 
-        .gws-sc-input-group,
-        .gws-sc-input-like {
+        .gwssc-input-group,
+        .gwssc-input-like {
             .spec-opacity {
                 display: block;
                 padding: px-rem(20) 0;
@@ -225,7 +225,7 @@ img {
             }
         }
 
-        .gws-sc-input-group {
+        .gwssc-input-group {
             filter: drop-shadow(0 0 px-rem(15) #{darken(#fff, 40)});
 
             input {
@@ -237,7 +237,7 @@ img {
             }
         }
         
-        .gws-sc-input-like {
+        .gwssc-input-like {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -257,13 +257,13 @@ img {
                 border: none;
             }
 
-            .gws-sc-label {
+            .gwssc-label {
                 border: none;
                 border-radius: 0;
                 margin: 0;
             }
 
-            .gws-sc-input {
+            .gwssc-input {
                 border: none;
                 border-width: px-rem(1);
                 border-radius: 0;
@@ -274,17 +274,18 @@ img {
                 border: none;
             }
 
-            .gws-sc-code-child {
+            .gwssc-code-child {
                 background-color: black;
                 color: white;
-                padding: px-em(10, 14);
+                border-radius: px-em(10, 14);
                 font-size: px-rem(14);
                 max-width: 100%;
                 min-width: 100%;
-                min-height: px-rem(200);
+                min-height: px-rem(400);
+                overflow: hidden;
             }
 
-            .gws-sc-client-com-note {
+            .gwssc-client-com-note {
                 color: red;
                 font-weight: 700;
                 letter-spacing: px-em(2, 16);
@@ -294,7 +295,7 @@ img {
             }
         }
 
-        .gws-sc-label {
+        .gwssc-label {
             display: block;
             width: 50%;
             text-align: center;
@@ -317,7 +318,7 @@ img {
             }
         }
 
-        .gws-sc-input {
+        .gwssc-input {
             width: 100%;
             padding: 0 px-rem(20);
             margin: 0;
@@ -389,7 +390,7 @@ img {
     }
 }
 
-.gws-sc-image {
+.gwssc-image {
     position: absolute;
     top: 0;
     right: 0;
@@ -419,7 +420,7 @@ img {
 
 }
 
-.website-frame-container {
+.gwssc-website-frame-container {
     width: 100%;
     margin: 0 auto;
     transform-origin: top;
