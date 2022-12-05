@@ -1,0 +1,149 @@
+@use '../base/icons' as *
+@use '../abstracts' as *
+
+@mixin button-hover
+    background-color: var(--brand-color-alt)
+    color: var(--pref-color-100)
+
+
+@mixin button
+    display: inline-block
+    padding-inline: px-em(10, 14)
+    height: 100%
+    border: none
+    border-radius: 0
+
+    outline: 0
+    cursor: pointer
+
+    font-size: px-rem(14)
+    line-height: px-em(30, 14)
+    // text-transform: capitalize
+    letter-spacing: px-em(0.7, 14)
+    text-align: center
+    text-decoration: none
+    font-weight: 500
+
+    color: var(--button-text-color)
+    background-color: var(--button-color)
+    box-shadow: var(--nm-inset-out)
+
+    transition: all 0.3s ease-in-out
+
+    &:disabled
+        background-color: var(--brand-color-alt)
+        color: var(--color-1)
+        cursor: no-drop
+
+    &:focus
+        outline: solid var(--brand-color) px-em(2, 14)
+        outline-offset: px-em(4, 14)
+
+    &:hover
+        @include button-hover
+
+    @include elementRadius(20, em, 14)
+
+    &--short
+        @include elementRadius(10, em, 14)
+        line-height: px-em(10, 14)
+
+@mixin button-alt-hover
+    @include button-hover
+    background-color: var(--brand-color)
+    border: px-em(2, 16) solid var(--brand-color)
+    color: var(--pref-color-0)
+
+
+@mixin button-alt
+    @include button
+    line-height: px-em(48 - 4, 14)
+    border: px-em(2, 16) solid var(--brand-color)
+    background-color: transparent
+    color: var(--brand-color)
+    
+    &:hover
+        @include button-alt-hover
+
+    &:disabled
+        background-color: transparentize(black, 0.9)
+        border: px-em(2, 16) solid var(--brand-color)
+        color: var(--brand-color)
+
+    &:focus
+        outline: solid var(--brand-color) px-em(2, 16)
+        outline-offset: px-em(4, 16)
+
+
+@mixin button-secondary-hover
+    background-color: var(--brand-color-secondary-alt)
+    color: var(--color-1)
+
+
+@mixin button-secondary
+    @include button
+    background-color: var(--brand-color-secondary)
+    color: var(--color-1)
+    border: none
+    
+    &:hover
+        @include button-secondary-hover
+
+    &:disabled
+        background-color: var(--brand-color-secondary-alt)
+        color: darken(white, 10)
+        border: none
+
+    &:focus
+        outline: solid var(--brand-color-secondary-alt) px-em(2, 16)
+        outline-offset: px-em(4, 16)
+
+
+@mixin button-secondary-alt-hover
+    @include button-secondary-hover
+    background-color: transparent
+    border-color: var(--brand-color-secondary-alt)
+    color: var(--brand-color-secondary-alt)
+
+
+@mixin button-secondary-alt
+    @include button-secondary
+    background-color: transparent
+    line-height: px-em(40, 16)
+    border: px-em(2, 16) solid var(--brand-color-secondary)
+    color: var(--brand-color-secondary)
+
+    &:hover
+        @include button-secondary-alt-hover
+
+    &:disabled
+        background-color: transparentize(black, 0.9)
+        border: px-em(2, 16) solid var(--brand-color-secondary-alt)
+        color: var(--brand-color-secondary-alt)
+
+    &:focus
+        outline: solid var(--brand-color-secondary-alt) px-em(2, 16)
+        outline-offset: px-em(4, 16)
+
+
+@mixin button-arrow-hover
+    @include button-secondary-hover
+    background-color: transparent
+    border: none
+    color: var(--brand-color-alt)
+
+    &:after
+        margin-left: px-em(15, 16)
+
+.gwssc-button
+    @include button
+    width: 100%
+
+    &__alt
+        @include button-alt
+
+    &__secondary
+        @include button-secondary
+
+    &__secondary-alt
+        @include button-secondary-alt

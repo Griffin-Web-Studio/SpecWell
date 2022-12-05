@@ -4,7 +4,7 @@ export default function WebsiteFrame(props) {
     
     return (
         <div className="gwssc-website-frame-container">
-            <iframe src="" className="website-frame" title="Website Frame"></iframe>
+            <iframe src="https://griffin-web.studio" className="website-frame" title="Website Frame"></iframe>
         </div>
     )
 }
