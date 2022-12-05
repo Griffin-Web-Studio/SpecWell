@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 
 const IncrementButton = (props) => {
-    const { value, onChange } = props;
+    const { value, onChange, maxValue } = props;
     const [isIncrementing, setIsIncrementing] = useState(false);
     const [firstIncrementDone, setFirstIncrementDone] = useState(false);
     const [madeFirstIncrement, setMadeFirstIncrement] = useState(false);
@@ -19,7 +19,15 @@ const IncrementButton = (props) => {
             if (!firstIncrementDone) {
                 if (!madeFirstIncrement) {
                     setMadeFirstIncrement(true);
-                    onChange(value + 1);
+
+                    if (maxValue === "infinity") {
+                        onChange(value + Number(props.increaseAmount));
+                    } else {
+                        if (value < maxValue) {
+                            onChange(value + Number(props.increaseAmount));
+                        }
+                    }
+
                 } else {
                     timeout = setTimeout(() => {
                         setFirstIncrementDone(true);
@@ -27,7 +35,13 @@ const IncrementButton = (props) => {
                 }
             } else {
                 interval = setInterval(() => {
-                    onChange(value + Number(props.increaseAmount));
+                    if (maxValue === "infinity") {
+                        onChange(value + Number(props.increaseAmount));
+                    } else {
+                        if (value < maxValue) {
+                            onChange(value + Number(props.increaseAmount));
+                        }
+                    }
                 }, props.interval);
             }
         } else if (!isIncrementing && value !== 0) {
@@ -38,7 +52,7 @@ const IncrementButton = (props) => {
             clearInterval(interval);
             clearTimeout(timeout);
         };
-    }, [isIncrementing, value, firstIncrementDone, madeFirstIncrement, onChange, props.increaseAmount, props.firstDelay, props.interval]);
+    }, [maxValue, isIncrementing, value, firstIncrementDone, madeFirstIncrement, onChange, props.increaseAmount, props.firstDelay, props.interval]);
 
     return (
         <button

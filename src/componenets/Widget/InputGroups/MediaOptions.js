@@ -1,23 +1,20 @@
 import NumberInputIncDec from "../../UI/InputGroups/NumberIncDec";
 
 export default function MediaOptions(props) {
-    const queryParameters = new URLSearchParams(window.location.search)
-    const specMediaWidth = (queryParameters.get("spec-media-width") !== null) ? Number(queryParameters.get("spec-media-width")) : 0;
-    const specMediaZoom = (queryParameters.get("spec-media-zoom") !== null) ? Number(queryParameters.get("spec-media-zoom")) : 0;
-    const onSpecMediaWidthAdjust = (e) => {
-        console.log(e);
-    };
+    const queryParameters = new URLSearchParams(window.location.search);
+    const specMediaWidth = queryParameters.get("spec-media-width") !== null ? Number(queryParameters.get("spec-media-width")) : 0;
+    const specMediaZoom = queryParameters.get("spec-media-zoom") !== null ? Number(queryParameters.get("spec-media-zoom")) : 0;
 
-    const onSpecMediaZoomAdjust = (e) => {
+    const OnSelectHandler = (e) => {
         console.log(e);
-    };
+    }
 
     return (
         <fieldset className="gwssc-group">
             <div className="gwssc-grid gap-col-4">
                 <div className="gwssc-grid-12">
                     <legend className="gwssc-legend">
-                        <label for="site-width-preset">Media Options</label>
+                        <label htmlFor="site-width-preset">Media Options</label>
                     </legend>
                 </div>
 
@@ -26,14 +23,19 @@ export default function MediaOptions(props) {
                         <div className="gwssc-grid-2">
                             <div className="gwssc-grid col-1 gap-col-10 ">
                                 <div className="gwssc-grid-1">
-                                    <label for="site-width-preset" className="gwssc-label full">
+                                    <label htmlFor="site-width-preset" className="gwssc-label full">
                                         Media Presets
                                     </label>
                                 </div>
 
                                 <div className="gwssc-grid-1">
-                                    <select name="site-width-preset" id="site-width-preset" className="gwssc-input gwssc-input--radius-top gwssc-input--radius-bottom">
-                                        <option selected disabled>
+                                    <select
+                                        className="gwssc-input gwssc-input--radius-top gwssc-input--radius-bottom"
+                                        name="site-width-preset"
+                                        id="site-width-preset"
+                                        onChange={OnSelectHandler}
+                                        value="">
+                                        <option disabled>
                                             {" "}
                                             Select Media Preset{" "}
                                         </option>
@@ -61,11 +63,11 @@ export default function MediaOptions(props) {
                         <div className="gwssc-grid-2">
                             <div className="gwssc-grid col-2 gap-col-10">
                                 <div className="gwssc-grid-1">
-                                    <NumberInputIncDec value={specMediaWidth} label="Media Width" id="spec-media-width" onMouseDown={onSpecMediaWidthAdjust} onMouseUp={onSpecMediaWidthAdjust} />
+                                    <NumberInputIncDec value={specMediaWidth} label="Media Width" id="spec-media-width" minValue="0" />
                                 </div>
 
                                 <div className="gwssc-grid-1">
-                                    <NumberInputIncDec value={specMediaZoom} label="Media Zoom" id="spec-media-zoom" onMouseDown={onSpecMediaZoomAdjust} onMouseUp={onSpecMediaZoomAdjust} />
+                                    <NumberInputIncDec value={specMediaZoom} label="Media Zoom" id="spec-media-zoom" minValue="0" />
                                 </div>
                             </div>
                         </div>

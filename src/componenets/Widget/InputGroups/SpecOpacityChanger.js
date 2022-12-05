@@ -4,27 +4,35 @@ export default function SpecOpacityChanger(props) {
     const queryParameters = new URLSearchParams(window.location.search)
     const specOpacity = (queryParameters.get("spec-opacity") !== null) ? Number(queryParameters.get("spec-opacity")) : 0.3;
     const [value, setValue] = useState(specOpacity);
+
     const OnIncrementHandler = (e) => {
         e.preventDefault();
 
         if (value < 1) {
-            setValue(value + 0.1);
+            setValue((oldValue) => Number(oldValue) + 0.1);
         }
     }
+
     const OnDecrementHandler = (e) => {
         e.preventDefault();
 
         if (value > 0) {
-            setValue(value - 0.1);
+            setValue((oldValue) => Number(oldValue) - 0.1);
         }
     }
+
+    const onSelectHandler = (e) => {
+        setValue(e.target.value);
+        console.log(e.target.value);
+    }
+
     return (
         <fieldset className="gwssc-group">
             <div className="gwssc-grid gap-col-4">
 
                 <div className="gwssc-grid-12">
                     <legend className="gwssc-legend">
-                        <label for="spec-opacity">
+                        <label htmlFor="spec-opacity">
                             Spec Image Opacity
                         </label>
                     </legend>
@@ -58,6 +66,7 @@ export default function SpecOpacityChanger(props) {
                                 min="0"
                                 max="1"
                                 step="0.1"
+                                onChange={onSelectHandler}
                             />
                         </div>
                     </div>

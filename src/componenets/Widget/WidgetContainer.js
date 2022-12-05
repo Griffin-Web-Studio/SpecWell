@@ -3,12 +3,18 @@ import WidgetHeader from "./Header/WidgetHeader";
 import FormWrapper from "./FormWrapper";
 
 export default function WidgetContainer (props) {
-    const [toggleState, setToggleState] = useState(true);
+    const {onFrameChange, onSpecChange} = props,
+        [toggleState, setToggleState] = useState(true);
 
     const onContainerToggleHandler = () => {
         setToggleState(!toggleState);
     }
-    
+
+    const onFormChangeHandler = (formOptions) => {
+        onFrameChange(formOptions.frameSrc);
+        onSpecChange(formOptions.specSrc);
+    }
+
     return (
         <div className={`gwssc-container ${toggleState ? '' : 'hide'}`}>
 
@@ -20,7 +26,7 @@ export default function WidgetContainer (props) {
                 <div className="gwssc-grid col-1 gap-row-40">
                     <WidgetHeader />
 
-                    <FormWrapper />
+                    <FormWrapper onFormChange={onFormChangeHandler} />
                 </div>
             </div>
         </div>

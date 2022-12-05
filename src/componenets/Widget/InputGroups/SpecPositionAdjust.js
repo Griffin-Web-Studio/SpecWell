@@ -10,7 +10,7 @@ export default function SpecPositionAdjust(props) {
             <div className="gwssc-grid gap-col-4">
                 <div className="gwssc-grid-12">
                     <legend className="gwssc-legend">
-                        <label for="spec-opacity">Spec Axis Adjust</label>
+                        <label htmlFor="spec-opacity">Spec Axis Adjust</label>
                     </legend>
                 </div>
 
