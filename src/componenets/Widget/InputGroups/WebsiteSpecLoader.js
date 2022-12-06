@@ -3,9 +3,8 @@ import React, { useState } from "react";
 export default function WebsiteSpecLoader(props) {
     let { currentQueryURL } = props,
         queryURL = new URL(currentQueryURL);
-    const { value, onChange, specLoadedStatus } = props,
-        [specLoaded, setSpecLoaded] = useState(Boolean(specLoadedStatus)),
-        [specImg, setSpecImg] = useState(value);
+    const { specOptions, onChange } = props,
+        [specImg, setSpecImg] = useState(specOptions.specSrc);
 
     const onSpecChangeHandler = (e) => {
         setSpecImg(e.target.value);
@@ -13,19 +12,17 @@ export default function WebsiteSpecLoader(props) {
 
     const onLoadHandler = (e) => {
         e.preventDefault();
-        queryURL.searchParams.set("spec-img", specImg);
 
         if (specImg !== "") {
-            onChange({ specSrc: specImg }, queryURL, true);
-            setSpecLoaded(true);
+            queryURL.searchParams.set("spec-img", specImg);
+            onChange({ specSrc: specImg, specIsLoaded: true }, queryURL, true);
         }
     };
 
     const onUnloadHandler = (e) => {
         e.preventDefault();
         queryURL.searchParams.delete("spec-img");
-        onChange({ specSrc: specImg }, queryURL, false);
-        setSpecLoaded(false);
+        onChange({ specSrc: "", specIsLoaded: false }, queryURL, false);
     };
 
     return (
@@ -37,13 +34,13 @@ export default function WebsiteSpecLoader(props) {
                     </legend>
                 </div>
 
-                <div className={`gwssc-grid-${specLoaded ? "6" : "12"}`}>
+                <div className={`gwssc-grid-${specOptions.specIsLoaded ? "6" : "12"}`}>
                     <button className="gwssc-button gwssc-button--radius-top" onClick={onLoadHandler}>
                         Load
                     </button>
                 </div>
 
-                {specLoaded ? (
+                {specOptions.specIsLoaded ? (
                     <div className="gwssc-grid-6">
                         <button className="gwssc-button gwssc-button__secondary--radius-top gwssc-button__secondary" onClick={onUnloadHandler}>
                             Unload
@@ -62,7 +59,3 @@ export default function WebsiteSpecLoader(props) {
         </fieldset>
     );
 }
-
-WebsiteSpecLoader.defaultProps = {
-    specLoaded: false
-};

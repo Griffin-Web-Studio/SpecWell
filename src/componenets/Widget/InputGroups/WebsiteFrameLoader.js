@@ -3,9 +3,9 @@ import React, { useState } from "react";
 export default function WebsiteFrameLoader(props) {
     let { currentQueryURL } = props,
         queryURL = new URL(currentQueryURL);
-    const { value, onChange, frameLoadedStatus } = props,
-        [frameLoaded, setFrameLoaded] = useState(Boolean(frameLoadedStatus)),
-        [productionSite, setProductionSite] = useState(value);
+
+    const { specOptions, onChange } = props,
+        [productionSite, setProductionSite] = useState(specOptions.frameSrc);
 
     const onFrameChangeHandler = (e) => {
         setProductionSite(e.target.value);
@@ -13,20 +13,18 @@ export default function WebsiteFrameLoader(props) {
 
     const onLoadHandler = (e) => {
         e.preventDefault();
-        queryURL.searchParams.set("production-site", productionSite);
 
         if (productionSite !== "") {
-            onChange({ frameSrc: productionSite }, queryURL, true);
-            setFrameLoaded(true);
+            queryURL.searchParams.set("production-site", productionSite);
+            onChange({ frameSrc: productionSite, frameIsLoaded: true }, queryURL, true);
         }
-    }
+    };
 
     const onUnloadHandler = (e) => {
         e.preventDefault();
         queryURL.searchParams.delete("production-site");
-        onChange({ frameSrc: productionSite }, queryURL, false);
-        setFrameLoaded(false);
-    }
+        onChange({ frameSrc: productionSite, frameIsLoaded: false }, queryURL, false);
+    };
 
     return (
         <fieldset className="gwssc-group">
@@ -37,15 +35,17 @@ export default function WebsiteFrameLoader(props) {
                     </legend>
                 </div>
 
-                <div className={`gwssc-grid-${frameLoaded ? '6' : '12'}`}>
+                <div className={`gwssc-grid-${specOptions.frameIsLoaded ? "6" : "12"}`}>
                     <button className="gwssc-button gwssc-button--radius-top" onClick={onLoadHandler}>
                         Load
                     </button>
                 </div>
 
-                {frameLoaded ? (
+                {specOptions.frameIsLoaded ? (
                     <div className="gwssc-grid-6">
-                        <button className="gwssc-button gwssc-button__secondary--radius-top gwssc-button__secondary" onClick={onUnloadHandler}>Unload</button>
+                        <button className="gwssc-button gwssc-button__secondary--radius-top gwssc-button__secondary" onClick={onUnloadHandler}>
+                            Unload
+                        </button>
                     </div>
                 ) : (
                     ""

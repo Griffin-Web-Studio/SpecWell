@@ -28,28 +28,36 @@ export default function SpecCheckerCommunication(props) {
                                 value={
                                     `<script>\n` +
                                     `window.addEventListener('message', event => {\n` +
-                                    `    console.log('CLIENT: I received some message');\n` +
-                                    `    console.log('CLIENT: It originated from here: ' + event.origin);\n\n` +
+                                    `    console.group("CLIENT");\n` +
+                                    `    console.log('I received some message');\n` +
+                                    `    console.log('It originated from here: ' + event.origin);\n\n` +
                                     `    if (event.origin.startsWith('http://192.168') || event.origin.startsWith('http://localhost') || event.origin.startsWith('https://gws-internal.griffin-studio.co.uk/')) {\n` +
-                                    `        console.log('CLIENT: It came from good source');\n\n` +
+                                    `        console.log('It came from good source');\n\n` +
                                     `        if (event.data === 'can I get your height?') {\n` +
-                                    `            console.log('CLIENT: It contains hello message: ' + event.data);\n` +
-                                    `            var i_height = document.body.offsetHeight;\n\n` +
+                                    `            console.log('It contains hello message: ' + event.data);\n` +
+                                    `            var i_height = height = Math.max(\n` +
+                                    `                document.body.scrollHeight,\n` +
+                                    `                document.body.offsetHeight,\n` +
+                                    `                document.documentElement.clientHeight,\n` +
+                                    `                document.documentElement.scrollHeight,\n` +
+                                    `                document.documentElement.offsetHeight\n` +
+                                    `            );\n\n` +
                                     `            const spec_response_data = JSON.stringify({\n` +
                                     `                my_height: i_height,\n` +
                                     `            });\n\n` +
-                                    `            console.log('CLIENT: Sending my hight, which is: ' + i_height);\n` +
-                                    `            console.log('CLIENT: Debug json: ');\n` +
+                                    `            console.log('Sending my hight, which is: ' + i_height);\n` +
+                                    `            console.log('Debug json: ');\n` +
                                     `            console.log(spec_response_data);\n\n` +
                                     `            window.parent.postMessage(spec_response_data, event.origin);\n` +
                                     `        } else {\n` +
-                                    `            console.log('CLIENT: Oi, blimey that\\'s was SPAM!!!\\nhad to contain hello: "can I get your height?"/\\nInstead I got: ');\n` +
+                                    `            console.log('Oi, blimey that\\'s was SPAM!!!\\nhad to contain hello: "can I get your height?"/\\nInstead I got: ');\n` +
                                     `            console.log(event.data);\n` +
                                     `        }\n\n` +
                                     `    } else {\n` +
-                                    `        console.log('CLIENT: Oi, blimey that\\'s was SPAM!!!\\nOrigin start must match: http://192.168, http://localhost, or https://gws-internal.griffin-studio.co.uk/\\nInstead I got: ');\n` +
+                                    `        console.log('Oi, blimey that\\'s was SPAM!!!\\nOrigin start must match: http://192.168, http://localhost, or https://gws-internal.griffin-studio.co.uk/\\nInstead I got: ');\n` +
                                     `        console.log(event);\n` +
                                     `    }\n\n` +
+                                    `    console.groupEnd();\n` +
                                     `});\n` +
                                     `</script>`
                                 }
