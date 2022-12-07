@@ -1,29 +1,45 @@
 import React, { useState } from "react";
 
 export default function SpecOpacityChanger(props) {
+    const { onChange, specOptions } = props
     const queryParameters = new URLSearchParams(window.location.search)
     const specOpacity = (queryParameters.get("spec-opacity") !== null) ? Number(queryParameters.get("spec-opacity")) : 0.3;
     const [value, setValue] = useState(specOpacity);
+    let queryURL = new URL(specOptions.currentUrl);
 
     const OnIncrementHandler = (e) => {
         e.preventDefault();
+        const newValue = value + 0.1;
 
         if (value < 1) {
-            setValue((oldValue) => Number(oldValue) + 0.1);
+            updateValue(newValue)
         }
     }
 
     const OnDecrementHandler = (e) => {
         e.preventDefault();
+        const newValue = value - 0.1;
 
         if (value > 0) {
-            setValue((oldValue) => Number(oldValue) - 0.1);
+            updateValue(newValue)
         }
     }
 
     const onSelectHandler = (e) => {
-        setValue(e.target.value);
-        console.log(e.target.value);
+        const newValue = Number(e.target.value);
+
+        updateValue(newValue)
+    }
+
+    const updateValue = (newValue) => {
+        setValue(newValue);
+
+        if (newValue > 0) {
+            queryURL.searchParams.set("spec-opacity", newValue);
+        } else {
+            queryURL.searchParams.delete("spec-opacity");
+        }
+        onChange({ specOpacity: newValue, frameIsLoaded: true }, queryURL);
     }
 
     return (

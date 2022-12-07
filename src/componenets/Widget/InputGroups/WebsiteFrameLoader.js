@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
 export default function WebsiteFrameLoader(props) {
-    let { currentQueryURL } = props,
-        queryURL = new URL(currentQueryURL);
+    const { specOptions, onChange } = props;
+    const [productionSite, setProductionSite] = useState(specOptions.frameSrc);
 
-    const { specOptions, onChange } = props,
-        [productionSite, setProductionSite] = useState(specOptions.frameSrc);
+    let queryURL = new URL(specOptions.currentUrl);
 
     const onFrameChangeHandler = (e) => {
         setProductionSite(e.target.value);
@@ -16,14 +15,14 @@ export default function WebsiteFrameLoader(props) {
 
         if (productionSite !== "") {
             queryURL.searchParams.set("production-site", productionSite);
-            onChange({ frameSrc: productionSite, frameIsLoaded: true }, queryURL, true);
+            onChange({ frameSrc: productionSite, frameIsLoaded: true }, queryURL);
         }
     };
 
     const onUnloadHandler = (e) => {
         e.preventDefault();
         queryURL.searchParams.delete("production-site");
-        onChange({ frameSrc: productionSite, frameIsLoaded: false }, queryURL, false);
+        onChange({ frameSrc: "", frameIsLoaded: false }, queryURL);
     };
 
     return (

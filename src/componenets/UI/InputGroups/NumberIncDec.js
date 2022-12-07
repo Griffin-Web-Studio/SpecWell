@@ -3,8 +3,31 @@ import DecrementButton from '../Buttons/DecrementButton';
 import IncrementButton from '../Buttons/IncrementButton';
 
 export default function NumberIncDec(props) {
-    const {label, id, value, minValue, maxValue} = props;
+    const {label, id, value, minValue, maxValue, onChange} = props;
     const [inputValue, setInputValue] = useState(value);
+    
+    console.group("NumberIncDec");
+    console.log(inputValue);
+    console.log(value);
+    console.groupEnd();
+
+    if (inputValue !== value) {
+        setInputValue(value);
+    }
+
+    const onButtonPressHandler = (newValue) => {
+        updateValue(newValue);
+    };
+
+    const onInputChangeHandler = (e) => {
+        updateValue(Number(e.target.value));
+    };
+
+    const updateValue = (newValue) => {
+        setInputValue(newValue);
+
+        onChange(newValue)
+    }
 
     return (
         <div className="gwssc-grid col-4 gap-col-2">
@@ -21,17 +44,17 @@ export default function NumberIncDec(props) {
                     name={id}
                     className="gwssc-input full-height gwssc-input--radius-left"
                     value={inputValue}
-                    onChange={setInputValue}
+                    onChange={onInputChangeHandler}
                 />
             </div>
 
             <div className="gwssc-grid col-1 gwssc-grid-1 gap-row-2">
                 <div className="gwssc-grid-1">
-                    <IncrementButton value={inputValue} onChange={setInputValue} increaseAmount="1" interval="20" firstDelay="500" maxValue={maxValue} />
+                    <IncrementButton value={inputValue} onChange={onButtonPressHandler} increaseAmount="1" interval="20" firstDelay="500" maxValue={maxValue} />
                 </div>
 
                 <div className="gwssc-grid-1">
-                    <DecrementButton value={inputValue} onChange={setInputValue} decreaseAmount="1" interval="20" firstDelay="500" minValue={minValue} />
+                    <DecrementButton value={inputValue} onChange={onButtonPressHandler} decreaseAmount="1" interval="20" firstDelay="500" minValue={minValue} />
                 </div>
             </div>
         </div>
@@ -41,5 +64,6 @@ export default function NumberIncDec(props) {
 // set a default value for the `maxValue` prop
 NumberIncDec.defaultProps = {
     maxValue: 'infinity',
-    minValue: 'infinity'
+    minValue: 'infinity',
+    value: 0
 };

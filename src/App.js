@@ -5,27 +5,28 @@ import WidgetContainer from "./componenets/Widget/WidgetContainer";
 import SpecImage from "./componenets/Widget/SpecImage";
 
 function App() {
-    const [websiteFrameSrc, setWebsiteFrameSrc] = useState("https://griffin-web.studio");
-    const [specSrc, setSpecSrc] = useState("");
+    const [options, stOptions] = useState({
+        frameIsLoaded: false,
+        specIsLoaded: false,
+        frameSrc: "",
+        specSrc: "",
+        specOpacity: 0.5,
+    });
 
-    const onFrameChangeHandler = (newFrameSrc) => {
-        setWebsiteFrameSrc(newFrameSrc);
-    }
-
-    const onSpecChangeHandler = (newSpecSrc) => {
-        setSpecSrc(newSpecSrc);
-    }
+    const onOptionUpdateHandler = (newOption) => {
+        stOptions((oldOption) => ({...oldOption, ...newOption}));
+    };
 
     return (
-        <div className="gcms-app__outer">
-            <div className="gcms-app__inner">
+        <div className="gwssc-app__outer">
+            <div className="gwssc-app__inner">
+                <div className="gwssc-testing-container">
+                    <WebsiteFrame options={options} />
 
-                <WebsiteFrame websiteFrameSrc={websiteFrameSrc} />
+                    <SpecImage options={options} />
+                </div>
 
-                <SpecImage specSrc={specSrc} />
-
-                <WidgetContainer onFrameChange={onFrameChangeHandler} onSpecChange={onSpecChangeHandler} />
-
+                <WidgetContainer onOptionUpdate={onOptionUpdateHandler} />
             </div>
         </div>
     );

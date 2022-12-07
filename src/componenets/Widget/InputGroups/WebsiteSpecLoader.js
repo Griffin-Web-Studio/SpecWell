@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 export default function WebsiteSpecLoader(props) {
-    let { currentQueryURL } = props,
-        queryURL = new URL(currentQueryURL);
-    const { specOptions, onChange } = props,
-        [specImg, setSpecImg] = useState(specOptions.specSrc);
+    const { specOptions, onChange } = props;
+    const [specImg, setSpecImg] = useState(specOptions.specSrc);
+
+    let queryURL = new URL(specOptions.currentUrl);
 
     const onSpecChangeHandler = (e) => {
         setSpecImg(e.target.value);
@@ -15,14 +15,14 @@ export default function WebsiteSpecLoader(props) {
 
         if (specImg !== "") {
             queryURL.searchParams.set("spec-img", specImg);
-            onChange({ specSrc: specImg, specIsLoaded: true }, queryURL, true);
+            onChange({ specSrc: specImg, specIsLoaded: true }, queryURL);
         }
     };
 
     const onUnloadHandler = (e) => {
         e.preventDefault();
         queryURL.searchParams.delete("spec-img");
-        onChange({ specSrc: "", specIsLoaded: false }, queryURL, false);
+        onChange({ specSrc: "", specIsLoaded: false }, queryURL);
     };
 
     return (

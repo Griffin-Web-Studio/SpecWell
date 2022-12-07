@@ -1,12 +1,30 @@
+import React, { useState } from "react";
 import NumberInputIncDec from "../../UI/InputGroups/NumberIncDec";
 
 export default function MediaOptions(props) {
-    const queryParameters = new URLSearchParams(window.location.search);
-    const specMediaWidth = queryParameters.get("spec-media-width") !== null ? Number(queryParameters.get("spec-media-width")) : 0;
-    const specMediaZoom = queryParameters.get("spec-media-zoom") !== null ? Number(queryParameters.get("spec-media-zoom")) : 0;
+    const { specOptions, onChange } = props;
+    const [mediaWidth, setMediaWidth] = useState(specOptions.mediaWidth);
+    // console.log(specOptions);
+
+    let queryURL = new URL(specOptions.currentUrl);
+
+    const onMediaWidthChangeHandler = (value) => {
+        queryURL.searchParams.set("spec-media-width", value);
+        setMediaWidth(value);
+        onChange({mediaWidth: value}, queryURL);
+    };
+
+
+    const onMediaZoomChangeHandler = (value) => {
+        queryURL.searchParams.set("spec-media-zoom", value);
+        onChange({mediaZoom: value}, queryURL);
+    };
 
     const OnSelectHandler = (e) => {
-        console.log(e);
+        const newValue = Number(e.target.value);
+        queryURL.searchParams.set("spec-media-width", newValue);
+        setMediaWidth(newValue);
+        onChange({mediaWidth: newValue}, queryURL);
     }
 
     return (
@@ -34,11 +52,7 @@ export default function MediaOptions(props) {
                                         name="site-width-preset"
                                         id="site-width-preset"
                                         onChange={OnSelectHandler}
-                                        value="">
-                                        <option disabled>
-                                            {" "}
-                                            Select Media Preset{" "}
-                                        </option>
+                                        value={mediaWidth}>
                                         {/* Mobile */}
                                         <option value="320">s-mobile (320px)</option>
                                         <option value="375">m-mobile (375px)</option>
@@ -63,11 +77,11 @@ export default function MediaOptions(props) {
                         <div className="gwssc-grid-2">
                             <div className="gwssc-grid col-2 gap-col-10">
                                 <div className="gwssc-grid-1">
-                                    <NumberInputIncDec value={specMediaWidth} label="Media Width" id="spec-media-width" minValue="0" />
+                                    <NumberInputIncDec value={mediaWidth} onChange={onMediaWidthChangeHandler} label="Media Width" id="spec-media-width" minValue="0" />
                                 </div>
 
                                 <div className="gwssc-grid-1">
-                                    <NumberInputIncDec value={specMediaZoom} label="Media Zoom" id="spec-media-zoom" minValue="0" />
+                                    <NumberInputIncDec value={specOptions.mediaZoom} onChange={onMediaZoomChangeHandler} label="Media Zoom" id="spec-media-zoom" minValue="0" />
                                 </div>
                             </div>
                         </div>

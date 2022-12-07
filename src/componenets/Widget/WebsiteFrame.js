@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 
 export default function WebsiteFrame(props) {
-    const { websiteFrameSrc } = props;
-    // when iframe is loaded, set the height of the iframe to the height of the content
+    const {options} = props;
+    const websiteFrameSrc = options.frameSrc !== "" ? options.frameSrc : "https://griffin-web.studio";
     const [iframeHeight, setIframeHeight] = useState("50vh");
-    const iframeWidth = useState("calc(100vw - 1rem)");
 
     const onIframeLoad = (e) => {
         const iframe = e.target;
 
-        console.group("HOST")
+        console.group("HOST REQUEST");
         console.log("Iframe Loaded");
 
         if (iframe.src !== window.location.href) {
             setIframeHeight("50vh");
 
-            console.log('Sending request to iframe with Hello\nSending to: ' + websiteFrameSrc);
+            console.log("Sending request to iframe with Hello\nSending to: " + websiteFrameSrc);
             iframe.contentWindow.postMessage("can I get your height?", websiteFrameSrc);
 
+            console.groupEnd();
+
             window.addEventListener("message", function (e) {
+                console.group("CLIENT RESPONSE");
                 console.log("I received some message");
                 console.log("It originated from here: " + e.origin);
                 console.log(e);
@@ -38,15 +40,17 @@ export default function WebsiteFrame(props) {
                 } else {
                     console.log("Oi, blimey that's was SPAM!!!\nExpected: " + websiteFrameSrc + "\ngot: " + e.origin);
                 }
+                console.groupEnd();
             });
         }
-
-        console.groupEnd();
     };
 
     return (
-        <div className="gwssc-website-frame-container">
-            <iframe src={props.websiteFrameSrc} className="website-frame" title="Website Frame" id="iframe" onLoad={onIframeLoad} style={{ height: iframeHeight, width: iframeWidth }} />
+        <div className="gwssc-website-frame-container" style={{
+            transform: `scale(${options.mediaZoom / 100})`,
+            width: `${options.mediaWidth}px`
+        }}>
+            <iframe src={websiteFrameSrc !== "" ? websiteFrameSrc : "https://griffin-web.studio"} className="website-frame" title="Website Frame" id="iframe" onLoad={onIframeLoad} style={{ height: iframeHeight, width: `${options.mediaWidth}px` }} />
         </div>
     );
 }

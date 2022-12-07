@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('gcms-app'));
+const root = ReactDOM.createRoot(document.getElementById('gwssc-app'));
 root.render(
   <React.StrictMode>
     <App />

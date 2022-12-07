@@ -1,9 +1,19 @@
 import NumberInputIncDec from "../../UI/InputGroups/NumberIncDec";
 
 export default function SpecPositionAdjust(props) {
-    const queryParameters = new URLSearchParams(window.location.search)
-    const specXAdjust = (queryParameters.get("spec-x-adjust") !== null) ? Number(queryParameters.get("spec-x-adjust")) : 0;
-    const specYAdjust = (queryParameters.get("spec-y-adjust") !== null) ? Number(queryParameters.get("spec-y-adjust")) : 0;
+    const { specOptions, onChange } = props;
+
+    let queryURL = new URL(specOptions.currentUrl);
+
+    const onXAxisChangeHandler = (value) => {
+        queryURL.searchParams.set("spec-x-adjust", value);
+        onChange({specXAxis: value}, queryURL);
+    };
+
+    const onYAxisChangeHandler = (value) => {
+        queryURL.searchParams.set("spec-y-adjust", value);
+        onChange({specYAxis: value}, queryURL);
+    };
 
     return (
         <fieldset className="gwssc-group">
@@ -20,7 +30,8 @@ export default function SpecPositionAdjust(props) {
                             <NumberInputIncDec
                                 label="X Axis Adjust"
                                 id="spec-x-adjust"
-                                value={specXAdjust}
+                                value={specOptions.specXAxis}
+                                onChange={onXAxisChangeHandler}
                             />
                         </div>
 
@@ -28,7 +39,8 @@ export default function SpecPositionAdjust(props) {
                             <NumberInputIncDec
                                 label="Y Axis Adjust"
                                 id="spec-y-adjust"
-                                value={specYAdjust}
+                                value={specOptions.specYAxis}
+                                onChange={onYAxisChangeHandler}
                             />
                         </div>
                     </div>
