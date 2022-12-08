@@ -24,6 +24,11 @@ export default function WebsiteFrame(props) {
             );
 
             window.addEventListener("message", function (e) {
+
+                console.group("Iframe send message");
+                console.log(e.origin);
+                console.groupEnd();
+
                 if (websiteFrameSrc.startsWith(e.origin)) {
                     var data = e.data;
 
