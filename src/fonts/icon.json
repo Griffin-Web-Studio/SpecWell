@@ -1,16 +1,3 @@
 {
-  "account": 61697,
-  "cart": 61698,
-  "cross": 61699,
-  "facebook": 61700,
-  "filter": 61701,
-  "instagram": 61702,
-  "linkedin": 61703,
-  "logo": 61704,
-  "mailto": 61705,
-  "pinterest": 61706,
-  "search": 61707,
-  "tel": 61708,
-  "twitter": 61709,
-  "youtube": 61710
+  "inverted-icon": 61697
 }

@@ -16,17 +16,19 @@ export default function WidgetContainer(props) {
 
     return (
         <div className={`gwssc__container ${toggleState ? "" : "hide"}`}>
-            <button type="button" className={`gwssc-toggle ${toggleState ? "" : "hide"}`} onClick={onContainerToggleHandler}>
-                <span className="gwssc-toggle__label">
-                    Spec-Check Options <span className="ico">⬆️</span>
-                </span>
-            </button>
+            <div className="gwssc__container-outer">
+                <button type="button" className="gwssc__toggle" onClick={onContainerToggleHandler}>
+                    <span className="gwssc__toggle-label">
+                        Spec-Check Options <span className={`gwssc__toggle-ico ${toggleState ? "" : "gwssc__toggle-ico--hide"}`}>⬆️</span>
+                    </span>
+                </button>
 
-            <div className="gwssc-container-inner">
-                <div className="gwssc-grid col-1 gap-row-40">
-                    <WidgetHeader />
+                <div className="gwssc__container-inner">
+                    <div className="gwssc-grid col-1 gap-row-40">
+                        <WidgetHeader />
 
-                    <FormWrapper onFormChange={onFormChangeHandler} specOptions={specOptions} />
+                        <FormWrapper onFormChange={onFormChangeHandler} specOptions={specOptions} />
+                    </div>
                 </div>
             </div>
         </div>

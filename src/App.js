@@ -10,18 +10,26 @@ function App() {
         specIsLoaded: false,
         frameSrc: "",
         specSrc: "",
-        specOpacity: 0.5,
+        specOpacity: 0.5
     });
 
     const onOptionUpdateHandler = (newOption) => {
-        stOptions((oldOption) => ({...oldOption, ...newOption}));
+        stOptions((oldOption) => ({ ...oldOption, ...newOption }));
+    };
+
+    const updateIframeHeightHandler = (height) => {
+        stOptions((oldOption) => ({ ...oldOption, iframeHeight: height }));
     };
 
     return (
         <div className="gwssc-app__outer">
             <div className="gwssc-app__inner">
-                <div className="gwssc-testing-container">
-                    <WebsiteFrame options={options} />
+                <div
+                    className="gwssc__testing-container"
+                    style={{
+                        height: `${options.iframeHeight}`
+                    }}>
+                    <WebsiteFrame options={options} updateIframeHeight={updateIframeHeightHandler} />
 
                     <SpecImage options={options} />
                 </div>

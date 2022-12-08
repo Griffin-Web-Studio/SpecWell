@@ -15,16 +15,15 @@ export default function FormWrapper(props) {
         specIsLoaded: false,
         frameSrc: queryParameters.get("production-site") !== null ? queryParameters.get("production-site") : "",
         specSrc: queryParameters.get("spec-img") !== null ? queryParameters.get("spec-img") : "",
-        specYAxis: 0,
-        specXAxis: 0,
-        mediaWidth: 320,
-        mediaZoom: 100,
+        specOpacity: queryParameters.get("spec-opacity") !== null ? Number(queryParameters.get("spec-opacity")) : 0.3,
+        specYAxis: queryParameters.get("spec-y-adjust") !== null ? Number(queryParameters.get("spec-y-adjust")) : 0,
+        specXAxis: queryParameters.get("spec-x-adjust") !== null ? Number(queryParameters.get("spec-x-adjust")) : 0,
+        mediaWidth: queryParameters.get("spec-media-width") !== null ? Number(queryParameters.get("spec-media-width")) : 320,
+        mediaZoom: queryParameters.get("spec-media-zoom") !== null ? Number(queryParameters.get("spec-media-zoom")) : 100,
     });
 
     const onSpecOptionsChangeHandler = (newOptions, newQueryURL) => {
         let updatedOptions = { ...options, ...newOptions };
-
-        console.log(options.currentUrl)
 
         setOptions((oldOptions) => ({...oldOptions, ...newOptions, currentUrl: newQueryURL.toString() }));
         onFormChange(updatedOptions);

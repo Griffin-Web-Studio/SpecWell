@@ -5,11 +5,6 @@ import IncrementButton from '../Buttons/IncrementButton';
 export default function NumberIncDec(props) {
     const {label, id, value, minValue, maxValue, onChange} = props;
     const [inputValue, setInputValue] = useState(value);
-    
-    console.group("NumberIncDec");
-    console.log(inputValue);
-    console.log(value);
-    console.groupEnd();
 
     if (inputValue !== value) {
         setInputValue(value);

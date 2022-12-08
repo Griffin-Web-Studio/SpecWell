@@ -2,9 +2,7 @@ import React, { useState } from "react";
 
 export default function SpecOpacityChanger(props) {
     const { onChange, specOptions } = props
-    const queryParameters = new URLSearchParams(window.location.search)
-    const specOpacity = (queryParameters.get("spec-opacity") !== null) ? Number(queryParameters.get("spec-opacity")) : 0.3;
-    const [value, setValue] = useState(specOpacity);
+    const [value, setValue] = useState(specOptions.specOpacity);
     let queryURL = new URL(specOptions.currentUrl);
 
     const OnIncrementHandler = (e) => {

@@ -5,12 +5,21 @@ export default function SpecImage(props) {
 
     if (options.specSrc !== "" && options.specIsLoaded) {
         return (
-            <div className="gwssc__image gwssc__image--invert" style={{
-                    opacity: options.specOpacity,
-                    transform: `translate(${options.specXAxis}px, ${options.specYAxis}px) scale(${options.mediaZoom / 100})`,
-                    width: `${options.mediaWidth}px`
+            <div
+                className="gwssc__image-container gwssc__image-container--invert"
+                style={{
+                    transform: `scale(${options.mediaZoom / 100})`
                 }}>
-                <img src={options.specSrc} alt="Spec Overlay" className="image" />
+                <img
+                    src={options.specSrc}
+                    className="gwssc__image"
+                    alt="Spec Overlay"
+                    style={{
+                        opacity: options.specOpacity,
+                        transform: `translate(calc(-50% + ${options.specXAxis}px), ${options.specYAxis}px)`,
+                        width: `${options.mediaWidth}px`
+                    }}
+                />
             </div>
         );
     } else {

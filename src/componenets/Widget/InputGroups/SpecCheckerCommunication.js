@@ -27,38 +27,29 @@ export default function SpecCheckerCommunication(props) {
                             <CodemirrorInput
                                 value={
                                     `<script>\n` +
-                                    `window.addEventListener('message', event => {\n` +
-                                    `    console.group("CLIENT");\n` +
-                                    `    console.log('I received some message');\n` +
-                                    `    console.log('It originated from here: ' + event.origin);\n\n` +
+                                    `  window.addEventListener('message', event => {\n` +
                                     `    if (event.origin.startsWith('http://192.168') || event.origin.startsWith('http://localhost') || event.origin.startsWith('https://gws-internal.griffin-studio.co.uk/')) {\n` +
-                                    `        console.log('It came from good source');\n\n` +
-                                    `        if (event.data === 'can I get your height?') {\n` +
-                                    `            console.log('It contains hello message: ' + event.data);\n` +
-                                    `            var i_height = height = Math.max(\n` +
-                                    `                document.body.scrollHeight,\n` +
-                                    `                document.body.offsetHeight,\n` +
-                                    `                document.documentElement.clientHeight,\n` +
-                                    `                document.documentElement.scrollHeight,\n` +
-                                    `                document.documentElement.offsetHeight\n` +
-                                    `            );\n\n` +
-                                    `            const spec_response_data = JSON.stringify({\n` +
-                                    `                my_height: i_height,\n` +
-                                    `            });\n\n` +
-                                    `            console.log('Sending my hight, which is: ' + i_height);\n` +
-                                    `            console.log('Debug json: ');\n` +
-                                    `            console.log(spec_response_data);\n\n` +
-                                    `            window.parent.postMessage(spec_response_data, event.origin);\n` +
-                                    `        } else {\n` +
-                                    `            console.log('Oi, blimey that\\'s was SPAM!!!\\nhad to contain hello: "can I get your height?"/\\nInstead I got: ');\n` +
-                                    `            console.log(event.data);\n` +
-                                    `        }\n\n` +
-                                    `    } else {\n` +
-                                    `        console.log('Oi, blimey that\\'s was SPAM!!!\\nOrigin start must match: http://192.168, http://localhost, or https://gws-internal.griffin-studio.co.uk/\\nInstead I got: ');\n` +
-                                    `        console.log(event);\n` +
-                                    `    }\n\n` +
-                                    `    console.groupEnd();\n` +
-                                    `});\n` +
+                                    `      try {\n` +
+                                    `        const hostMessage = JSON.parse(event.data);\n` +
+                                    `\n` +
+                                    `        if (hostMessage.request === 'get_height') {\n` +
+                                    `          var i_height = Math.max(\n` +
+                                    `            document.body.scrollHeight,\n` +
+                                    `            document.body.offsetHeight,\n` +
+                                    `            document.documentElement.clientHeight,\n` +
+                                    `            document.documentElement.scrollHeight,\n` +
+                                    `            document.documentElement.offsetHeight\n` +
+                                    `          );\n` +
+                                    `\n` +
+                                    `          const myResponse = JSON.stringify({\n` +
+                                    `            my_height: i_height,\n` +
+                                    `          });\n` +
+                                    `\n` +
+                                    `          window.parent.postMessage(myResponse, event.origin);\n` +
+                                    `        }\n` +
+                                    `      } finally { }\n` +
+                                    `    }\n` +
+                                    `  });\n` +
                                     `</script>`
                                 }
                             />

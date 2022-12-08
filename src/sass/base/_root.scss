@@ -142,7 +142,7 @@
             #{px-rem(0)} #{px-rem(0)} #{px-rem(12)} #{px-rem(6)} var(--pref-color-nm-glow);
         --ds-nm-outset:
             drop-shadow(#{px-rem(6)} #{px-rem(6)} #{px-rem(12)} var(--pref-color-nm-shadow))
-            drop-shadow(#{px-rem(0)} #{px-rem(0)} #{px-rem(12)} #{px-rem(6)} var(--pref-color-nm-glow));
+            drop-shadow(#{px-rem(0)} #{px-rem(0)} #{px-rem(12)} var(--pref-color-nm-glow));
 
         // VS Full Pref Neumorphic outward shadow (Small)
         --nm-outset-small:
@@ -150,7 +150,7 @@
             #{px-rem(0)} #{px-rem(0)} #{px-rem(6)} #{px-rem(3)} var(--pref-color-nm-glow);
         --ds-nm-outset-small:
             drop-shadow(#{px-rem(3)} #{px-rem(3)} #{px-rem(6)} var(--pref-color-nm-shadow))
-            drop-shadow(#{px-rem(0)} #{px-rem(0)} #{px-rem(6)} #{px-rem(3)} var(--pref-color-nm-glow));
+            drop-shadow(#{px-rem(0)} #{px-rem(0)} #{px-rem(6)} var(--pref-color-nm-glow));
 
         // VS Full Pref Neumorphic outward shadow (Small)
         --nm-outset-xsmall:
@@ -158,7 +158,7 @@
             #{px-rem(0)} #{px-rem(0)} #{px-rem(3)} #{px-rem(1.5)} var(--pref-color-nm-glow);
         --ds-nm-outset-xsmall:
             drop-shadow(#{px-rem(1.5)} #{px-rem(1.5)} #{px-rem(3)} var(--pref-color-nm-shadow))
-            drop-shadow(#{px-rem(0)} #{px-rem(0)} #{px-rem(3)} #{px-rem(1.5)} var(--pref-color-nm-glow));
+            drop-shadow(#{px-rem(0)} #{px-rem(0)} #{px-rem(3)} var(--pref-color-nm-glow));
 
         // VS Full Pref Neumorphic inward shadow
         --nm-inset:

@@ -2,9 +2,9 @@ $icons-font: "icons";
 
 @font-face {
     font-family: $icons-font;
-    src: url("../../fonts/icons.ttf?fffbff05b258073653a1cde639373896") format("truetype"),
-url("../../fonts/icons.woff?fffbff05b258073653a1cde639373896") format("woff"),
-url("../../fonts/icons.woff2?fffbff05b258073653a1cde639373896") format("woff2");
+    src: url("../../fonts/icons.ttf?a571343af05e5eb3c3692eb9e48923dd") format("truetype"),
+url("../../fonts/icons.woff?a571343af05e5eb3c3692eb9e48923dd") format("woff"),
+url("../../fonts/icons.woff2?a571343af05e5eb3c3692eb9e48923dd") format("woff2");
 }
 
 [class^="icon-"]:before, [class*=" icon-"]:before {
@@ -19,61 +19,9 @@ url("../../fonts/icons.woff2?fffbff05b258073653a1cde639373896") format("woff2");
 }
 
 $icons-map: (
-    "account": "\f101",
-    "cart": "\f102",
-    "cross": "\f103",
-    "facebook": "\f104",
-    "filter": "\f105",
-    "instagram": "\f106",
-    "linkedin": "\f107",
-    "logo": "\f108",
-    "mailto": "\f109",
-    "pinterest": "\f10a",
-    "search": "\f10b",
-    "tel": "\f10c",
-    "twitter": "\f10d",
-    "youtube": "\f10e",
+    "inverted-icon": "\f101",
 );
 
-.icon-account:before {
-    content: map-get($icons-map, "account");
-}
-.icon-cart:before {
-    content: map-get($icons-map, "cart");
-}
-.icon-cross:before {
-    content: map-get($icons-map, "cross");
-}
-.icon-facebook:before {
-    content: map-get($icons-map, "facebook");
-}
-.icon-filter:before {
-    content: map-get($icons-map, "filter");
-}
-.icon-instagram:before {
-    content: map-get($icons-map, "instagram");
-}
-.icon-linkedin:before {
-    content: map-get($icons-map, "linkedin");
-}
-.icon-logo:before {
-    content: map-get($icons-map, "logo");
-}
-.icon-mailto:before {
-    content: map-get($icons-map, "mailto");
-}
-.icon-pinterest:before {
-    content: map-get($icons-map, "pinterest");
-}
-.icon-search:before {
-    content: map-get($icons-map, "search");
-}
-.icon-tel:before {
-    content: map-get($icons-map, "tel");
-}
-.icon-twitter:before {
-    content: map-get($icons-map, "twitter");
-}
-.icon-youtube:before {
-    content: map-get($icons-map, "youtube");
+.icon-inverted-icon:before {
+    content: map-get($icons-map, "inverted-icon");
 }
