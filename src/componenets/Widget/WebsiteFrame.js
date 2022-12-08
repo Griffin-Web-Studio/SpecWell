@@ -8,14 +8,13 @@ export default function WebsiteFrame(props) {
     const onIframeLoad = (e) => {
         const iframe = e.target;
 
-        console.group("Iframe Loaded");
-        console.log("Iframe Src: " + iframe.src);
-        console.log("Window location: " + window.location.href);
-        console.log(iframe.src !== window.location.href);
-        console.groupEnd();
-
         if (iframe.src !== window.location.href) {
             setIframeHeight("50vh");
+            updateIframeHeight("50vh");
+
+            console.group("Iframe Loaded");
+            console.log("Iframe height: " + iframeHeight);
+            console.groupEnd();
 
             iframe.contentWindow.postMessage(
                 JSON.stringify({
