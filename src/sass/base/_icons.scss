@@ -1,0 +1,27 @@
+$icons-font: "icons";
+
+@font-face {
+    font-family: $icons-font;
+    src: url("../../fonts/icons.ttf?a571343af05e5eb3c3692eb9e48923dd") format("truetype"),
+url("../../fonts/icons.woff?a571343af05e5eb3c3692eb9e48923dd") format("woff"),
+url("../../fonts/icons.woff2?a571343af05e5eb3c3692eb9e48923dd") format("woff2");
+}
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+    font-family: icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$icons-map: (
+    "inverted-icon": "\f101",
+);
+
+.icon-inverted-icon:before {
+    content: map-get($icons-map, "inverted-icon");
+}

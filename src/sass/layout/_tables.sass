@@ -1,0 +1,75 @@
+@use '../abstracts' as *
+@use '../components/_buttons' as *
+
+table
+    text-align: left
+    width: 100%
+    box-shadow: var(--nm-outset)
+    padding: px-rem(10)
+    border-collapse: unset !important
+    border-spacing: px-rem(20)
+    border-radius: px-rem(10)
+    margin-block: px-rem(20)
+
+    caption
+        box-shadow: var(--nm-outset)
+        padding-block: px-rem(10)
+        border-radius: px-rem(10)
+        margin-block: px-rem(20)
+        background-color: var(--brand-color)
+        color: var(--pref-color-light-0) !important
+
+    th,
+    td
+        border: none !important
+        padding: px-rem(10)
+        border-radius: px-rem(5)
+
+    th
+        box-shadow: var(--nm-outset-small)
+
+    td
+        box-shadow: var(--nm-inset-small)
+
+.wp-block-calendar
+    .wp-calendar-table
+
+        th[scope=col]
+            background-color: var(--brand-color-secondary)
+            color: var(--pref-color-light-0)
+        a
+            color: var(--brand-color)
+
+        .pad
+            background-color: var(--pref-color-3)
+
+    nav.wp-calendar-nav
+        text-align: center
+
+        a
+            @include button
+
+.wp-block-archives-dropdown
+    margin-block: px-rem(20)
+
+.wp-pagenavi
+    .pages
+        @include button-alt
+        border-radius: px-rem(5)
+        cursor: default
+
+    .current
+        @include button
+        border-radius: px-rem(5)
+        cursor: default
+
+    .page
+        @include button-secondary-alt
+        border-radius: px-rem(5)
+
+    .previouspostslink,
+    .nextpostslink
+        @include button-secondary
+        border-radius: px-rem(5)
+
+        

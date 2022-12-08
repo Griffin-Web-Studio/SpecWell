@@ -1,75 +1,47 @@
 {
-    "name": "griffin-studio-internal",
-    "version": "3.0.1",
-    "author": "Rihards Simanovics",
-    "description": "Generic package by Griffin Web Studio, used to create an HTML and WordPress template.",
-    "private": true,
-    "license": "proprietary",
-    "scripts": {
-        "workspace-backend": "code . && code wp-content/themes/ && cd wp-content/themes/gwschild/ && npm run workspace-frontend",
-        "workspace-frontend": "code src/views/ && code src/scss/ && code src/scripts/",
-        "migrate-backend": "node dev/gws-build.js -t wp",
-        "init-frontend": "npm run npm:rm & npm run npm:i & npm run frontend",
-        "init-backend": "npm run npm:rm & cd wp-content/themes/gwschild/ && npm run npm:rm & npm run npm:i & npm run development",
-        "clean-frontend": "rm -rf dist/ && npm run frontend",
-        "build:html": "posthtml -c posthtml.json",
-        "build:fonts": "mkdir dist & cp -r ./src/fonts/ ./dist/",
-        "build:images": "run-p build:images:images build:images:griffin-studio build:images:icons",
-        "build:images:images": "imagemin src/images/{*.png,*.jpg,*.jpeg,*.svg,*.gif} --out-dir=dist/images",
-        "build:images:griffin-studio": "imagemin src/images/griffin-studio/* --out-dir=dist/images/griffin-studio/",
-        "build:images:icons": "imagemin src/images/icons/* --out-dir=dist/images/icons/",
-        "browsersync": "browser-sync start -c browsersync-config.js",
-        "autoprefixer": "postcss dist/css/style.css --no-map --replace --use autoprefixer -b \"'> 0.1%', 'last 2 versions', 'Opera 12.1', 'Firefox ESR', 'ie >= 10'\"",
-        "icons": "fantasticon",
-        "watch:browser": "npm run build:html && run-p browsersync watch:html",
-        "watch:html": "onchange \"src/views\" -- npm run build:html",
-        "watch:fonts": "npm run build:fonts & onchange \"src/fonts\" -- npm run build:fonts",
-        "watch:img": "npm run build:images && onchange \"src/images\" -- npm run build:images",
-        "watch:scss": "npm run scss:dev && onchange \"src/scss\" -- npm run scss:dev",
-        "watch:js": "npm run js:dev && onchange \"src/scripts/\" -- npm run js:dev",
-        "scss:dev": "sass ./src/scss/:./dist/css/ -c -w         --embed-source-map --no-stop-on-error",
-        "scss:bld": "sass ./src/scss/:./dist/css/ -c -s compressed --no-source-map --no-stop-on-error",
-        "js:dev": "merger build && uglifyjs dist/js/script.min.js --beautify          -o dist/js/script.min.js",
-        "js:bld": "merger build && uglifyjs dist/js/script.min.js --compress --mangle -o dist/js/script.min.js",
-        "frontend": "npm run build && npm run workspace-frontend && run-p watch:browser watch:fonts watch:img watch:scss watch:js",
-        "backend": "cd wp-content/themes/gwschild/ && npm run development",
-        "development": "run-p watch:fonts watch:img watch:scss watch:js",
-        "deploy": "npm i && npm run build",
-        "build": "run-p build:html build:fonts build:images scss:bld js:bld && npm run autoprefixer",
-        "npm:i": "npm i && npm audit fix",
-        "npm:rm": "rm -rf node_modules/ package-lock.json",
-        "npm:kill": "pkill -f node & taskkill /f /im node.exe",
-        "npm:kill-win": "taskkill /f /im node.exe",
-        "git-reset": "git fetch --all && git reset --hard",
-        "git-reset-hard": "git fetch --all && git reset --hard && git clean -fdx"
-    },
-    "devDependencies": {
-        "autoprefixer": ">=9.8.6",
-        "browser-sync": ">=2.26.12",
-        "chokidar-cli": ">=2.1.0",
-        "fantasticon": ">=1.0.30",
-        "fs-extra": ">=10.0.0",
-        "inquirer": ">=8.0.0",
-        "merger-js": ">=3.10.3",
-        "node-notifier": ">=9.0.1",
-        "nodemon": ">=2.0.4",
-        "npm-run-all": ">=4.1.5",
-        "postcss": ">=8.2.8",
-        "postcss-cli": ">=7.1.2",
-        "sass": ">=1.43.2",
-        "shelljs": ">=0.8.4",
-        "uglify-js": ">=3.10.4"
-    },
-    "dependencies": {
-        "cssnano": "^5.1.4",
-        "devtools-detector": "^2.0.6",
-        "htmlnano": "^2.0.0",
-        "imagemin": "^8.0.1",
-        "imagemin-cli": "^7.0.0",
-        "onchange": "^7.1.0",
-        "posthtml": "^0.16.6",
-        "posthtml-cli": "^0.10.0",
-        "posthtml-modules": "^0.8.0",
-        "terser": "^5.12.1"
-    }
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "/spec-check/",
+  "dependencies": {
+    "@codemirror/lang-html": "^6.4.0",
+    "@codemirror/lang-javascript": "^6.1.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@uiw/codemirror-theme-github": "^4.15.1",
+    "@uiw/react-codemirror": "^4.15.1",
+    "fantasticon": "^2.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "sass": "^1.56.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "icons": "fantasticon"
+
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
