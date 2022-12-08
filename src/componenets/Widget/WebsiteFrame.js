@@ -12,10 +12,6 @@ export default function WebsiteFrame(props) {
             setIframeHeight("50vh");
             updateIframeHeight("50vh");
 
-            console.group("Iframe Loaded");
-            console.log("Iframe height: " + iframeHeight);
-            console.groupEnd();
-
             iframe.contentWindow.postMessage(
                 JSON.stringify({
                     request: "get_height"
@@ -24,16 +20,17 @@ export default function WebsiteFrame(props) {
             );
 
             window.addEventListener("message", function (e) {
+                console.group("Iframe is same");
+                console.log(websiteFrameSrc.startsWith(e.origin));
+                console.log(e.origin);
+                console.log(clientHeight + clientHeight / 5 + "px");
+                console.groupEnd();
+
                 if (websiteFrameSrc.startsWith(e.origin)) {
                     var data = e.data;
 
                     var clientResponse = JSON.parse(data),
                         clientHeight = clientResponse.my_height;
-
-                    console.group("Iframe send message");
-                    console.log(e.origin);
-                    console.log(clientHeight + clientHeight / 5 + "px");
-                    console.groupEnd();
 
                     setIframeHeight(clientHeight + clientHeight / 5 + "px");
                     updateIframeHeight(clientHeight + clientHeight / 5 + "px");
