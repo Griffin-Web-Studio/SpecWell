@@ -22,7 +22,7 @@ export default function WebsiteFrameLoader(props) {
     const onUnloadHandler = (e) => {
         e.preventDefault();
         queryURL.searchParams.delete("production-site");
-        onChange({ frameSrc: "", frameIsLoaded: false }, queryURL);
+        onChange({ frameSrc: "https://griffin-web.studio", frameIsLoaded: false }, queryURL);
     };
 
     return (

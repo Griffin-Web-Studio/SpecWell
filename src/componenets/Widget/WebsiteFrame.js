@@ -24,16 +24,16 @@ export default function WebsiteFrame(props) {
             );
 
             window.addEventListener("message", function (e) {
-
-                console.group("Iframe send message");
-                console.log(e.origin);
-                console.groupEnd();
-
                 if (websiteFrameSrc.startsWith(e.origin)) {
                     var data = e.data;
 
                     var clientResponse = JSON.parse(data),
                         clientHeight = clientResponse.my_height;
+
+                    console.group("Iframe send message");
+                    console.log(e.origin);
+                    console.log(clientHeight + clientHeight / 5 + "px");
+                    console.groupEnd();
 
                     setIframeHeight(clientHeight + clientHeight / 5 + "px");
                     updateIframeHeight(clientHeight + clientHeight / 5 + "px");
