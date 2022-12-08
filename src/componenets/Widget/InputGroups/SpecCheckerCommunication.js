@@ -28,7 +28,7 @@ export default function SpecCheckerCommunication(props) {
                                 value={
                                     `<script>\n` +
                                     `  window.addEventListener('message', event => {\n` +
-                                    `    if (event.origin.startsWith('http://192.168') || event.origin.startsWith('http://localhost') || event.origin.startsWith('https://gws-internal.griffin-studio.co.uk/')) {\n` +
+                                    `    if (event.origin.startsWith('http://192.168') || event.origin.startsWith('http://localhost') || event.origin.startsWith('https://gws-internal.griffin-studio.co.uk')) {\n` +
                                     `      try {\n` +
                                     `        const hostMessage = JSON.parse(event.data);\n` +
                                     `\n` +

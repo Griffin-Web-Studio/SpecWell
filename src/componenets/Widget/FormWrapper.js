@@ -22,8 +22,6 @@ export default function FormWrapper(props) {
         mediaZoom: queryParameters.get("spec-media-zoom") !== null ? Number(queryParameters.get("spec-media-zoom")) : 100
     });
 
-    console.log(options.currentUrl.toString());
-
     const onSpecOptionsChangeHandler = (newOptions, newQueryURL) => {
         let updatedOptions = { ...options, ...newOptions };
 
