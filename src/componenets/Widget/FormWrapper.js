@@ -10,7 +10,7 @@ export default function FormWrapper(props) {
     const { onFormChange } = props
     const queryParameters = new URLSearchParams(window.location.search)
     const [options, setOptions] = useState({
-        currentUrl: new URL(window.location.origin),
+        currentUrl: new URL(window.location.href),
         frameIsLoaded: false,
         specIsLoaded: false,
         frameSrc: queryParameters.get("production-site") !== null ? queryParameters.get("production-site") : "",
@@ -20,7 +20,10 @@ export default function FormWrapper(props) {
         specXAxis: queryParameters.get("spec-x-adjust") !== null ? Number(queryParameters.get("spec-x-adjust")) : 0,
         mediaWidth: queryParameters.get("spec-media-width") !== null ? Number(queryParameters.get("spec-media-width")) : 320,
         mediaZoom: queryParameters.get("spec-media-zoom") !== null ? Number(queryParameters.get("spec-media-zoom")) : 100,
+        iframeHeight: 'calc(50vh)'
     });
+
+    console.log(options.currentUrl.toString());
 
     const onSpecOptionsChangeHandler = (newOptions, newQueryURL) => {
         let updatedOptions = { ...options, ...newOptions };
