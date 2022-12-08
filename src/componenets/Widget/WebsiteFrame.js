@@ -22,8 +22,8 @@ export default function WebsiteFrame(props) {
             window.addEventListener("message", function (e) {
                 console.group("Iframe is same");
                 console.log(websiteFrameSrc.startsWith(e.origin));
-                console.log(e.origin);
-                console.log(clientHeight + clientHeight / 5 + "px");
+                // console.log(e.origin);
+                // console.log(clientHeight + clientHeight / 5 + "px");
                 console.groupEnd();
 
                 if (websiteFrameSrc.startsWith(e.origin)) {
