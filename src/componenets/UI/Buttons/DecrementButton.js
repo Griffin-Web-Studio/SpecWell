@@ -24,7 +24,7 @@ const DecrementButton = (props) => {
                     if (minValue === "infinity") {
                         onChange(value - 1);
                     } else {
-                        if (value > minValue) {
+                        if (value > Number(minValue)) {
                             onChange(value - 1);
                         }
                     }
@@ -38,7 +38,9 @@ const DecrementButton = (props) => {
                     if (minValue === "infinity") {
                         onChange(value - Number(decreaseAmount));
                     } else {
-                        if (value > minValue) {
+                        if (value > Number(minValue) && value < Number(decreaseAmount) * 2) {
+                            onChange(value - 1);
+                        } else if (value > Number(minValue)) {
                             onChange(value - Number(decreaseAmount));
                         }
                     }

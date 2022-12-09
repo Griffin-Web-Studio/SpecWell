@@ -38,7 +38,9 @@ const IncrementButton = (props) => {
                     if (maxValue === "infinity") {
                         onChange(value + Number(increaseAmount));
                     } else {
-                        if (value < maxValue) {
+                        if (value < Number(maxValue) && value > (maxValue - (Number(increaseAmount) * 2))) {
+                            onChange(value + 1);
+                        } else if (value < maxValue) {
                             onChange(value + Number(increaseAmount));
                         }
                     }
