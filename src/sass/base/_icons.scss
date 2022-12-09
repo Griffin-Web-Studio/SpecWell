@@ -2,9 +2,9 @@ $icons-font: "icons";
 
 @font-face {
     font-family: $icons-font;
-    src: url("../../fonts/icons.ttf?a571343af05e5eb3c3692eb9e48923dd") format("truetype"),
-url("../../fonts/icons.woff?a571343af05e5eb3c3692eb9e48923dd") format("woff"),
-url("../../fonts/icons.woff2?a571343af05e5eb3c3692eb9e48923dd") format("woff2");
+    src: url("../../fonts/icons.ttf?122336838e9f4814ba9a34537dcaf42d") format("truetype"),
+url("../../fonts/icons.woff?122336838e9f4814ba9a34537dcaf42d") format("woff"),
+url("../../fonts/icons.woff2?122336838e9f4814ba9a34537dcaf42d") format("woff2");
 }
 
 [class^="icon-"]:before, [class*=" icon-"]:before {
@@ -19,9 +19,13 @@ url("../../fonts/icons.woff2?a571343af05e5eb3c3692eb9e48923dd") format("woff2");
 }
 
 $icons-map: (
-    "inverted-icon": "\f101",
+    "inverted": "\f101",
+    "reset": "\f102",
 );
 
-.icon-inverted-icon:before {
-    content: map-get($icons-map, "inverted-icon");
+.icon-inverted:before {
+    content: map-get($icons-map, "inverted");
+}
+.icon-reset:before {
+    content: map-get($icons-map, "reset");
 }

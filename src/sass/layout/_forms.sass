@@ -44,6 +44,7 @@ label
 
     @include elementRadius(20)
 
+
 input[type="text"],
 input[type="password"],
 input[type="date"],
@@ -68,7 +69,15 @@ textarea,
             outline: none
 
             @if $nm-design == true
-                box-shadow: var(--nm-outset-small) 
+                box-shadow: var(--nm-outset-small)
+
+input[type="number"]
+    &.gwssc-input
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button
+            -webkit-appearance: none
+            -moz-appearance: textfield
+            margin: 0
 
 .gwssc-input-like,
 fieldset.gwssc-group

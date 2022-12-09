@@ -19,7 +19,8 @@ export default function FormWrapper(props) {
         specYAxis: queryParameters.get("spec-y-adjust") !== null ? Number(queryParameters.get("spec-y-adjust")) : 0,
         specXAxis: queryParameters.get("spec-x-adjust") !== null ? Number(queryParameters.get("spec-x-adjust")) : 0,
         mediaWidth: queryParameters.get("spec-media-width") !== null ? Number(queryParameters.get("spec-media-width")) : 320,
-        mediaZoom: queryParameters.get("spec-media-zoom") !== null ? Number(queryParameters.get("spec-media-zoom")) : 100
+        mediaZoom: queryParameters.get("spec-media-zoom") !== null ? Number(queryParameters.get("spec-media-zoom")) : 100,
+        invertSpec: queryParameters.get("invert-spec") !== null ? queryParameters.get("invert-spec") : true,
     });
 
     const onSpecOptionsChangeHandler = (newOptions, newQueryURL) => {

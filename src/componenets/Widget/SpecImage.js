@@ -6,7 +6,7 @@ export default function SpecImage(props) {
     if (options.specSrc !== "" && options.specIsLoaded) {
         return (
             <div
-                className="gwssc__image-container gwssc__image-container--invert"
+                className={`gwssc__image-container ${ options.invertSpec ? 'gwssc__image-container--invert' : '' }`}
                 style={{
                     transform: `scale(${options.mediaZoom / 100})`
                 }}>

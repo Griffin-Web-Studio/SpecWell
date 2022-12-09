@@ -10,21 +10,20 @@ export default function MediaOptions(props) {
     const onMediaWidthChangeHandler = (value) => {
         queryURL.searchParams.set("spec-media-width", value);
         setMediaWidth(value);
-        onChange({mediaWidth: value}, queryURL);
+        onChange({ mediaWidth: value }, queryURL);
     };
-
 
     const onMediaZoomChangeHandler = (value) => {
         queryURL.searchParams.set("spec-media-zoom", value);
-        onChange({mediaZoom: value}, queryURL);
+        onChange({ mediaZoom: value }, queryURL);
     };
 
     const OnSelectHandler = (e) => {
         const newValue = Number(e.target.value);
         queryURL.searchParams.set("spec-media-width", newValue);
         setMediaWidth(newValue);
-        onChange({mediaWidth: newValue}, queryURL);
-    }
+        onChange({ mediaWidth: newValue }, queryURL);
+    };
 
     return (
         <fieldset className="gwssc-group">
@@ -46,12 +45,7 @@ export default function MediaOptions(props) {
                                 </div>
 
                                 <div className="gwssc-grid-1">
-                                    <select
-                                        className="gwssc-input gwssc-input--radius-top gwssc-input--radius-bottom"
-                                        name="site-width-preset"
-                                        id="site-width-preset"
-                                        onChange={OnSelectHandler}
-                                        value={mediaWidth}>
+                                    <select className="gwssc-input gwssc-input--radius-top gwssc-input--radius-bottom" name="site-width-preset" id="site-width-preset" onChange={OnSelectHandler} value={mediaWidth}>
                                         {/* Mobile */}
                                         <option value="320">s-mobile (320px)</option>
                                         <option value="375">m-mobile (375px)</option>
@@ -76,11 +70,37 @@ export default function MediaOptions(props) {
                         <div className="gwssc-grid-2">
                             <div className="gwssc-grid col-2 gap-col-10">
                                 <div className="gwssc-grid-1">
-                                    <NumberInputIncDec value={mediaWidth} onChange={onMediaWidthChangeHandler} label="Media Width" id="spec-media-width" minValue="0" />
+                                    <NumberInputIncDec
+                                        value={mediaWidth}
+                                        onChange={onMediaWidthChangeHandler}
+                                        label="Media Width"
+                                        id="spec-media-width"
+                                        resetValue="320"
+                                        minValue="0"
+                                        increaseAmount="10"
+                                        decreaseAmount="10"
+                                        increaseInterval="20"
+                                        decreesInterval="20"
+                                        firstDecrementDelay="500"
+                                        firstIncrementDelay="500"
+                                    />
                                 </div>
 
                                 <div className="gwssc-grid-1">
-                                    <NumberInputIncDec value={specOptions.mediaZoom} onChange={onMediaZoomChangeHandler} label="Media Zoom" id="spec-media-zoom" minValue="0" />
+                                    <NumberInputIncDec
+                                        value={specOptions.mediaZoom}
+                                        onChange={onMediaZoomChangeHandler}
+                                        label="Media Zoom"
+                                        id="spec-media-zoom"
+                                        resetValue="100"
+                                        minValue="0"
+                                        increaseAmount="10"
+                                        decreaseAmount="10"
+                                        increaseInterval="20"
+                                        decreesInterval="20"
+                                        firstDecrementDelay="500"
+                                        firstIncrementDelay="500"
+                                    />
                                 </div>
                             </div>
                         </div>

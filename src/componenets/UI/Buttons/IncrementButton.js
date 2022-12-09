@@ -1,58 +1,58 @@
-// IncrementButton.js
 import React, { useState, useEffect } from "react";
 
 const IncrementButton = (props) => {
-    const { value, onChange, maxValue } = props;
-    const [isIncrementing, setIsIncrementing] = useState(false);
-    const [firstIncrementDone, setFirstIncrementDone] = useState(false);
-    const [madeFirstIncrement, setMadeFirstIncrement] = useState(false);
+    const { value, onChange, maxValue, increaseAmount, firstDelay, interval } = props;
+    const [ isIncrementing,     setIsIncrementing ]     = useState(false);
+    const [ firstIncrementDone, setFirstIncrementDone ] = useState(false);
+    const [ madeFirstIncrement, setMadeFirstIncrement ] = useState(false);
 
+    //reset values back to default once the user stops incrementing
     useEffect(() => {
         setFirstIncrementDone(false);
         setMadeFirstIncrement(false);
     }, [isIncrementing]);
 
     useEffect(() => {
-        let interval = null;
-        let timeout = null;
+        let intervalTrack = null;
+        let timeoutTrack = null;
+
         if (isIncrementing) {
             if (!firstIncrementDone) {
                 if (!madeFirstIncrement) {
                     setMadeFirstIncrement(true);
 
                     if (maxValue === "infinity") {
-                        onChange(value + Number(props.increaseAmount));
+                        onChange(value + 1);
                     } else {
                         if (value < maxValue) {
-                            onChange(value + Number(props.increaseAmount));
+                            onChange(value + 1);
                         }
                     }
-
                 } else {
-                    timeout = setTimeout(() => {
+                    timeoutTrack = setTimeout(() => {
                         setFirstIncrementDone(true);
-                    }, props.firstDelay);
+                    }, firstDelay);
                 }
             } else {
-                interval = setInterval(() => {
+                intervalTrack = setInterval(() => {
                     if (maxValue === "infinity") {
-                        onChange(value + Number(props.increaseAmount));
+                        onChange(value + Number(increaseAmount));
                     } else {
                         if (value < maxValue) {
-                            onChange(value + Number(props.increaseAmount));
+                            onChange(value + Number(increaseAmount));
                         }
                     }
-                }, props.interval);
+                }, interval);
             }
         } else if (!isIncrementing && value !== 0) {
-            clearInterval(interval);
-            clearTimeout(timeout);
+            clearInterval(intervalTrack);
+            clearTimeout(timeoutTrack);
         }
         return () => {
-            clearInterval(interval);
-            clearTimeout(timeout);
+            clearInterval(intervalTrack);
+            clearTimeout(timeoutTrack);
         };
-    }, [maxValue, isIncrementing, value, firstIncrementDone, madeFirstIncrement, onChange, props.increaseAmount, props.firstDelay, props.interval]);
+    }, [maxValue, isIncrementing, value, firstIncrementDone, madeFirstIncrement, onChange, increaseAmount, firstDelay, interval]);
 
     return (
         <button

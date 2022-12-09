@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 
 const DecrementButton = (props) => {
-    const { value, onChange, minValue } = props;
+    const { value, onChange, minValue, decreaseAmount, firstDelay, interval } = props;
     const [isDecrementing, setIsDecrementing] = useState(false);
     const [firstDecrementDone, setFirstDecrementDone] = useState(false);
     const [madeFirstDecrement, setMadeFirstDecrement] = useState(false);
@@ -13,47 +13,46 @@ const DecrementButton = (props) => {
     }, [isDecrementing]);
 
     useEffect(() => {
-        let interval = null;
-        let timeout = null;
-        
+        let intervalTract = null;
+        let timeoutTract = null;
+
         if (isDecrementing) {
             if (!firstDecrementDone) {
                 if (!madeFirstDecrement) {
                     setMadeFirstDecrement(true);
 
                     if (minValue === "infinity") {
-                        onChange(value - Number(props.decreaseAmount));
+                        onChange(value - 1);
                     } else {
                         if (value > minValue) {
-                            onChange(value - Number(props.decreaseAmount));
+                            onChange(value - 1);
                         }
                     }
-
                 } else {
-                    timeout = setTimeout(() => {
+                    timeoutTract = setTimeout(() => {
                         setFirstDecrementDone(true);
-                    }, props.firstDelay);
+                    }, firstDelay);
                 }
             } else {
-                interval = setInterval(() => {
+                intervalTract = setInterval(() => {
                     if (minValue === "infinity") {
-                        onChange(value - Number(props.decreaseAmount));
+                        onChange(value - Number(decreaseAmount));
                     } else {
                         if (value > minValue) {
-                            onChange(value - Number(props.decreaseAmount));
+                            onChange(value - Number(decreaseAmount));
                         }
                     }
-                }, props.interval);
+                }, interval);
             }
         } else if (!isDecrementing && value !== 0) {
-            clearInterval(interval);
-            clearTimeout(timeout);
+            clearInterval(intervalTract);
+            clearTimeout(timeoutTract);
         }
         return () => {
-            clearInterval(interval);
-            clearTimeout(timeout);
+            clearInterval(intervalTract);
+            clearTimeout(timeoutTract);
         };
-    }, [minValue, isDecrementing, value, firstDecrementDone, madeFirstDecrement, onChange, props.decreaseAmount, props.firstDelay, props.interval]);
+    }, [minValue, isDecrementing, value, firstDecrementDone, madeFirstDecrement, onChange, decreaseAmount, firstDelay, interval]);
 
     return (
         <button

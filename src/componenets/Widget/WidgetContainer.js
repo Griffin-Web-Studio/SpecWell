@@ -19,7 +19,7 @@ export default function WidgetContainer(props) {
             <div className="gwssc__container-outer">
                 <button type="button" className="gwssc__toggle" onClick={onContainerToggleHandler}>
                     <span className="gwssc__toggle-label">
-                        Spec-Check Options <span className={`gwssc__toggle-ico ${toggleState ? "" : "gwssc__toggle-ico--hide"}`}>⬆️</span>
+                        Spec-Checker Options <span className={`gwssc__toggle-ico ${toggleState ? "" : "gwssc__toggle-ico--hide"}`}>⬆️</span>
                     </span>
                 </button>
 
