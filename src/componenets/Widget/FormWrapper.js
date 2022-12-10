@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SpecCheckerCredits from "./InputGroups/Credits";
 import MediaOptions from "./InputGroups/MediaOptions";
 import SpecCheckerCommunication from "./InputGroups/SpecCheckerCommunication";
 import SpecOpacityChanger from "./InputGroups/SpecOpacityChanger";
@@ -62,6 +63,10 @@ export default function FormWrapper(props) {
 
                 <div className="gwssc-grid-1">
                     <SpecCheckerCommunication  specOptions={options} onChange={onSpecOptionsChangeHandler} />
+                </div>
+
+                <div className="gwssc-grid-1">
+                    <SpecCheckerCredits />
                 </div>
             </div>
         </form>

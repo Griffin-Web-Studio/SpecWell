@@ -3,7 +3,7 @@
 
 @mixin button-hover
     background-color: var(--brand-color-alt)
-    color: var(--pref-color-100)
+    color: var(--pref-color-0)
 
 
 @mixin button
@@ -23,14 +23,17 @@
     letter-spacing: px-em(0.7, 14)
     text-align: center
     text-decoration: none
-    font-weight: 500
+    font-weight: 700
 
     color: var(--button-text-color)
     background-color: var(--button-color)
     box-shadow: var(--nm-inset-out)
 
     transition: all 0.3s ease-in-out
+    @content
 
+    @include elementRadius(12, rem)
+    
     &:disabled
         background-color: var(--brand-color-alt)
         color: var(--color-1)
@@ -43,10 +46,7 @@
     &:hover
         @include button-hover
 
-    @include elementRadius(20, rem)
-
     &--short
-        @include elementRadius(10, em, 14)
         line-height: px-em(20, 14)
 
     &--large-font
@@ -66,6 +66,7 @@
     border: px-em(2, 16) solid var(--brand-color)
     background-color: transparent
     color: var(--brand-color)
+    @content
     
     &:hover
         @include button-alt-hover
@@ -90,6 +91,7 @@
     background-color: var(--brand-color-secondary)
     color: var(--color-1)
     border: none
+    @content
     
     &:hover
         @include button-secondary-hover
@@ -117,6 +119,7 @@
     line-height: px-em(30 - 4, 14)
     border: px-em(2, 16) solid var(--brand-color-secondary)
     color: var(--brand-color-secondary)
+    @content
 
     &:hover
         @include button-secondary-alt-hover

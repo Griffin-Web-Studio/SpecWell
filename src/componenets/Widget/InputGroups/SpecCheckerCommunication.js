@@ -6,8 +6,8 @@ export default function SpecCheckerCommunication(props) {
         <fieldset className="gwssc-group">
             <div className="gwssc-grid gap-col-4">
                 <div className="gwssc-grid-24">
-                    <legend className="gwssc-legend">
-                        <label style={{ textAlign: "center" }}>
+                    <legend className="gwssc-legend" style={{ textAlign: "center" }}>
+                        <label>
                             <span>Client &lt; </span>
                             <span className="communication-line-1">=</span>
                             <span className="communication-line-2">=</span>

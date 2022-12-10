@@ -4,6 +4,7 @@
     display: block
     max-width: 100%
     color: var(--text-color)
+    font-weight: 600
 
 @mixin input
     font-size: px-rem(14)
@@ -33,12 +34,12 @@
 
     @include elementRadius(10)
 
-label
+label.gwssc-label
     @include label
 
 .gwssc-input-wrap
     padding: px-rem(10)
-    border: solid px-rem(2) var(--pref-color-20)
+    // border: solid px-rem(2) var(--pref-color-20)
     overflow: hidden
     background-color: var(--main-bg-color)
 
@@ -101,13 +102,13 @@ fieldset.gwssc-group
         padding-top: px-rem(2)
         padding-inline: px-rem(10)
         font-weight: 700
-        border: solid px-em(2, 20) var(--pref-color-20)
-        border-bottom: none
+        // border: solid px-em(2, 20) var(--pref-color-20)
+        // border-bottom: none
         border-radius: px-em(20, 20) px-em(20, 20) 0 0
         line-height: px-em(30, 20)
 
         background-color: var(--pref-color-20)
-        box-shadow: var(--nm-inset-small)
+        box-shadow: var(--nm-inset-out-small)
 
 
 .gwssc-input-like

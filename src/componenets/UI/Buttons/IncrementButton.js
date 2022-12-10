@@ -59,7 +59,7 @@ const IncrementButton = (props) => {
     return (
         <button
             type="button"
-            className="gwssc-button gwssc-button__alt gwssc-button__alt--short gwssc-button__alt--short--radius-top-right"
+            className="gwssc-button gwssc-button__alt gwssc-button__alt--short gwssc-button__alt--radius-top-right"
             onMouseDown={() => setIsIncrementing(true)}
             onMouseUp={() => setIsIncrementing(false)}
             onMouseLeave={() => setIsIncrementing(false)}

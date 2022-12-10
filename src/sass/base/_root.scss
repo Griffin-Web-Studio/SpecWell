@@ -142,7 +142,7 @@
             #{px-rem(0)} #{px-rem(0)} #{px-rem(12)} #{px-rem(6)} var(--pref-color-nm-glow);
         --ds-nm-outset:
             drop-shadow(#{px-rem(6)} #{px-rem(6)} #{px-rem(12)} var(--pref-color-nm-shadow))
-            drop-shadow(#{px-rem(0)} #{px-rem(0)} #{px-rem(12)} var(--pref-color-nm-glow));
+            drop-shadow(#{px-rem(-6)} #{px-rem(-6)} #{px-rem(12)} var(--pref-color-nm-glow));
 
         // VS Full Pref Neumorphic outward shadow (Small)
         --nm-outset-small:
@@ -199,7 +199,7 @@
         // VC Main BG Color
         --main-bg-color:     var(--pref-color-6);
         // VC Main BG Color Alt
-        --main-bg-color-alt: var(--pref-color-8);
+        --main-bg-color-alt: var(--pref-color-10);
 
         // VTCs (Variable Text Colors)
         --text-color: var(--pref-color-RV);

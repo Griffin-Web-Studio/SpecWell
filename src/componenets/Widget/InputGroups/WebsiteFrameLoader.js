@@ -25,6 +25,19 @@ export default function WebsiteFrameLoader(props) {
         onChange({ frameSrc: "https://griffin-web.studio", frameIsLoaded: false }, queryURL);
     };
 
+    const onReloadHandler = (e) => {
+        e.preventDefault();
+
+        if (productionSite !== "") {
+            onChange({ frameSrc: "https://files.gwssecureserver.co.uk/files/gws/logo.svg", frameIsLoaded: true }, queryURL);
+
+            setTimeout(() => {
+                queryURL.searchParams.set("production-site", productionSite);
+                onChange({ frameSrc: productionSite, frameIsLoaded: true }, queryURL);
+            }, 1000);
+        }
+    };
+
     return (
         <fieldset className="gwssc-group">
             <div className="gwssc-grid gap-col-4">
@@ -34,14 +47,25 @@ export default function WebsiteFrameLoader(props) {
                     </legend>
                 </div>
 
-                <div className={`gwssc-grid-${specOptions.frameIsLoaded ? "6" : "12"}`}>
+                <div className={`gwssc-grid-${specOptions.frameIsLoaded ? "5" : "12"}`}>
                     <button className="gwssc-button gwssc-button--radius-top" onClick={onLoadHandler}>
                         Load
                     </button>
                 </div>
 
+
                 {specOptions.frameIsLoaded ? (
-                    <div className="gwssc-grid-6">
+                    <div className={`gwssc-grid-2`}>
+                        <button className="gwssc-button__alt gwssc-button__alt--radius-top" onClick={onReloadHandler}>
+                            <i class="icon-reset-bold"></i>
+                        </button>
+                    </div>
+                ) : (
+                    ""
+                )}
+
+                {specOptions.frameIsLoaded ? (
+                    <div className="gwssc-grid-5">
                         <button className="gwssc-button gwssc-button__secondary--radius-top gwssc-button__secondary" onClick={onUnloadHandler}>
                             Unload
                         </button>

@@ -25,6 +25,19 @@ export default function WebsiteSpecLoader(props) {
         onChange({ specSrc: "", specIsLoaded: false }, queryURL);
     };
 
+    const onReloadHandler = (e) => {
+        e.preventDefault();
+
+        if (specImg !== "") {
+            onChange({ specSrc: "https://files.gwssecureserver.co.uk/files/gws/logo.svg", specIsLoaded: true }, queryURL);
+
+            setTimeout(() => {
+                queryURL.searchParams.set("spec-img", specImg);
+                onChange({ specSrc: specImg, specIsLoaded: true }, queryURL);
+            }, 1000);
+        }
+    };
+
     return (
         <fieldset className="gwssc-group">
             <div className="gwssc-grid gap-col-4">
@@ -34,14 +47,24 @@ export default function WebsiteSpecLoader(props) {
                     </legend>
                 </div>
 
-                <div className={`gwssc-grid-${specOptions.specIsLoaded ? "6" : "12"}`}>
+                <div className={`gwssc-grid-${specOptions.specIsLoaded ? "5" : "12"}`}>
                     <button className="gwssc-button gwssc-button--radius-top" onClick={onLoadHandler}>
                         Load
                     </button>
                 </div>
 
                 {specOptions.specIsLoaded ? (
-                    <div className="gwssc-grid-6">
+                    <div className={`gwssc-grid-2`}>
+                        <button className="gwssc-button__secondary-alt gwssc-button__secondary-alt--radius-top" onClick={onReloadHandler}>
+                            <i class="icon-reset-bold"></i>
+                        </button>
+                    </div>
+                ) : (
+                    ""
+                )}
+
+                {specOptions.specIsLoaded ? (
+                    <div className="gwssc-grid-5">
                         <button className="gwssc-button gwssc-button__secondary--radius-top gwssc-button__secondary" onClick={onUnloadHandler}>
                             Unload
                         </button>
