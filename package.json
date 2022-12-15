@@ -2,6 +2,7 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/gws-spec-checker-tool/",
   "dependencies": {
     "@codemirror/lang-html": "^6.4.0",
     "@codemirror/lang-javascript": "^6.1.1",
