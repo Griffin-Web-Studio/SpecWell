@@ -3,6 +3,7 @@ import "./sass/style.sass";
 import WebsiteFrame from "./componenets/Widget/WebsiteFrame";
 import WidgetContainer from "./componenets/Widget/WidgetContainer";
 import SpecImage from "./componenets/Widget/SpecImage";
+import { InstallPWAPrompt } from "./componenets/InstallPWAPropt";
 
 function App() {
     const [options, stOptions] = useState({
@@ -35,6 +36,8 @@ function App() {
                 </div>
 
                 <WidgetContainer onOptionUpdate={onOptionUpdateHandler} />
+
+                <InstallPWAPrompt />
             </div>
         </div>
     );

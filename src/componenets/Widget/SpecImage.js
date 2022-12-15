@@ -17,7 +17,8 @@ export default function SpecImage(props) {
                     style={{
                         opacity: options.specOpacity,
                         transform: `translate(calc(-50% + ${options.specXAxis}px), ${options.specYAxis}px)`,
-                        width: `${options.mediaWidth}px`
+                        width: `${options.mediaWidth}px`,
+                        pointerEvents: options.mouseEventsOn === 'spec' ? 'all' : 'none'
                     }}
                 />
             </div>

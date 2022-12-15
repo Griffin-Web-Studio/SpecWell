@@ -9,19 +9,20 @@ import WebsiteSpecLoader from "./InputGroups/WebsiteSpecLoader";
 
 export default function FormWrapper(props) {
     const { onFormChange } = props
-    const queryParameters = new URLSearchParams(window.location.search)
+    const urlParams = new URLSearchParams(window.location.search)
     const [options, setOptions] = useState({
-        currentUrl: new URL(window.location.href),
-        frameIsLoaded: false,
-        specIsLoaded: false,
-        frameSrc: queryParameters.get("production-site") !== null ? queryParameters.get("production-site") : "",
-        specSrc: queryParameters.get("spec-img") !== null ? queryParameters.get("spec-img") : "",
-        specOpacity: queryParameters.get("spec-opacity") !== null ? Number(queryParameters.get("spec-opacity")) : 0.3,
-        specYAxis: queryParameters.get("spec-y-adjust") !== null ? Number(queryParameters.get("spec-y-adjust")) : 0,
-        specXAxis: queryParameters.get("spec-x-adjust") !== null ? Number(queryParameters.get("spec-x-adjust")) : 0,
-        mediaWidth: queryParameters.get("spec-media-width") !== null ? Number(queryParameters.get("spec-media-width")) : 320,
-        mediaZoom: queryParameters.get("spec-media-zoom") !== null ? Number(queryParameters.get("spec-media-zoom")) : 100,
-        invertSpec: queryParameters.get("invert-spec") !== null ? queryParameters.get("invert-spec") : true,
+        currentUrl:      new URL(window.location.href),
+        frameSrc:        urlParams.get("production-site") !== null  ? urlParams.get("production-site")          : "",
+        frameIsLoaded:   false,
+        specSrc:         urlParams.get("spec-img") !== null         ? urlParams.get("spec-img")                 : "",
+        specIsLoaded:    false,
+        mouseEventsOn:   urlParams.get("mouse-events-on") !== null  ? urlParams.get("mouse-events-on")          : 'frame',
+        invertSpec:      urlParams.get("invert-spec") !== null      ? urlParams.get("invert-spec")              : true,
+        specOpacity:     urlParams.get("spec-opacity") !== null     ? Number(urlParams.get("spec-opacity"))     : 0.3,
+        specYAxis:       urlParams.get("spec-y-adjust") !== null    ? Number(urlParams.get("spec-y-adjust"))    : 0,
+        specXAxis:       urlParams.get("spec-x-adjust") !== null    ? Number(urlParams.get("spec-x-adjust"))    : 0,
+        mediaWidth:      urlParams.get("spec-media-width") !== null ? Number(urlParams.get("spec-media-width")) : 320,
+        mediaZoom:       urlParams.get("spec-media-zoom") !== null  ? Number(urlParams.get("spec-media-zoom"))  : 100,
     });
 
     const onSpecOptionsChangeHandler = (newOptions, newQueryURL) => {

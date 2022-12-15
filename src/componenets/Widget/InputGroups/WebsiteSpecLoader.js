@@ -10,6 +10,14 @@ export default function WebsiteSpecLoader(props) {
         setSpecImg(e.target.value);
     };
 
+    const onSpecPrimaryFocusHandler = (e) => {
+        e.preventDefault();
+        const newMouseEventsOn = specOptions.mouseEventsOn === 'frame' ? 'spec' : 'frame';
+
+        queryURL.searchParams.set("mouse-events-on", newMouseEventsOn);
+        onChange({ mouseEventsOn: newMouseEventsOn, frameIsLoaded: true }, queryURL);
+    };
+
     const onLoadHandler = (e) => {
         e.preventDefault();
 
@@ -56,7 +64,7 @@ export default function WebsiteSpecLoader(props) {
                 {specOptions.specIsLoaded ? (
                     <div className={`gwssc-grid-2`}>
                         <button className="gwssc-button__secondary-alt gwssc-button__secondary-alt--radius-top" onClick={onReloadHandler}>
-                            <i class="icon-reset-bold"></i>
+                            <i className="icon-reset-bold"></i>
                         </button>
                     </div>
                 ) : (
@@ -75,7 +83,25 @@ export default function WebsiteSpecLoader(props) {
 
                 <div className="gwssc-grid-24">
                     <div className="gwssc-input-wrap gwssc-input-wrap--radius-bottom">
-                        <input type="url" id="spec-img" name="spec-img" className="gwssc-input gwssc-input--radius-bottom" placeholder="https://path.to.spec/image.png" value={specImg} onChange={onSpecChangeHandler} />
+                        <div className="gwssc-grid gap-col-8">
+                            <div className={`gwssc-grid-${specOptions.specIsLoaded ? '21' : '24'}`}>
+                                <input type="url" id="spec-img" name="spec-img" className={`gwssc-input gwssc-input--radius-${specOptions.specIsLoaded ? 'left' : 'bottom'}`} placeholder="https://path.to.spec/image.png" value={specImg} onChange={onSpecChangeHandler} />
+                            </div>
+
+                            {specOptions.specIsLoaded && (
+                                <div className="gwssc-grid-3">
+                                    <button
+                                        className={
+                                            `gwssc-button${specOptions.mouseEventsOn === 'spec' ? "" : "__alt"} ` +
+                                            `gwssc-button${specOptions.mouseEventsOn === 'spec' ? "" : "__alt"}--radius-right ` +
+                                            `gwssc-button${specOptions.mouseEventsOn === 'spec' ? "" : "__alt"}--large-font`
+                                        }
+                                        onClick={onSpecPrimaryFocusHandler}>
+                                        <i className={`icon-focus-${specOptions.mouseEventsOn === 'spec' ? 'top' : 'bottom'}`}></i>
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

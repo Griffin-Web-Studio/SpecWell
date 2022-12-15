@@ -141,6 +141,49 @@ img
 .emoji
     font-weight: 100
 
+.gwssc-install-pwa-prompt
+    position: fixed
+    top: 0
+    right: 0
+    z-index: 9999999999
+
+    width: 100%
+    height: 100%
+
+    background-color: var(--pref-color-dark-t-50)
+
+    &__container-outer
+        position: absolute
+        top: 50%
+        left: 50%
+        z-index: 999999
+        transform: translate(-50%, -50%)
+
+    &__container-inner
+        padding
+        padding-top: px-rem(55)
+        padding-bottom: px-rem(10)
+        padding-inline: px-rem(20)
+        border-radius: px-rem(10)
+
+        color: var(--pref-color-100)
+        background-color: var(--main-bg-color)
+
+    &__logo-container
+        display: block
+        width: px-rem(110)
+        padding: px-rem(10)
+        border-radius: 100%
+        margin-inline: auto
+        margin-bottom: px-rem(-55)
+
+        background-color: var(--main-bg-color)
+
+    &__logo
+        display: block
+        border-radius: 100%
+        overflow: hidden
+
 .gwssc
 
     &__container

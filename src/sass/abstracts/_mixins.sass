@@ -121,6 +121,9 @@
         @warn '#{ $em } is not a number.'
 
     @if $type == rem
+        &--radius
+            border-radius: px-rem($size)
+
         &--radius-bottom
             border-bottom-right-radius: px-rem($size)
             border-bottom-left-radius: px-rem($size)
@@ -150,6 +153,9 @@
             border-bottom-left-radius: px-rem($size)
 
     @else if $type == em
+        &--radius
+            border-radius: px-em($size, $em)
+            
         &--radius-bottom
             border-bottom-right-radius: px-em($size, $em)
             border-bottom-left-radius: px-em($size, $em)

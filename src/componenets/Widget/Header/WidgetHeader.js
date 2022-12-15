@@ -1,4 +1,5 @@
 import React from "react";
+import { ReactComponent as GWSLogo } from "../../../images/gws-logo.svg";
 import { ReactComponent as Logo } from "../../../images/logo.svg";
 
 export default function WidgetHeader(props) {
@@ -7,7 +8,14 @@ export default function WidgetHeader(props) {
             <div className="gwssc-grid">
                 <div className="gwssc__logo-container">
                     <a href="https://griffin-web.studio" target="_blank" rel="noreferrer" title="Griffin Web Studio Garage">
-                        <Logo />
+                        <div className="gwssc-grid col-4 gap-col-10 align-center">
+                            <div className="gwssc-grid-1">
+                                <Logo />
+                            </div>
+                            <div className="gwssc-grid-3">
+                                <GWSLogo />
+                            </div>
+                        </div>
                     </a>
                 </div>
             </div>

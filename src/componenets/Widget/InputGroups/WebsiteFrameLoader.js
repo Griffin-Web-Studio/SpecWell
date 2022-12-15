@@ -6,6 +6,14 @@ export default function WebsiteFrameLoader(props) {
 
     let queryURL = new URL(specOptions.currentUrl);
 
+    const onSpecPrimaryFocusHandler = (e) => {
+        e.preventDefault();
+        const newMouseEventsOn = specOptions.mouseEventsOn === 'frame' ? 'spec' : 'frame';
+
+        queryURL.searchParams.set("mouse-events-on", newMouseEventsOn);
+        onChange({ mouseEventsOn: newMouseEventsOn, frameIsLoaded: true }, queryURL);
+    };
+
     const onFrameChangeHandler = (e) => {
         setProductionSite(e.target.value);
     };
@@ -56,8 +64,8 @@ export default function WebsiteFrameLoader(props) {
 
                 {specOptions.frameIsLoaded ? (
                     <div className={`gwssc-grid-2`}>
-                        <button className="gwssc-button__alt gwssc-button__alt--radius-top" onClick={onReloadHandler}>
-                            <i class="icon-reset-bold"></i>
+                        <button className="gwssc-button__secondary-alt gwssc-button__secondary-alt--radius-top" onClick={onReloadHandler}>
+                            <i className="icon-reset-bold"></i>
                         </button>
                     </div>
                 ) : (
@@ -76,7 +84,25 @@ export default function WebsiteFrameLoader(props) {
 
                 <div className="gwssc-grid-24">
                     <div className="gwssc-input-wrap gwssc-input-wrap--radius-bottom">
-                        <input type="url" id="production-site" name="production-site" className="gwssc-input gwssc-input--radius-bottom" placeholder="https://path.to-dev-website.tld" value={productionSite} onChange={onFrameChangeHandler} />
+                        <div className="gwssc-grid gap-col-8">
+                            <div className={`gwssc-grid-${specOptions.frameIsLoaded ? '21' : '24'}`}>
+                                <input type="url" id="production-site" name="production-site" className={`gwssc-input gwssc-input--radius-${specOptions.frameIsLoaded ? 'left' : 'bottom'}`} placeholder="https://path.to-dev-website.tld" value={productionSite} onChange={onFrameChangeHandler} />
+                            </div>
+
+                            {specOptions.frameIsLoaded && (
+                                <div className="gwssc-grid-3">
+                                    <button
+                                        className={
+                                            `gwssc-button${specOptions.mouseEventsOn === 'frame' ? "" : "__alt"} ` +
+                                            `gwssc-button${specOptions.mouseEventsOn === 'frame' ? "" : "__alt"}--radius-right ` +
+                                            `gwssc-button${specOptions.mouseEventsOn === 'frame' ? "" : "__alt"}--large-font`
+                                        }
+                                        onClick={onSpecPrimaryFocusHandler}>
+                                        <i className={`icon-focus-${specOptions.mouseEventsOn === 'frame' ? 'top' : 'bottom'}`}></i>
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

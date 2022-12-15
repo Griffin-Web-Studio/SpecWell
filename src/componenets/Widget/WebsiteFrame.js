@@ -47,7 +47,8 @@ export default function WebsiteFrame(props) {
                 style={{
                     transform: `translateX(-50%)`,
                     height: `${iframeHeight}`,
-                    width: `${options.mediaWidth}px`
+                    width: `${options.mediaWidth}px`,
+                    pointerEvents: options.mouseEventsOn === "frame" ? "all" : "none"
                 }}
             />
         </div>

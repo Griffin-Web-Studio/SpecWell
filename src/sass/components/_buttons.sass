@@ -3,7 +3,7 @@
 
 @mixin button-hover
     background-color: var(--brand-color-alt)
-    color: var(--pref-color-0)
+    color: var(--pref-color-light-0)
 
 
 @mixin button
@@ -51,7 +51,10 @@
 
     &--large-font
         font-size: px-rem(25)
-        line-height: px-em(10, 25)
+        line-height: px-em(40, 25)
+
+    &--width-auto
+        width: auto
 
 @mixin button-alt-hover
     @include button-hover
