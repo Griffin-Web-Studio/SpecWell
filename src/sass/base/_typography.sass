@@ -130,82 +130,10 @@ h6,
 a
     color: var(--link-color)
     transition: color 200ms ease
-    text-decoration: none
+    text-decoration: underline
 
     &:hover
-        color: var(--brand-color)
-
-    [class*=content] &,
-    .header__main-nav &
-        &:not(.no-style):not(.button):not(.accordion-button):not(.custom-logo-link):not(.icon-social)
-            position: relative
-
-            @keyframes in
-                0%
-                    left: 0
-                    right: 100%
-
-                100%
-                    left: 0
-                    right: 0
-
-            @keyframes out
-                0%
-                    left: 0
-                    right: 0
-
-                100%
-                    left: 100%
-                    right: 0
-
-            &::before,
-            &::after
-                content: ""
-                position: absolute
-                top: 100%
-                left: 0
-                height: px-rem(2)
-
-            &::before
-                opacity: 0.3
-                width: 100%
-                background-color: var(--brand-color-secondary)
-
-            &::after
-                animation-name: out
-                animation-duration: 0.4s
-                background-color: var(--color-7)
-                transition: all 0.5s ease-in-out
-
-            &:hover
-                &::after
-                    animation-name: in
-                    animation-duration: 0.4s
-                    -webkit-animation-fill-mode: forwards
-
-                i
-                    color: var(--color-7)
-                    opacity: 1
-
-            i
-                opacity: 0.5
-
-a
-    [class*=content] &
-        &[class*=button]
-            &.wp-block-button__link
-                color: var(--pref-color-light-0)
-
-                &:before,
-                &:after
-                    display: none
-
-.wp-block-gallery
-    .wp-block-image
-        a
-            &:before,
-            &:after
-                display: none
+        color: var(--brand-color-alt)
 
 p:empty
     margin-bottom: 0
@@ -245,10 +173,10 @@ ul:not(.no-style)
     padding-left: px-rem(20)
 
     li
-        margin-bottom: px-em(10, 20)
+        margin-bottom: px-em(2, 20)
 
         &:last-child
-            margin-bottom: px-em(40, 20)
+            margin-bottom: px-em(10, 20)
         
         &::marker
             display: none

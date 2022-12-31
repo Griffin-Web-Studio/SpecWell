@@ -36,7 +36,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "icons": "fantasticon"
+    "icons": "fantasticon",
+    "sass-test": "sass src/sass/:src/css/ --watch"
   },
   "eslintConfig": {
     "extends": [
