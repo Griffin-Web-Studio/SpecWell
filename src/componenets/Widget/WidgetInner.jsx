@@ -6,7 +6,7 @@ import WebsiteFrame from "./WebsiteFrame";
 import WidgetContainer from "./WidgetContainer";
 
 export const WidgetInner = props => {
-    const { options, setOptions } = useContext(SpecContext);
+    const { options } = useContext(SpecContext);
 
     return (
         <div className="gwssc-app__inner">
