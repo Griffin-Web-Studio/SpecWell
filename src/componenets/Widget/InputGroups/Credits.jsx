@@ -1,6 +1,6 @@
 import CreditAuthor from "../../UI/CreditAuthor";
 
-export default function SpecCheckerCredits(props) {
+export const SpecCheckerCredits = () => {
     return (
         <fieldset className="gwssc-group">
             <div className="gwssc-grid gap-col-4">

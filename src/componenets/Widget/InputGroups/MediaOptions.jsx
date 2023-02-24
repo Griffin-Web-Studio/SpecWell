@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NumberInputIncDec from "../../UI/InputGroups/NumberIncDec";
 
-export default function MediaOptions(props) {
+export const MediaOptions = props => {
     const { specOptions, onChange } = props;
     const [mediaWidth, setMediaWidth] = useState(specOptions.mediaWidth);
 

@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import WidgetHeader from "./Header/WidgetHeader";
-import FormWrapper from "./FormWrapper";
+import {WidgetHeader} from "./Header/WidgetHeader";
+import {FormWrapper} from "./FormWrapper";
 
 export default function WidgetContainer(props) {
-    const { onOptionUpdate, specOptions } = props;
     const [toggleState, setToggleState] = useState(true);
 
     const onContainerToggleHandler = () => {
         setToggleState(!toggleState);
-    };
-
-    const onFormChangeHandler = (newOptions) => {
-        onOptionUpdate(newOptions);
     };
 
     return (
@@ -25,9 +20,9 @@ export default function WidgetContainer(props) {
 
                 <div className="gwssc__container-inner">
                     <div className="gwssc-grid col-1 gap-row-40">
-                        <WidgetHeader />
+                        <WidgetHeader/>
 
-                        <FormWrapper onFormChange={onFormChangeHandler} specOptions={specOptions} />
+                        <FormWrapper/>
                     </div>
                 </div>
             </div>

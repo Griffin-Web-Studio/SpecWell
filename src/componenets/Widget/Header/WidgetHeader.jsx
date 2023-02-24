@@ -2,7 +2,7 @@ import React from "react";
 import { ReactComponent as GWSLogo } from "../../../images/gws-logo.svg";
 import { ReactComponent as Logo } from "../../../images/logo.svg";
 
-export default function WidgetHeader(props) {
+export const WidgetHeader = () => {
     return (
         <div>
             <div className="gwssc-grid">

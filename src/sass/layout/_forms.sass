@@ -29,6 +29,10 @@
     color: var(--text-color)
     opacity: 1
 
+    &:focus
+        outline: solid var(--brand-color-secondary-alt) px-em(2, 16)
+        outline-offset: px-em(2, 16)
+
     &.full-height
         height: 100%
 
@@ -67,7 +71,6 @@ textarea,
 
         &:focus
             border-color: #999999
-            outline: none
 
             @if $nm-design == true
                 box-shadow: var(--nm-outset-small)

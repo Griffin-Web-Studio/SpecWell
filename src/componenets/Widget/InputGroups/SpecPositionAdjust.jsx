@@ -1,6 +1,6 @@
 import NumberInputIncDec from "../../UI/InputGroups/NumberIncDec";
 
-export default function SpecPositionAdjust(props) {
+export const SpecPositionAdjust = props => {
     const { specOptions, onChange } = props;
 
     let queryURL = new URL(specOptions.currentUrl);

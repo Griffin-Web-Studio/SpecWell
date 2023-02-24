@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function SpecOpacityChanger(props) {
+export const SpecOpacityChanger = props => {
     const { onChange, specOptions } = props;
     const [value, setValue] = useState(specOptions.specOpacity);
     let queryURL = new URL(specOptions.currentUrl);

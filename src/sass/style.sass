@@ -158,7 +158,7 @@ img
         left: 50%
         z-index: 999999
         transform: translate(-50%, -50%)
-
+        
     &__container-inner
         padding-top: px-rem(55)
         padding-bottom: px-rem(10)
@@ -185,35 +185,48 @@ img
 
 .gwssc
 
+    &__container-inner
+        padding: px-rem(20) px-rem(40)
+        max-height: 100vh
+        height: 100%
+        overflow: scroll
+
+    &__container-outer
+        border: solid px-em(4, 20) var(--pref-color-100)
+        overflow: hidden
+        border-radius: px-rem(10)
+        height: 100%
+        background-color: var(--main-bg-color-alt)
+        box-shadow: 0 0 px-rem(40) rgba(0, 0, 0, 0.5)
+
     &__container
         position: fixed
-        top: 0
-        right: 0
-        bottom: 0
+        top: px-rem(10)
+        right: px-rem(10)
+        bottom: px-rem(10)
         z-index: 9999999999
 
         width: 100%
         max-width: px-rem(780)
-        border-left: solid px-em(2, 20) black
 
-        background-color: var(--main-bg-color-alt)
         font-family: "Courier New", Courier, monospace
-        box-shadow: 0 0 1.25em rgba(0, 0, 0, 0.2)
         transition: all 0.6s ease-in-out
 
         &.hide
-            transform: translateX(100%)
+            transform: translateX(calc(100% + px-rem(11)))
 
     &__toggle
         font-size: px-rem(16)
         position: absolute
         top: 10%
-        right: 100% /*20px*/
+        right: 100%
+        z-index: -1
         padding: px-em(15, 16) px-em(5, 16)
-        background-color: black
-        color: white
-        border-radius: 0.5em 0 0 0.5em
-        box-shadow: 0 10px 1.25em rgba(0, 0, 0, 0.2)
+        background-color: var(--pref-color-100)
+        border: solid px-em(2, 16) var(--pref-color-100)
+        border-radius: px-rem(10) 0 0 px-rem(10)
+        color:  var(--pref-color-0)
+        box-shadow: 0 0 px-rem(20) var(--pref-color-20)
         text-decoration: none
         cursor: pointer
 
@@ -226,11 +239,6 @@ img
 
     &__toggle-label
         writing-mode: tb !important
-
-    &__container-inner
-        padding: px-rem(20) px-rem(40)
-        max-height: 100vh
-        overflow: scroll
 
     &__logo-container
         grid-column-start: 7

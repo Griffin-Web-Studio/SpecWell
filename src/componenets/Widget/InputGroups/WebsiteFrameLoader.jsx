@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function WebsiteFrameLoader(props) {
+export const WebsiteFrameLoader = (props) => {
     const { specOptions, onChange } = props;
     const [productionSite, setProductionSite] = useState(specOptions.frameSrc);
 
@@ -8,7 +8,7 @@ export default function WebsiteFrameLoader(props) {
 
     const onSpecPrimaryFocusHandler = (e) => {
         e.preventDefault();
-        const newMouseEventsOn = specOptions.mouseEventsOn === 'frame' ? 'spec' : 'frame';
+        const newMouseEventsOn = specOptions.mouseEventsOn === "frame" ? "spec" : "frame";
 
         queryURL.searchParams.set("mouse-events-on", newMouseEventsOn);
         onChange({ mouseEventsOn: newMouseEventsOn, frameIsLoaded: true }, queryURL);
@@ -61,7 +61,6 @@ export default function WebsiteFrameLoader(props) {
                     </button>
                 </div>
 
-
                 {specOptions.frameIsLoaded ? (
                     <div className={`gwssc-grid-2`}>
                         <button className="gwssc-button__secondary-alt gwssc-button__secondary-alt--radius-top" onClick={onReloadHandler}>
@@ -85,20 +84,22 @@ export default function WebsiteFrameLoader(props) {
                 <div className="gwssc-grid-24">
                     <div className="gwssc-input-wrap gwssc-input-wrap--radius-bottom">
                         <div className="gwssc-grid gap-col-8">
-                            <div className={`gwssc-grid-${specOptions.frameIsLoaded ? '21' : '24'}`}>
-                                <input type="url" id="production-site" name="production-site" className={`gwssc-input gwssc-input--radius-${specOptions.frameIsLoaded ? 'left' : 'bottom'}`} placeholder="https://path.to-dev-website.tld" value={productionSite} onChange={onFrameChangeHandler} />
+                            <div className={`gwssc-grid-${specOptions.frameIsLoaded ? (specOptions.specIsFigma ? "21" : "24") : specOptions.specIsFigma ? "21" : "24"}`}>
+                                <input
+                                    type="url"
+                                    id="production-site"
+                                    name="production-site"
+                                    className={`gwssc-input gwssc-input--radius-${specOptions.frameIsLoaded ? (specOptions.specIsFigma ? "left" : "bottom") : specOptions.specIsFigma ? "left" : "bottom"}`}
+                                    placeholder="https://path.to-dev-website.tld"
+                                    value={productionSite}
+                                    onChange={onFrameChangeHandler}
+                                />
                             </div>
 
-                            {specOptions.frameIsLoaded && (
+                            {specOptions.frameIsLoaded && specOptions.specIsFigma && (
                                 <div className="gwssc-grid-3">
-                                    <button
-                                        className={
-                                            `gwssc-button${specOptions.mouseEventsOn === 'frame' ? "" : "__alt"} ` +
-                                            `gwssc-button${specOptions.mouseEventsOn === 'frame' ? "" : "__alt"}--radius-right ` +
-                                            `gwssc-button${specOptions.mouseEventsOn === 'frame' ? "" : "__alt"}--large-font`
-                                        }
-                                        onClick={onSpecPrimaryFocusHandler}>
-                                        <i className={`icon-focus-${specOptions.mouseEventsOn === 'frame' ? 'top' : 'bottom'}`}></i>
+                                    <button className="gwssc-button gwssc-button--radius-right gwssc-button--large-font" onClick={onSpecPrimaryFocusHandler}>
+                                        <i className={`icon-focus-${specOptions.mouseEventsOn === "frame" ? "top" : "bottom"}`}></i>
                                     </button>
                                 </div>
                             )}
@@ -108,4 +109,4 @@ export default function WebsiteFrameLoader(props) {
             </div>
         </fieldset>
     );
-}
+};

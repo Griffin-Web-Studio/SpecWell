@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { SpecContext } from "../../../app/context/SpecOptions";
 import CodemirrorInput from "../../UI/CodemirrorInput";
 
-export default function SpecCheckerCommunication(props) {
+export const SpecCheckerCommunication = () => {
+    const { options } = useContext(SpecContext);
+
     return (
         <fieldset className="gwssc-group">
             <div className="gwssc-grid gap-col-4">
@@ -14,7 +17,7 @@ export default function SpecCheckerCommunication(props) {
                             <span className="communication-line-3">=</span>
                             <span className="communication-line-4">=</span>
                             <span className="communication-line-5">=</span>
-                            <span> &gt; Host (Communication)</span>
+                            <span> &gt; Host {options.establishedCommunication ? "✅ (success)" : "❌ (failed)"}</span>
                         </label>
                     </legend>
                 </div>
@@ -28,7 +31,11 @@ export default function SpecCheckerCommunication(props) {
                                 value={
                                     `<script>\n` +
                                     `  window.addEventListener('message', event => {\n` +
-                                    `    if (event.origin.startsWith('http://192.168') || event.origin.startsWith('http://localhost') || event.origin.startsWith('https://external-projects.griffin-studio.co.uk')) {\n` +
+                                    `    if (event.origin.startsWith('http://192.168')\n` +
+                                    `      || event.origin.startsWith('http://localhost')\n` +
+                                    `      || event.origin.startsWith('http://127.0.0.1')\n` +
+                                    `      || event.origin.startsWith('https://external-projects.griffin-studio.co.uk')\n` +
+                                    `    {\n` +
                                     `      try {\n` +
                                     `        const hostMessage = JSON.parse(event.data);\n` +
                                     `\n` +
@@ -47,7 +54,9 @@ export default function SpecCheckerCommunication(props) {
                                     `\n` +
                                     `          window.parent.postMessage(myResponse, event.origin);\n` +
                                     `        }\n` +
-                                    `      } finally { }\n` +
+                                    `      } catch (err) {\n` +
+                                    `        console.error("Error in Spec-Checker Communicator, the data received is not a valid JSON: ", err)\n` +
+                                    `      }\n` +
                                     `    }\n` +
                                     `  });\n` +
                                     `</script>`

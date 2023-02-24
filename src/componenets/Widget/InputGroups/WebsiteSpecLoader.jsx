@@ -1,18 +1,33 @@
 import React, { useState } from "react";
+import { ReactComponent as FigmaLogo} from "../../../images/figma-logo.svg";
 
-export default function WebsiteSpecLoader(props) {
+export const WebsiteSpecLoader = (props) => {
     const { specOptions, onChange } = props;
     const [specImg, setSpecImg] = useState(specOptions.specSrc);
 
     let queryURL = new URL(specOptions.currentUrl);
 
     const onSpecChangeHandler = (e) => {
-        setSpecImg(e.target.value);
+        const specImg = e.target.value;
+        setSpecImg(specImg);
+
+        if (specImg !== "") {
+            const decodedUrl = decodeURIComponent(specImg);
+
+            const regex = /https:\/\/([\w.-]+.)?figma.com\/(file|proto)\/([0-9a-zA-Z]{22,128})(?:\/.*)?/;
+            const isFigmaUrl = regex.test(decodedUrl);
+
+            const newOptions = {
+                specIsFigma: isFigmaUrl,
+                specIsLoaded: false
+            };
+            onChange(newOptions, queryURL);
+        }
     };
 
     const onSpecPrimaryFocusHandler = (e) => {
         e.preventDefault();
-        const newMouseEventsOn = specOptions.mouseEventsOn === 'frame' ? 'spec' : 'frame';
+        const newMouseEventsOn = specOptions.mouseEventsOn === "frame" ? "spec" : "frame";
 
         queryURL.searchParams.set("mouse-events-on", newMouseEventsOn);
         onChange({ mouseEventsOn: newMouseEventsOn, frameIsLoaded: true }, queryURL);
@@ -22,8 +37,17 @@ export default function WebsiteSpecLoader(props) {
         e.preventDefault();
 
         if (specImg !== "") {
+            const decodedUrl = decodeURIComponent(specImg);
+
+            const regex = /https:\/\/([\w.-]+.)?figma.com\/(file|proto)\/([0-9a-zA-Z]{22,128})(?:\/.*)?/;
+            const isFigmaUrl = regex.test(decodedUrl);
             queryURL.searchParams.set("spec-img", specImg);
-            onChange({ specSrc: specImg, specIsLoaded: true }, queryURL);
+            const newOptions = {
+                specSrc: specImg,
+                specIsLoaded: true,
+                specIsFigma: isFigmaUrl
+            };
+            onChange(newOptions, queryURL);
         }
     };
 
@@ -40,8 +64,18 @@ export default function WebsiteSpecLoader(props) {
             onChange({ specSrc: "https://files.gwssecureserver.co.uk/files/gws/logo.svg", specIsLoaded: true }, queryURL);
 
             setTimeout(() => {
+                const decodedUrl = decodeURIComponent(specImg);
+    
+                const regex = /https:\/\/([\w.-]+.)?figma.com\/(file|proto)\/([0-9a-zA-Z]{22,128})(?:\/.*)?/;
+                const isFigmaUrl = regex.test(decodedUrl);
                 queryURL.searchParams.set("spec-img", specImg);
-                onChange({ specSrc: specImg, specIsLoaded: true }, queryURL);
+    
+                const newOptions = {
+                    specSrc: specImg,
+                    specIsLoaded: true,
+                    specIsFigma: isFigmaUrl
+                };
+                onChange(newOptions, queryURL);
             }, 1000);
         }
     };
@@ -84,20 +118,28 @@ export default function WebsiteSpecLoader(props) {
                 <div className="gwssc-grid-24">
                     <div className="gwssc-input-wrap gwssc-input-wrap--radius-bottom">
                         <div className="gwssc-grid gap-col-8">
-                            <div className={`gwssc-grid-${specOptions.specIsLoaded ? '21' : '24'}`}>
-                                <input type="url" id="spec-img" name="spec-img" className={`gwssc-input gwssc-input--radius-${specOptions.specIsLoaded ? 'left' : 'bottom'}`} placeholder="https://path.to.spec/image.png" value={specImg} onChange={onSpecChangeHandler} />
+                            {specOptions.specIsFigma && (
+                                <div className="gwssc-grid-2 gwssc-flex justify-center">
+                                    <FigmaLogo />
+                                </div>
+                            )}
+
+                            <div className={`gwssc-grid-${specOptions.specIsLoaded ? (specOptions.specIsFigma ? "19" : "24") : (specOptions.specIsFigma ? "19" : "24")}`}>
+                                <input
+                                    type="url"
+                                    id="spec-img"
+                                    name="spec-img"
+                                    className={`gwssc-input gwssc-input--radius-${specOptions.specIsLoaded ? (specOptions.specIsFigma ? "left" : "bottom") : specOptions.specIsFigma ? "left" : "bottom"}`}
+                                    placeholder="https://path.to.spec/image.png"
+                                    value={specImg}
+                                    onChange={onSpecChangeHandler}
+                                />
                             </div>
 
-                            {specOptions.specIsLoaded && (
+                            {((specOptions.specIsLoaded && specOptions.specIsFigma) || specOptions.specIsFigma) && (
                                 <div className="gwssc-grid-3">
-                                    <button
-                                        className={
-                                            `gwssc-button${specOptions.mouseEventsOn === 'spec' ? "" : "__alt"} ` +
-                                            `gwssc-button${specOptions.mouseEventsOn === 'spec' ? "" : "__alt"}--radius-right ` +
-                                            `gwssc-button${specOptions.mouseEventsOn === 'spec' ? "" : "__alt"}--large-font`
-                                        }
-                                        onClick={onSpecPrimaryFocusHandler}>
-                                        <i className={`icon-focus-${specOptions.mouseEventsOn === 'spec' ? 'top' : 'bottom'}`}></i>
+                                    <button className="gwssc-button gwssc-button--radius-right gwssc-button--large-font" onClick={onSpecPrimaryFocusHandler}>
+                                        <i className={`icon-focus-${specOptions.mouseEventsOn === "spec" ? "top" : "bottom"}`}></i>
                                     </button>
                                 </div>
                             )}
@@ -107,4 +149,4 @@ export default function WebsiteSpecLoader(props) {
             </div>
         </fieldset>
     );
-}
+};
