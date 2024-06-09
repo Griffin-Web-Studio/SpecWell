@@ -1,11 +1,7 @@
 <h1 align="center">Welcome to GWS Spec-Checker Tool 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.3.0-blue.svg?cacheSeconds=2592000" />
-  <a href="https://gitlab.griffin-studio.dev/gws-internal/spec-check/-/wikis/home" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
   <a href="https://gitlab.griffin-studio.dev/gws-internal/spec-check/-/blob/main/LICENSE" target="_blank">
-    <img alt="License: Modified GNU General Public License (GPL) version 3" src="https://img.shields.io/badge/License-Modified GNU General Public License (GPL) version 3-yellow.svg" />
+    <img alt="License: Modified GNU General Public License (GPL) version 3" src="https://img.shields.io/badge/License-Modified GNU General Public License (GPL) version 3-green.svg" />
   </a>
 </p>
 
