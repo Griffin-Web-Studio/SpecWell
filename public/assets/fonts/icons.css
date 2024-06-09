@@ -1,0 +1,36 @@
+@font-face {
+    font-family: "icons";
+    src: url("./icons.eot?16dea043c45b0fe116f8034345feebe6#iefix") format("embedded-opentype"),
+url("./icons.woff2?16dea043c45b0fe116f8034345feebe6") format("woff2"),
+url("./icons.woff?16dea043c45b0fe116f8034345feebe6") format("woff");
+}
+
+i[class^="icon-"]:before, i[class*=" icon-"]:before {
+    font-family: icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-reset:before {
+    content: "\f101";
+}
+.icon-reset-bold:before {
+    content: "\f102";
+}
+.icon-inverted:before {
+    content: "\f103";
+}
+.icon-focus-top:before {
+    content: "\f104";
+}
+.icon-focus-bottom:before {
+    content: "\f105";
+}
+.icon-apple-share:before {
+    content: "\f106";
+}

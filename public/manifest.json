@@ -1,6 +1,6 @@
 {
-    "short_name": "Spec Checker",
-    "name": "Griffin Web Studio Spec Checker Tool",
+    "short_name": "GWS SpecValid",
+    "name": "Griffin Web Studio Spec Validation Tool",
     "icons": [
         {
             "src": "/site-icons/favicon.ico?v=2",
