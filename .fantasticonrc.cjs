@@ -2,7 +2,7 @@ module.exports = {
     inputDir: "./public/assets/images/icons/",
     outputDir: "./public/assets/fonts",
     fontTypes: ["ttf", "woff", "woff2"],
-    assetTypes: ["json", "scss"],
+    assetTypes: ["ts", "json", "scss"],
     fontsUrl: "/assets/fonts",
     formatOptions: {
         svg: {
@@ -13,8 +13,16 @@ module.exports = {
         json: {
             indent: 2,
         },
+        ts: {
+            types: ["enum", "constant", "literalId", "literalKey"],
+            enumName: "gwsIconsEnum",
+            constantName: "gwsIcons",
+            literalIdName: "gwsIconID",
+            literalKeyName: "gwsIconKey",
+        },
     },
     pathOptions: {
+        ts: "./src/types/icon-types.ts",
         json: "./public/assets/fonts/icon.json",
         scss: "./src/styles/sass/base/_icons.scss",
     },

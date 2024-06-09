@@ -1,0 +1,20 @@
+${{ name }}-font: "{{ name }}"
+
+@font-face
+    font-family: ${{ name }}-font
+    src: {{{ fontSrc ~}}}
+
+${{ name }}-map: (
+{{# each codepoints }}
+    "{{ @key }}": "\\{{ codepoint this }}",
+{{/ each }}
+)
+
+{{# each codepoints }}
+{{# if ../selector }}
+{{ ../selector }}.{{ ../prefix }}-{{ @key }}:before
+{{ else }}
+{{ tag }}.{{ ../prefix }}-{{ @key }}:before
+{{/ if }}
+    content: map-get(${{ ../name }}-map, "{{ @key }}")
+{{/ each }}
