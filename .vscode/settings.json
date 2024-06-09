@@ -1,4 +1,22 @@
 {
+    "[sass]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "syler.sass-indented"
+    },
+    "[jsx-tags]": {
+        "editor.tabSize": 2
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "cSpell.language": "en-GB",
+    "cSpell.flagWords": [
+        "teh->the",
+        "adn->and",
+        "nad->and",
+        "fo->of",
+        "ot->to"
+    ],
     "cSpell.words": [
         "Flickity",
         "Gtheme",
@@ -11,18 +29,8 @@
         "smallscreen",
         "woocommerce"
     ],
-    "workbench.colorTheme": "Monokai",
-    "php.executablePath": "C:\\PHP8\\php8.exe",
-    "editor.minimap.enabled": true,
-    "intelephense.diagnostics.undefinedClassConstants": false,
-    "intelephense.diagnostics.undefinedConstants": false,
-    "intelephense.diagnostics.undefinedFunctions": false,
-    "intelephense.diagnostics.undefinedMethods": false,
-    "intelephense.diagnostics.undefinedTypes": false,
-    "phpcs.standard": "GWS",
-    "webvalidator.showPopup": false,
-    "webvalidator.validateOnSave": true,
-    "editor.fontSize": 12,
-    "debug.console.fontSize": 12,
-    "terminal.integrated.fontSize": 12
+    "editor.fontLigatures": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
 }
