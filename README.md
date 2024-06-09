@@ -11,41 +11,63 @@
 
 > A simple Tool to overlay the Spec Design over the live preview website.
 
-### 🏠 [Homepage](https://gws-internal.griffin-studio.co.uk/spec-check/)
-
-### ✨ [Demo](https://gws-internal.griffin-studio.co.uk/spec-check/)
-
-## Install
-
-```sh
-npm install
-```
+🏠 [Homepage](https://gws-internal.griffin-studio.co.uk/spec-check/) | ✨ [Demo](https://gws-internal.griffin-studio.co.uk/spec-check/)
 
 ## Usage
 
-```sh
-npm start
-```
-
-## Build
+Install
 
 ```sh
-npm run build
+bun install
 ```
 
-## Run tests
+Development
 
 ```sh
-npm test
+bun run dev
 ```
+
+Production
+
+```sh
+bun run build
+```
+
+Tests
+
+```sh
+bun test
+```
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+
+- Configure the top-level `parserOptions` property like this:
+
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
+```
+
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
 
 ## Author
 
 👤 **Rihards Simanovics**
 
 * Website: https://griffin-web.studio/
-* Github: [@rihards-s](https://gitlab.griffin-studio.dev/rihards-s)
-* LinkedIn: [@https:\/\/www.linkedin.com\/in\/rihardssimanovics\/](https://linkedin.com/in/https:\/\/www.linkedin.com\/in\/rihardssimanovics\/)
+* Gitlab: [@rihards-s](https://gitlab.griffin-studio.dev/rihards-s)
+* LinkedIn: [@https://www.linkedin.com/in/rihardssimanovics/](https://linkedin.com/in/https://www.linkedin.com/in/rihardssimanovics/)
 
 ## 🤝 Contributing
 
@@ -60,6 +82,3 @@ Give a ⭐️ if this project helped you!
 Copyright © 2022 [Griffin Web Studio Limited](https://griffin-web.studio).<br />
 Copyright © 2022 [Rihards Simanovics](https://gitlab.griffin-studio.dev/rihards-s).<br />
 This project is [Modified GNU General Public License (GPL) version 3](https://gitlab.griffin-studio.dev/gws-internal/spec-check/-/blob/main/LICENSE) licensed.
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
