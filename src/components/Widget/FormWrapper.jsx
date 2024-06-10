@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { SpecContext } from "../../app/context/SpecOptions";
+import { SpecContext } from "../../../../src/context/SpecOptions";
 import { SpecCheckerCredits } from "./InputGroups/Credits";
 import { MediaOptions } from "./InputGroups/MediaOptions";
 import { SpecCheckerCommunication } from "./InputGroups/SpecCheckerCommunication";
@@ -12,41 +12,67 @@ export const FormWrapper = () => {
     const { options, setOptions } = useContext(SpecContext);
 
     const onSpecOptionsChangeHandler = (newOptions, newQueryURL) => {
-        setOptions((oldOptions) => ({...oldOptions, ...newOptions, currentUrl: newQueryURL.toString() }));
-        window.history.replaceState({}, "Spec Checker Tool", newQueryURL.toString());
+        setOptions((oldOptions) => ({
+            ...oldOptions,
+            ...newOptions,
+            currentUrl: newQueryURL.toString(),
+        }));
+        window.history.replaceState(
+            {},
+            "Spec Checker Tool",
+            newQueryURL.toString()
+        );
     };
 
     return (
         <form method="get" className="gwssc-form">
             <div className="gwssc-grid col-1 gap-row-20">
                 <div className="gwssc-grid-1">
-                    <WebsiteFrameLoader specOptions={options} onChange={onSpecOptionsChangeHandler} />
+                    <WebsiteFrameLoader
+                        specOptions={options}
+                        onChange={onSpecOptionsChangeHandler}
+                    />
                 </div>
 
                 <div className="gwssc-grid-1">
-                    <WebsiteSpecLoader specOptions={options} onChange={onSpecOptionsChangeHandler} />
+                    <WebsiteSpecLoader
+                        specOptions={options}
+                        onChange={onSpecOptionsChangeHandler}
+                    />
                 </div>
 
                 {options.specIsLoaded && options.frameIsLoaded ? (
                     <div className="gwssc-grid-1">
-                        <SpecOpacityChanger specOptions={options} onChange={onSpecOptionsChangeHandler} />
+                        <SpecOpacityChanger
+                            specOptions={options}
+                            onChange={onSpecOptionsChangeHandler}
+                        />
                     </div>
                 ) : null}
 
                 {options.specIsLoaded && options.frameIsLoaded ? (
                     <div className="gwssc-grid-1">
-                        <SpecPositionAdjust specOptions={options} onChange={onSpecOptionsChangeHandler} />
+                        <SpecPositionAdjust
+                            specOptions={options}
+                            onChange={onSpecOptionsChangeHandler}
+                        />
                     </div>
                 ) : null}
 
                 {options.specIsLoaded && options.frameIsLoaded ? (
                     <div className="gwssc-grid-1">
-                        <MediaOptions  specOptions={options} onChange={onSpecOptionsChangeHandler} />
+                        <MediaOptions
+                            specOptions={options}
+                            onChange={onSpecOptionsChangeHandler}
+                        />
                     </div>
                 ) : null}
 
                 <div className="gwssc-grid-1">
-                    <SpecCheckerCommunication  specOptions={options} onChange={onSpecOptionsChangeHandler} />
+                    <SpecCheckerCommunication
+                        specOptions={options}
+                        onChange={onSpecOptionsChangeHandler}
+                    />
                 </div>
 
                 <div className="gwssc-grid-1">
@@ -55,4 +81,4 @@ export const FormWrapper = () => {
             </div>
         </form>
     );
-}
+};

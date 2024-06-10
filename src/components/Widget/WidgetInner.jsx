@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { SpecContext } from "../../app/context/SpecOptions";
+import { SpecContext } from "../../../../src/context/SpecOptions";
 import { InstallPWAPrompt } from "../InstallPWAPropt";
 import SpecImage from "./SpecImage";
 import WebsiteFrame from "./WebsiteFrame";
 import WidgetContainer from "./WidgetContainer";
 
-export const WidgetInner = props => {
+export const WidgetInner = (props) => {
     const { options } = useContext(SpecContext);
 
     return (
@@ -13,8 +13,9 @@ export const WidgetInner = props => {
             <div
                 className="gwssc__testing-container"
                 style={{
-                    height: `${options.iframeHeight}`
-                }}>
+                    height: `${options.iframeHeight}`,
+                }}
+            >
                 <WebsiteFrame />
 
                 <SpecImage />
@@ -25,4 +26,4 @@ export const WidgetInner = props => {
             <InstallPWAPrompt />
         </div>
     );
-}
+};

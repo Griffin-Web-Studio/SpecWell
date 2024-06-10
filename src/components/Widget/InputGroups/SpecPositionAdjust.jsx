@@ -1,18 +1,18 @@
-import NumberInputIncDec from "../../UI/InputGroups/NumberIncDec";
+import NumberInputIncDec from "../../../../../src/components/UI/InputGroups/NumberIncDec";
 
-export const SpecPositionAdjust = props => {
+export const SpecPositionAdjust = (props) => {
     const { specOptions, onChange } = props;
 
     let queryURL = new URL(specOptions.currentUrl);
 
     const onXAxisChangeHandler = (value) => {
         queryURL.searchParams.set("spec-x-adjust", value);
-        onChange({specXAxis: value}, queryURL);
+        onChange({ specXAxis: value }, queryURL);
     };
 
     const onYAxisChangeHandler = (value) => {
         queryURL.searchParams.set("spec-y-adjust", value);
-        onChange({specYAxis: value}, queryURL);
+        onChange({ specYAxis: value }, queryURL);
     };
 
     return (
@@ -48,4 +48,4 @@ export const SpecPositionAdjust = props => {
             </div>
         </fieldset>
     );
-}
+};

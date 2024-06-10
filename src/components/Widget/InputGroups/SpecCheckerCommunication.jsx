@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { SpecContext } from "../../../app/context/SpecOptions";
-import CodemirrorInput from "../../UI/CodemirrorInput";
+import { SpecContext } from "../../../../../src/context/SpecOptions";
+import CodemirrorInput from "../../../../../src/components/UI/CodemirrorInput";
 
 export const SpecCheckerCommunication = () => {
     const { options } = useContext(SpecContext);
@@ -9,7 +9,10 @@ export const SpecCheckerCommunication = () => {
         <fieldset className="gwssc-group">
             <div className="gwssc-grid gap-col-4">
                 <div className="gwssc-grid-24">
-                    <legend className="gwssc-legend" style={{ textAlign: "center" }}>
+                    <legend
+                        className="gwssc-legend"
+                        style={{ textAlign: "center" }}
+                    >
                         <label>
                             <span>Client &lt; </span>
                             <span className="communication-line-1">=</span>
@@ -17,14 +20,25 @@ export const SpecCheckerCommunication = () => {
                             <span className="communication-line-3">=</span>
                             <span className="communication-line-4">=</span>
                             <span className="communication-line-5">=</span>
-                            <span> &gt; Host {options.establishedCommunication ? "✅ (success)" : "❌ (failed)"}</span>
+                            <span>
+                                {" "}
+                                &gt; Host{" "}
+                                {options.establishedCommunication
+                                    ? "✅ (success)"
+                                    : "❌ (failed)"}
+                            </span>
                         </label>
                     </legend>
                 </div>
 
                 <div className="gwssc-grid-24">
                     <div className="gwssc-input-wrap gwssc-input-wrap--radius-bottom">
-                        <p className="gwssc-client-com-note">For this SpecChecker (host) to automatically correct frame (client) height, you need to add this script anywhere before the end of the body. Do it on each page you want to spec check.</p>
+                        <p className="gwssc-client-com-note">
+                            For this SpecChecker (host) to automatically correct
+                            frame (client) height, you need to add this script
+                            anywhere before the end of the body. Do it on each
+                            page you want to spec check.
+                        </p>
 
                         <div className="gwssc-input-wrap gwssc-input-wrap--radius-top gwssc-input-wrap--radius-bottom">
                             <CodemirrorInput
@@ -68,4 +82,4 @@ export const SpecCheckerCommunication = () => {
             </div>
         </fieldset>
     );
-}
+};

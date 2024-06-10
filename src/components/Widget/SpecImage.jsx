@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { SpecContext } from "../../app/context/SpecOptions";
+import { SpecContext } from "../../../../src/context/SpecOptions";
 
 export default function SpecImage(props) {
     const { options } = useContext(SpecContext);
@@ -8,7 +8,11 @@ export default function SpecImage(props) {
         if (options.specIsFigma) {
             return (
                 <div
-                    className={`gwssc__image-container ${options.invertSpec ? "gwssc__image-container--invert" : ""}`}
+                    className={`gwssc__image-container ${
+                        options.invertSpec
+                            ? "gwssc__image-container--invert"
+                            : ""
+                    }`}
                     style={{
                         position: "absolute",
                         top: 0,
@@ -18,9 +22,10 @@ export default function SpecImage(props) {
                         width: "100%",
                         height: "100%",
                         overflow: "hidden",
-                        transform: `translate(calc(${options.specXAxis}px), ${options.specYAxis}px)`
+                        transform: `translate(calc(${options.specXAxis}px), ${options.specYAxis}px)`,
                         // transform: `scale(${options.mediaZoom / 100})`
-                    }}>
+                    }}
+                >
                     <iframe
                         title="figma Spec Overlay"
                         src={options.specSrc}
@@ -35,7 +40,10 @@ export default function SpecImage(props) {
                             width: "177.78%",
                             height: "100%",
                             opacity: options.specOpacity,
-                            pointerEvents: options.mouseEventsOn === "spec" ? "all" : "none"
+                            pointerEvents:
+                                options.mouseEventsOn === "spec"
+                                    ? "all"
+                                    : "none",
                         }}
                     />
                 </div>
@@ -43,10 +51,15 @@ export default function SpecImage(props) {
         } else {
             return (
                 <div
-                    className={`gwssc__image-container ${options.invertSpec ? "gwssc__image-container--invert" : ""}`}
+                    className={`gwssc__image-container ${
+                        options.invertSpec
+                            ? "gwssc__image-container--invert"
+                            : ""
+                    }`}
                     style={{
-                        transform: `scale(${options.mediaZoom / 100})`
-                    }}>
+                        transform: `scale(${options.mediaZoom / 100})`,
+                    }}
+                >
                     <img
                         src={options.specSrc}
                         className="gwssc__image"
@@ -55,7 +68,10 @@ export default function SpecImage(props) {
                             opacity: options.specOpacity,
                             transform: `translate(calc(-50% + ${options.specXAxis}px), ${options.specYAxis}px)`,
                             width: `${options.mediaWidth}px`,
-                            pointerEvents: options.mouseEventsOn === "spec" ? "all" : "none"
+                            pointerEvents:
+                                options.mouseEventsOn === "spec"
+                                    ? "all"
+                                    : "none",
                         }}
                     />
                 </div>

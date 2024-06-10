@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import NumberInputIncDec from "../../UI/InputGroups/NumberIncDec";
+import NumberInputIncDec from "../../../../../src/components/UI/InputGroups/NumberIncDec";
 
-export const MediaOptions = props => {
+export const MediaOptions = (props) => {
     const { specOptions, onChange } = props;
     const [mediaWidth, setMediaWidth] = useState(specOptions.mediaWidth);
 
@@ -39,29 +39,62 @@ export const MediaOptions = props => {
                         <div className="gwssc-grid-2">
                             <div className="gwssc-grid col-1 gap-col-10 ">
                                 <div className="gwssc-grid-1">
-                                    <label htmlFor="site-width-preset" className="gwssc-label full">
+                                    <label
+                                        htmlFor="site-width-preset"
+                                        className="gwssc-label full"
+                                    >
                                         Media Presets
                                     </label>
                                 </div>
 
                                 <div className="gwssc-grid-1">
-                                    <select className="gwssc-input gwssc-input--radius-top gwssc-input--radius-bottom" name="site-width-preset" id="site-width-preset" onChange={OnSelectHandler} value={mediaWidth}>
+                                    <select
+                                        className="gwssc-input gwssc-input--radius-top gwssc-input--radius-bottom"
+                                        name="site-width-preset"
+                                        id="site-width-preset"
+                                        onChange={OnSelectHandler}
+                                        value={mediaWidth}
+                                    >
                                         {/* Mobile */}
-                                        <option value="320">s-mobile (320px)</option>
-                                        <option value="375">m-mobile (375px)</option>
-                                        <option value="425">l-mobile (425px)</option>
+                                        <option value="320">
+                                            s-mobile (320px)
+                                        </option>
+                                        <option value="375">
+                                            m-mobile (375px)
+                                        </option>
+                                        <option value="425">
+                                            l-mobile (425px)
+                                        </option>
                                         {/* Tablet */}
-                                        <option value="540">s-tablet (540px)</option>
-                                        <option value="655">m-tablet (655px)</option>
-                                        <option value="768">l-tablet (768px)</option>
+                                        <option value="540">
+                                            s-tablet (540px)
+                                        </option>
+                                        <option value="655">
+                                            m-tablet (655px)
+                                        </option>
+                                        <option value="768">
+                                            l-tablet (768px)
+                                        </option>
                                         {/* Laptop */}
-                                        <option value="854">s-laptop (854px)</option>
-                                        <option value="940">m-laptop (940px)</option>
-                                        <option value="1024">l-laptop (1024px)</option>
+                                        <option value="854">
+                                            s-laptop (854px)
+                                        </option>
+                                        <option value="940">
+                                            m-laptop (940px)
+                                        </option>
+                                        <option value="1024">
+                                            l-laptop (1024px)
+                                        </option>
                                         {/* Desktop */}
-                                        <option value="1440">s-desktop (1440px)</option>
-                                        <option value="1920">m-desktop (1920px)</option>
-                                        <option value="2560">l-desktop (2560px)</option>
+                                        <option value="1440">
+                                            s-desktop (1440px)
+                                        </option>
+                                        <option value="1920">
+                                            m-desktop (1920px)
+                                        </option>
+                                        <option value="2560">
+                                            l-desktop (2560px)
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -109,4 +142,4 @@ export const MediaOptions = props => {
             </div>
         </fieldset>
     );
-}
+};
