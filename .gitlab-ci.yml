@@ -14,7 +14,7 @@ build:
       - node_modules/
   script:
     - npm install
-    - npm run build
+    - npm run build --base=$CI_PAGES_URL
   artifacts:
     paths:
       - build
